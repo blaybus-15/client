@@ -16,6 +16,9 @@ export default [
         ...globals.browser,
         ...globals.es2020,
       },
+      env: {
+        node: true,
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
