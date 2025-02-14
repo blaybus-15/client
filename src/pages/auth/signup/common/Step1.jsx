@@ -11,7 +11,7 @@ const Step1 = () => {
     };
 
     return (
-        <div className="flex flex-col justify-between min-h-screen px-6 py-8 bg-white">
+        <div className="flex flex-col justify-between min-h-screen px-6 py-12 bg-white">
             <div className="flex-1"></div>
 
             <div className="space-y-4">

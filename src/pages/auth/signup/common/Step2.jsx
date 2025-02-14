@@ -16,21 +16,25 @@ const Step2 = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center min-h-screen px-6 py-8 space-y-6">
-            <h2 className="text-lg font-semibold text-center mb-7">회원가입</h2>
+        <div className="flex flex-col justify-evenly min-h-screen px-6 py-12 bg-white">
+            <div className="w-full rounded-lg flex flex-col flex-1 justify-evenly">
 
-            <div className="flex flex-col space-y-6">
-                <div>
-                    <InputField placeholder="아이디 입력" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <p className="text-sm font-normal">이메일을 입력해주세요.</p>
+                <h2 className="text-lg font-semibold text-center py-12">회원가입</h2>
+
+                <div className="flex flex-col flex-1 justify-center space-y-6">
+                    <div>
+                        <InputField placeholder="아이디 입력" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <p className="text-sm font-normal">이메일을 입력해주세요.</p>
+                    </div>
+
+                    <div>
+                        <InputField placeholder="비밀번호 입력" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <p className="text-sm font-normal">비밀번호를 입력해주세요. (영문+숫자+특수문자 조합 8~23자)</p>
+                    </div>
                 </div>
 
-                <div>
-                    <InputField placeholder="비밀번호 입력" type="password" value={password} onChange={(e) => setPassword(e.target.password)} />
-                    <p className="text-sm font-normal">비밀번호를 입력해주세요. (영문+숫자+특수문자 조합 8~23자)</p>
-                </div>
                 
-                <div className="mt-12">
+                <div className="flex-1 flex items-end">
                     <Button text="다음" onClick={handleNext} disabled={!email || !password} />
                 </div>
             </div>
