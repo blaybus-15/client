@@ -7,7 +7,7 @@ const Step1 = () => {
     const userType = searchParams.get("type") || "caregiver";
 
     const handleNext = () => {
-        navigate(`/signup/common/step2?type=${userType}`);
+        navigate(`/signup/step2?type=${userType}`);
     };
 
     return (
