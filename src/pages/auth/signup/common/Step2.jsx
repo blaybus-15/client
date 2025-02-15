@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 
+
 const Step2 = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const userType = searchParams.get("type") || "caregiver";
 
@@ -12,6 +15,7 @@ const Step2 = () => {
     const [password, setPassword] = useState("");
 
     const handleNext = () => {
+        dispatch(updateSignupData({ email, password }));
         navigate(`/signup/step3?type=${userType}`);
     };
 
