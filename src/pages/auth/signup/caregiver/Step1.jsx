@@ -15,6 +15,7 @@ const Step1 = () => {
     const [profileImg, setProfileImg] = useState(null);
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
     const [centerName, setCenterName] = useState("");
     const [centerLevel, setCenterLevel] = useState("");
 
@@ -25,6 +26,15 @@ const Step1 = () => {
             navigate("/");
         }
     };
+
+    const formatPhoneNumber = (value) => {
+        const cleaned = value.replace(/\D/g, "");
+        if (cleaned.length <= 3) return cleaned;
+        if (cleaned.length <= 7) return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+        return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7, 11)}`;
+    };
+
+    const isValidContactNumber = contactNumber.length === 10 || contactNumber.length === 11;
 
     return (
         <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">
@@ -37,8 +47,12 @@ const Step1 = () => {
                 
                 {userType === "caregiver" ? (
                     <div>
-                        <InputField label="이름" placeholder="이름을 입력해주세요." type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                        <InputField label="이름" placeholder="입력해 주세요." type="text" value={name} onChange={(e) => setName(e.target.value)} />
                         <OptionButton label="성별" options={["남자", "여자"]} selectedOption={gender} onSelect={setGender} />
+                        <InputField label="연락처" placeholder="입력해 주세요." type="tel" value={formatPhoneNumber(contactNumber)} onChange={(e) => setContactNumber(e.target.value.replace(/\D/g, ""))} maxLength={13} />
+                        {contactNumber.length > 0 && !isValidContactNumber && (
+                            <p className="text-sm text-[#FF3737]">올바른 연락처를 입력해주세요.</p>
+                        )}
                     </div>
                 ) : (
                     <>
@@ -48,9 +62,13 @@ const Step1 = () => {
                 )}
 
                 <div className="mt-9">
-                    <Button text="가입하러 가기" onClick={handleNext} disabled={
-                        (userType === "caregiver" ? (!name || !gender)
-                        : (!centerName ||!centerLevel))} />
+                    <Button text="가입하러 가기" 
+                        onClick={handleNext} 
+                        disabled={(
+                            userType === "caregiver" ? 
+                            (!name || !gender || !isValidContactNumber) : (!centerName ||!centerLevel)
+                        )} 
+                    />
                 </div>
             </div>
         </div>

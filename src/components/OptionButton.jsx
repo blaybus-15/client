@@ -5,7 +5,7 @@ const OptionButton = ({ label, options, selectedOption, onSelect }) => {
         <div className="flex flex-col">
             {label && <p className="text-lg font-medium text-[#221313] mb-3">{label}</p>}
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 mb-4">
                 {options.map((option) => (
                     <button
                         key={option}

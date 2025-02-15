@@ -8,7 +8,7 @@ import {
 
 import CaregiverSignup from './pages/auth/signup/CaregiverSignup';
 import Step1 from './pages/auth/signup/caregiver/Step1';
-import Step2 from "./pages/auth/signup/Step2";
+import Step2 from './pages/auth/signup/caregiver/Step2';
 import Step3 from "./pages/auth/signup/Step3";
 import Success from './pages/auth/signup/Success';
 
