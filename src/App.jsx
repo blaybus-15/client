@@ -8,6 +8,7 @@ import {
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import NavBar from './components/NavBar';
+import SelectableCardTest from './pages/dev/SelectableCardTest';
 
 const AppContent = () => {
   const location = useLocation();
@@ -22,11 +23,14 @@ const AppContent = () => {
           </div>
         </div>
       )}
-      <div className={'max-w-3xl mx-auto'}>
+      <div className={'max-w-3xl mx-auto pt-6'}>
         <Routes>
           <Route path="/" />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
+
+          {/* 배포 시 dev 링크 삭제 */}
+          <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
         </Routes>
       </div>
     </div>
