@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ProfileUploader from '../../../../components/ProfileUploader';
-import Button from '../../../../components/Button';
-import InputField from '../../../../components/InputField';
-import OptionButton from '../../../../components/OptionButton';
+import ProfileUploader from '../../../components/ProfileUploader';
+import Button from '../../../components/Button';
+import InputField from '../../../components/InputField';
+import OptionButton from '../../../components/OptionButton';
 
 const Step3 = () => {
     const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Button from "../../../../components/Button";
-import InputField from "../../../../components/InputField";
+import Button from "../../../components/Button";
+import InputField from "../../../components/InputField";
 
 
 const Step2 = () => {

@@ -1,15 +1,16 @@
 import React from "react";
 
-const InputField = ({ label, placeholder, type = "text", value, onChange }) => {
+const InputField = ({ label, placeholder, type = "text", value, onChange, isInvalid, className }) => {
     return (
-        <div className="flex flex-col mb-4">
-            {label && <label className="text-sm text-gray-700 mb-1">{label}</label>}
+        <div className={`flex flex-col mb-4  ${className}`}>
+            {label && <label className="text-lg font-medium text-[#221313] mb-3">{label}</label>}
             <input
                 type={type}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full px-4 py-4 text-base font-normal text-[#221313] bg-[#F3F4F5] placeholder-[#606265] border ${isInvalid ? "border-[#FF3737]" : "border-none"} 
+                            rounded-xl focus:outline-none`}
             />
         </div>
     );
