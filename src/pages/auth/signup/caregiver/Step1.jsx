@@ -21,7 +21,7 @@ const Step1 = () => {
 
     const handleNext = () => {
         if (userType === "caregiver") {
-            navigate("/signup/success");
+            navigate("/signup/caregiver/step2");
         } else {
             navigate("/");
         }
@@ -39,7 +39,7 @@ const Step1 = () => {
     return (
         <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">
             <div className="w-full rounded-lg flex flex-col flex-1 justify-evenly">
-                <h2 className="text-2xl leading-[40px] font-semibold text-left">
+                <h2 className="head-semi-bold-24 leading-[40px] text-left">
                     환영합니다!<br />이름과 성별을 입력해주세요.
                 </h2>
 

@@ -9,8 +9,7 @@ import {
 import CaregiverSignup from './pages/auth/signup/CaregiverSignup';
 import Step1 from './pages/auth/signup/caregiver/Step1';
 import Step2 from './pages/auth/signup/caregiver/Step2';
-import Step3 from "./pages/auth/signup/Step3";
-import Success from './pages/auth/signup/Success';
+import SuccessPage from './pages/auth/signup/SuccessPage';
 
 import Login from './pages/auth/login/Login';
 import NavBar from './components/NavBar';
@@ -31,11 +30,10 @@ const AppContent = () => {
       <div className={'max-w-2xl mx-auto'}>
         <Routes>
           <Route path="/" />
-          <Route path="/signup/caregiver" element={<CaregiverSignup />} />
-          <Route path="/signup/step1" element={<Step1 />} />
-          <Route path='/signup/step2' element={<Step2 />} />
-          <Route path="/signup/step3" element={<Step3 />} />
-          <Route path="/signup/success" element={<Success />} />
+          <Route path="/auth/caregiver" element={<CaregiverSignup />} />
+          <Route path="/signup/caregiver/step1" element={<Step1 />} />
+          <Route path='/signup/caregiver/step2' element={<Step2 />} />
+          <Route path="/signup/success" element={<SuccessPage />} />
 
           <Route path="/login" element={<Login />} />
         </Routes>

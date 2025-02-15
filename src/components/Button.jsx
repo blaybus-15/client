@@ -5,8 +5,8 @@ const Button = ({ text, onClick, disabled = false, className }) => {
     return (
         <button
             className={
-                `w-full py-4 text-[#FFFFFF] bg-[#221313] text-lg font-semibold rounded-2xl
-                transition hover:bg-opacity-80 disabled:bg-[#B1B5B9] ${className}`}
+                `body-semi-bold-18 w-full py-4 text-[#FFFFFF] bg-dark rounded-2xl
+                transition hover:bg-opacity-80 disabled:bg-gray-2 ${className}`}
             onClick={onClick}
             disabled={disabled}
         >

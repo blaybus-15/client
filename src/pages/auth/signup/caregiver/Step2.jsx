@@ -28,11 +28,11 @@ const Step2 = () => {
     return (
         <div className="flex flex-col justify-evenly min-h-screen px-6 py-12 bg-white">
             <div className="w-full rounded-lg flex flex-col flex-1 justify-evenly">
-                <h2 className="text-2xl leading-[40px] mt-8 font-semibold text-left">
+                <h2 className="head-semi-bold-24 leading-[40px] mt-8 text-left">
                     계정을 만들어주세요.
                 </h2>
 
-                <div className="flex flex-col flex-1 justify-start space-y-6">
+                <div className="flex flex-col flex-1 justify-center space-y-6">
                     <div>
                         <InputField label="아이디 (이메일 주소)" placeholder="아이디(이메일 주소)를 입력해 주세요." type="email" value={email} onChange={(e) => setEmail(e.target.value)} isInvalid={email.length > 0 && !isValidEmail} className="mb-0" />
                         { email.length > 0 && !isValidEmail && <p className="text-sm text-[#FF3737] pt-1">이메일을 다시 확인해주세요.</p> }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Button from '../../../components/Button';
 
-const Success = () => {
+const SuccessPage = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const userType = searchParams.get("type") || "caregiver";
@@ -18,7 +18,7 @@ const Success = () => {
     return (
         <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">
             <div className="flex flex-col flex-1 justify-center items-center text-center space-y-6">
-            <h2 className="text-2xl leading-[40px] text-[#221313] font-semibold">
+            <h2 className="head-semi-bold-24 leading-[40px] text-dark">
                 프로필 등록하고<br />집근처 일자리 정보를<br />찾아보세요!
             </h2>
 
@@ -37,4 +37,4 @@ const Success = () => {
     )
 }
 
-export default Success;
+export default SuccessPage;
