@@ -1,5 +1,9 @@
 import React from 'react';
 import SelectableCard from '../../components/SelectableCard';
+import SearchBar from '../../components/SearchBar';
+import InputFieldWithButton from '../../components/InputFieldWithButton';
+import SalaryCalculator from '../../components/SalaryCalculator';
+import { Input } from 'postcss';
 
 const SelectableCardTest = () => {
   const singleSelectItems = [
@@ -29,13 +33,14 @@ const SelectableCardTest = () => {
 
   return (
     <div className="container px-4 py-8 mx-auto">
+      <InputFieldWithButton />
       <h1 className="mb-8 text-2xl font-bold">
         SelectableCard 컴포넌트 테스트
       </h1>
 
       <div className="space-y-8">
         <section>
-          <h2 className="mb-4 text-xl font-bold">단일 선택 테스트</h2>
+          <h2 className="mb-4">단일 선택 테스트</h2>
           <SelectableCard
             items={singleSelectItems}
             multiple={false}
@@ -44,7 +49,7 @@ const SelectableCardTest = () => {
         </section>
 
         <section>
-          <h2 className="mb-4 text-xl font-bold">다중 선택 테스트</h2>
+          <h2 className="mb-4">다중 선택 테스트</h2>
           <SelectableCard
             items={multiSelectItems}
             multiple={true}
@@ -53,7 +58,7 @@ const SelectableCardTest = () => {
         </section>
 
         <section>
-          <h2 className="mb-4 text-xl font-bold">커스텀 스타일 테스트</h2>
+          <h2 className="mb-4">커스텀 스타일 테스트</h2>
           <SelectableCard
             items={customStyleItems}
             multiple={true}

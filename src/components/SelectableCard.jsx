@@ -5,8 +5,8 @@ const SelectableCard = ({
   multiple = false,
   onSelect,
   className = '',
-  selectedClassName = 'bg-blue-500 text-white',
-  unselectedClassName = 'bg-gray-100 hover:bg-gray-200',
+  selectedClassName = 'bg-background-point text-dark body-semi-bold-16 shadow-inner',
+  unselectedClassName = 'bg-background-gray text-dark body-regular-16 hover:bg-gray-2/20',
   cols = 2,
 }) => {
   const [selected, setSelected] = useState(multiple ? [] : null);
@@ -43,9 +43,7 @@ const SelectableCard = ({
           key={index}
           onClick={() => handleClick(index)}
           className={`
-            p-6 rounded-lg shadow-sm
-            transition-all duration-200
-            text-center font-medium
+            p-6 rounded-lg 
             ${isSelected(index) ? selectedClassName : unselectedClassName}
           `}
         >

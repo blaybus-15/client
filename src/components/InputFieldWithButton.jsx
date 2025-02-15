@@ -13,17 +13,17 @@ const InputFieldWithButton = ({
 
   return (
     <div className="w-full mx-auto">
-      <div className="relative bg-gray-100 rounded-lg">
+      <div className="relative rounded-lg bg-background-gray body-regular-16">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder={placeholder}
-          className="w-full h-12 p-6 pr-24 text-gray-700 placeholder-gray-500 bg-transparent outline-none"
+          className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-1 text-dark "
         />
         <button
           onClick={handleSubmit}
-          className="absolute px-4 py-2 text-white -translate-y-1/2 bg-gray-400 rounded-lg right-2 top-1/2 hover:bg-gray-600"
+          className="absolute px-4 py-2 text-white -translate-y-1/2 rounded-lg bg-gray-2 right-2 top-1/2 hover:bg-main hover:text-dark"
         >
           {buttonText}
         </button>

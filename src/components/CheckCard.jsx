@@ -3,11 +3,11 @@ import { BsCheck } from 'react-icons/bs';
 
 const CheckCard = ({ value, onChange, yesLabel = 'Yes', noLabel = 'No' }) => {
   const baseStyles =
-    'flex items-center gap-2 w-full p-4 rounded-lg transition-all duration-200 cursor-pointer';
+    'flex items-center gap-2 w-full p-4 rounded-lg  cursor-pointer body-regular-16 text-dark';
   const styles = (isSelected) =>
     isSelected
-      ? 'bg-gray-200/70 text-gray-900'
-      : 'bg-gray-50 text-gray-500 hover:bg-gray-100';
+      ? 'bg-background-point shadow-inner'
+      : 'bg-background-gray hover:bg-gray-200/50';
 
   const options = [
     { id: 'yes', label: yesLabel, value: true },
@@ -27,14 +27,12 @@ const CheckCard = ({ value, onChange, yesLabel = 'Yes', noLabel = 'No' }) => {
           >
             <span
               className={`rounded-full p-1 ${
-                value === option.value ? 'bg-gray-300' : 'bg-gray-200/50'
+                value === option.value ? 'bg-main' : 'bg-gray-2'
               }`}
             >
               <BsCheck
                 size={16}
-                className={
-                  value === option.value ? 'text-gray-600' : 'text-gray-400'
-                }
+                className={value === option.value ? 'text-dark' : 'text-white'}
               />
             </span>
             {option.label}
