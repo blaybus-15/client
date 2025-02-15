@@ -23,6 +23,8 @@ const SelectableCardTest = () => {
     '커스텀 스타일 2',
     '커스텀 스타일 3',
     '커스텀 스타일 4',
+    '커스텀 스타일 5',
+    '커스텀 스타일 6',
   ];
 
   return (
@@ -57,6 +59,7 @@ const SelectableCardTest = () => {
             multiple={true}
             selectedClassName="bg-green-500 text-white"
             unselectedClassName="bg-gray-50 hover:bg-gray-100"
+            cols={5}
             onSelect={(selected) => console.log('커스텀 스타일:', selected)}
           />
         </section>

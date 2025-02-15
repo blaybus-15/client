@@ -7,6 +7,7 @@ const SelectableCard = ({
   className = '',
   selectedClassName = 'bg-blue-500 text-white',
   unselectedClassName = 'bg-gray-100 hover:bg-gray-200',
+  cols = 2,
 }) => {
   const [selected, setSelected] = useState(multiple ? [] : null);
 
@@ -32,7 +33,11 @@ const SelectableCard = ({
   };
 
   return (
-    <div className={`grid grid-cols-2 gap-4 p-4 ${className}`}>
+    <div
+      className={`grid gap-4 ${className}`}
+      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
+    >
+      {' '}
       {items.map((item, index) => (
         <button
           key={index}
