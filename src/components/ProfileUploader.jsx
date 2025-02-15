@@ -16,7 +16,7 @@ const ProfileUploader = () => {
         <div className="flex flex-col items-center">
             <label className="relative cursor-pointer">
                 <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
-                <div className="w-[126px] h-[126px] rounded-full border flex items-center justify-center overflow-hidden">
+                <div className="w-[100px] h-[100px] rounded-full border flex items-center justify-center overflow-hidden">
                     {image ? (
                         <img src={image} alt="프로필 미리보기" className="w-full h-full object-cover" />
                         ) : (

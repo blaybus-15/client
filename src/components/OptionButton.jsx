@@ -3,16 +3,16 @@ import React from 'react';
 const OptionButton = ({ label, options, selectedOption, onSelect }) => {
     return (
         <div className="flex flex-col">
-            {label && <p className="text-sm text-gray-700 mb-2">{label}</p>}
+            {label && <p className="text-lg font-medium text-[#221313] mb-3">{label}</p>}
 
             <div className="grid grid-cols-2 gap-4">
                 {options.map((option) => (
                     <button
                         key={option}
-                        className={`p-3 text-sm rounded border-none 
+                        className={`px-16 py-3 text-base rounded-xl
                             ${selectedOption === option 
-                                ? "bg-blue-500 text-white border-blue-500"
-                                : "bg-gray-200 text-black hover:bg-gray-300"
+                                ? "bg-[#FFFEDF] text-[#221313] font-semibold border border-[#FFE943]"
+                                : "bg-[#F3F4F5] text-[#221313] font-normal"
                         }`}
                         onClick={() => onSelect(option)}
                     >

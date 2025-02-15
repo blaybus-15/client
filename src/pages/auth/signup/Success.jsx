@@ -9,22 +9,22 @@ const Success = () => {
 
     const handleNext = () => {
         if (userType === "caregiver") {
-            navigate("/profile-setup");
+            navigate("/profile");
         } else {
             navigate("/elderly-registration");
         }
     };
 
     return (
-        <div className="flex flex-col justify-evenly min-h-screen px-6 py-12 bg-white">
+        <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">
             <div className="flex flex-col flex-1 justify-center items-center text-center space-y-6">
-            <h2 className="text-2xl font-bold">가입 완료</h2>
+            <h2 className="text-2xl leading-[40px] text-[#221313] font-semibold">
+                프로필 등록하고<br />집근처 일자리 정보를<br />찾아보세요!
+            </h2>
 
-            {userType === "caregiver" && (
-            <p className="text-lg text-gray-700">
-                프로필 등록하고 집 근처 일자리 정보를 찾아보세요!
-            </p>
-            )}
+            <div className="flex mt-12 justify-center items-center w-[247px] h-[313px] bg-gray-200">
+                <span className="text-gray-500">일러스트</span>
+            </div>
         </div>
 
         <div className="w-full px-8 pb-12">   
