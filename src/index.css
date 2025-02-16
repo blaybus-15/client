@@ -37,4 +37,8 @@
   .caption-regular-14 {
     @apply font-pretendard font-normal text-[14px];
   }
+
+  .sub-regular-12 {
+    @apply font-pretendard font-normal text-[12px];
+  }
 }
