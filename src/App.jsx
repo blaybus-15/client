@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import NavBar from './components/NavBar';
 import SelectableCardTest from './pages/dev/SelectableCardTest';
 import CheckCardTest from './pages/dev/CheckCardTest';
+import AddressSearch from './pages/dev/AddressSearchTest';
 
 const AppContent = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ const AppContent = () => {
           {/* 배포 시 dev 링크 삭제 */}
           <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
           <Route path="/dev/check-card" element={<CheckCardTest />} />
+          <Route path="/dev/address-search" element={<AddressSearch />} />
         </Routes>
       </div>
     </div>
