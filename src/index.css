@@ -22,6 +22,10 @@
     @apply font-pretendard font-semibold text-[18px];
   }
 
+  .body-semi-bold-16 {
+    @apply font-pretendard font-semibold text-[16px];
+  }
+
   .body-medium-18 {
     @apply font-pretendard font-medium text-[18px];
   }

@@ -18,6 +18,9 @@ export default {
           2: '#B1B5B9',
         },
       },
+      boxShadow: {
+        inner: 'inset 0 0 0 1px #FFE943',
+      },
     },
   },
   plugins: [],
