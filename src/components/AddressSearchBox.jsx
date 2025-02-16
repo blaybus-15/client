@@ -1,7 +1,7 @@
-// AddressSearchBox.jsx
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import useLocation from '../hooks/useLocation';
+import { LuLocateFixed } from 'react-icons/lu';
 
 const convertCoordsToAddress = (latitude, longitude) => {
   return new Promise((resolve, reject) => {
@@ -79,48 +79,30 @@ const AddressSearchBox = ({ onSelectAddress }) => {
   );
 
   return (
-    <div className="w-full space-y-3">
+    <div className="w-full space-y-3 ">
       <SearchBar
         placeholder="동명(읍,면)으로 검색"
         value={searchTerm}
         onChange={setSearchTerm}
       />
       <button
-        className={`flex items-center justify-center w-full py-2 mb-6 rounded-lg
-          ${isLoading ? 'bg-yellow-100 cursor-not-allowed' : 'bg-yellow-300'}
+        className={`flex items-center justify-center w-full py-2 mb-6 rounded-lg body-semi-bold-18 text-dark
+          ${isLoading ? 'bg-main cursor-not-allowed' : 'bg-yellow-300'}
         `}
         onClick={handleLocationSearch}
         disabled={isLoading}
       >
-        <svg
-          className={`w-6 h-6 mr-2 ${isLoading ? 'animate-spin' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
+        <LuLocateFixed size={20} className="mr-3 text-dark" />
         {isLoading ? '위치 확인 중...' : '내 위치로 찾기'}
       </button>
       {error && <div className="text-sm text-center text-red-500">{error}</div>}
       <div>
-        <div className="mb-2 text-sm font-medium">근처 주소</div>
-        <div className="space-y-2">
+        <div className="mb-2 body-medium-18 text-gray-2">근처 주소</div>
+        <div className="space-y-2 body-medium-18">
           {filteredAddresses.map((address, index) => (
             <div
               key={index}
-              className="p-4 cursor-pointer hover:bg-gray-50"
+              className="py-4 cursor-pointer hover:bg-gray-50"
               onClick={() => onSelectAddress(address)}
             >
               {address}
