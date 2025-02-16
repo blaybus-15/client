@@ -5,8 +5,13 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
-import SignUpPage from './pages/SignUpPage';
-import LoginPage from './pages/LoginPage';
+
+import CaregiverSignup from './pages/auth/signup/CaregiverSignup';
+import Step1 from './pages/auth/signup/caregiver/Step1';
+import Step2 from './pages/auth/signup/caregiver/Step2';
+import SuccessPage from './pages/auth/signup/SuccessPage';
+
+import Login from './pages/auth/login/Login';
 import NavBar from './components/NavBar';
 import SelectableCardTest from './pages/dev/SelectableCardTest';
 import CheckCardTest from './pages/dev/CheckCardTest';
@@ -25,11 +30,16 @@ const AppContent = () => {
           </div>
         </div>
       )}
+
       <div className={'max-w-2xl mx-auto pt-6'}>
         <Routes>
           <Route path="/" />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/auth/caregiver" element={<CaregiverSignup />} />
+          <Route path="/signup/caregiver/step1" element={<Step1 />} />
+          <Route path='/signup/caregiver/step2' element={<Step2 />} />
+          <Route path="/signup/success" element={<SuccessPage />} />
+
+          <Route path="/login" element={<Login />} />
 
           {/* 배포 시 dev 링크 삭제 */}
           <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
