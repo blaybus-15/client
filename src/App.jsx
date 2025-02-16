@@ -33,7 +33,7 @@ const AppContent = () => {
           </div>
         </div>
       )}
-      <div className={'max-w-2xl mx-auto pt-6'}>
+      <div className={'max-w-2xl mx-auto'}>
         <Routes>
           <Route path="/" element={<UserTypeSelectPage />} />
 
