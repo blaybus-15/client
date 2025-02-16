@@ -6,6 +6,7 @@ import DementiaEducation from './steps/DementiaEducation';
 import Vehicle from './steps/Vehicle';
 import Keywords from './steps/Keywords';
 import Career from './steps/Career';
+import Introduction from './steps/Introduction';
 // ... 다른 스텝 컴포넌트들 import
 
 const ProfileSetup = () => {
@@ -18,6 +19,7 @@ const ProfileSetup = () => {
         <Route path="vehicle" element={<Vehicle />} />
         <Route path="keywords" element={<Keywords />} />
         <Route path="career" element={<Career />} />
+        <Route path="introduction" element={<Introduction />} />
         {/* ... 다른 스텝들의 라우트 */}
       </Route>
     </Routes>
