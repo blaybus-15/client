@@ -15,8 +15,8 @@ const convertCoordsToAddress = (latitude, longitude) => {
 
       geocoder.coord2RegionCode(longitude, latitude, (result, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
-          // 행정동 주소 반환 (result[0]은 행정동, result[1]은 법정동)
-          const address = result[0].address_name;
+          // 법정동 주소 반환 (result[0]은 행정동, result[1]은 법정동)
+          const address = result[1].address_name;
           resolve(address);
         } else {
           reject(new Error('주소 변환에 실패했습니다.'));
@@ -36,16 +36,16 @@ const AddressSearchBox = ({ onSelectAddress }) => {
 
   // TODO: dummy data -> 실제 데이터로 교체 필요
   const addresses = [
-    '서울 성동구 금호동4가',
-    '서울 성동구 금호4가동',
-    '서울 성동구 옥수동',
-    '서울 성동구 압구정동',
-    '서울 성동구 금호동3가',
-    '서울 성동구 금호동2가',
-    '서울 성동구 신사동',
-    '서울 성동구 금호2,3가동',
-    '서울 성동구 금호동1가',
-    '서울 성동구 하나동',
+    '서울특별시 성동구 금호동4가',
+    '서울특별시 성동구 금호4가동',
+    '서울특별시 성동구 옥수동',
+    '서울특별시 성동구 압구정동',
+    '서울특별시 성동구 금호동3가',
+    '서울특별시 성동구 금호동2가',
+    '서울특별시 성동구 신사동',
+    '서울특별시 성동구 금호2,3가동',
+    '서울특별시 성동구 금호동1가',
+    '서울특별시 성동구 하나동',
   ];
 
   const handleLocationSearch = async () => {
@@ -64,7 +64,8 @@ const AddressSearchBox = ({ onSelectAddress }) => {
       );
 
       if (address) {
-        onSelectAddress(address);
+        //onSelectAddress(address);
+        setSearchTerm(address);
       }
     } catch (err) {
       setError(err.message);
