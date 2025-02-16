@@ -7,6 +7,9 @@ import {
 } from 'react-router-dom';
 
 import NavBar from './components/NavBar';
+import SelectableCardTest from './pages/dev/SelectableCardTest';
+import CheckCardTest from './pages/dev/CheckCardTest';
+import AddressSearch from './pages/dev/AddressSearchTest';
 import UserTypeSelectPage from './pages/home/UserTypeSelectPage';
 import SignupStartPage from './pages/auth/common/SignupStartPage';
 import LoginPage from './pages/auth/common/LoginPage';
@@ -30,13 +33,18 @@ const AppContent = () => {
           </div>
         </div>
       )}
-      <div className={'max-w-2xl mx-auto'}>
+      <div className={'max-w-2xl mx-auto pt-6'}>
         <Routes>
           <Route path="/" element={<UserTypeSelectPage />} />
 
           {/* 로그인 및 회원가입 공통 */}
           <Route path="/auth" element={<SocialAuthPage />} />
           <Route path="/login" element={<LoginPage />} />
+
+          {/* 배포 시 dev 링크 삭제 */}
+          <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
+          <Route path="/dev/check-card" element={<CheckCardTest />} />
+          <Route path="/dev/address-search" element={<AddressSearch />} />
 
           {/* 회원가입 시작 페이지 (userType 기반 리디렉션) */}
           <Route path="/signup" element={<SignupStartPage />} />
