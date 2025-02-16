@@ -5,6 +5,7 @@ import LicenseRegistration from './steps/LicenseRegistration';
 import DementiaEducation from './steps/DementiaEducation';
 import Vehicle from './steps/Vehicle';
 import Keywords from './steps/Keywords';
+import Career from './steps/Career';
 // ... 다른 스텝 컴포넌트들 import
 
 const ProfileSetup = () => {
@@ -16,6 +17,7 @@ const ProfileSetup = () => {
         <Route path="dementia-education" element={<DementiaEducation />} />
         <Route path="vehicle" element={<Vehicle />} />
         <Route path="keywords" element={<Keywords />} />
+        <Route path="career" element={<Career />} />
         {/* ... 다른 스텝들의 라우트 */}
       </Route>
     </Routes>
