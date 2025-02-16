@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import InputField from '../../../../components/InputField';
-import Button from '../../../../components/Button';
+import InputField from '../../../components/InputField';
+import Button from '../../../components/Button';
 
-const Step2 = () => {
+const CredentialsPage = () => {
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
@@ -18,11 +18,7 @@ const Step2 = () => {
     const isPasswordMatch = password === confirmPassword;
 
     const handleNext = () => {
-        if (userType === "caregiver") {
-            navigate("/signup/success");
-        } else {
-            navigate("/");
-        }
+        navigate(`/signup/complete?type=${userType}`);
     };
 
     return (
@@ -61,4 +57,4 @@ const Step2 = () => {
     );
 };
 
-export default Step2
+export default CredentialsPage;

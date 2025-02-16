@@ -4,9 +4,12 @@ import { useDispatch } from 'react-redux';
 import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
 
-const Login = () => {
+const LoginPage= () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [searchParams] = useSearchParams();
+    const userType = searchParams.get("type") || "caregiver";
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -32,7 +35,10 @@ const Login = () => {
                 </div>
 
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark text-left py-6 mb-3">
-                    요양보호사의 첫걸음<br />케어링크와 함께 시작하세요.
+                    {userType === "caregiver"
+                        ? "요양보호사의 첫걸음\n케어링크와 함께 시작하세요."
+                        : "케어링크와 함께\n매칭과 업무를 한번에 끝내보세요!"
+                    }
                 </h2>
 
                 <div className="flex flex-col flex-1 justify-start space-y-6">
@@ -62,5 +68,5 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default LoginPage;
 
