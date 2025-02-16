@@ -8,8 +8,8 @@ const AddressSearch = () => {
 
   return (
     <div className="min-h-screen bg-background-gray">
-      <KakaoMap />
-      <div className="px-3 py-8">
+      {/* <KakaoMap /> */}
+      <div className="px-3">
         <AddressSearchBox onSelectAddress={handleAddressSelect} />
       </div>
     </div>

@@ -80,36 +80,58 @@ const AddressSearchBox = ({ onSelectAddress }) => {
   );
 
   return (
-    <div className="w-full space-y-3 ">
-      <SearchBar
-        placeholder="동명(읍,면)으로 검색"
-        value={searchTerm}
-        onChange={setSearchTerm}
-      />
-      <button
-        className={`flex items-center justify-center w-full py-2 mb-6 rounded-lg body-semi-bold-18 text-dark
-          ${isLoading ? 'bg-main cursor-not-allowed' : 'bg-yellow-300'}
-        `}
-        onClick={handleLocationSearch}
-        disabled={isLoading}
-      >
-        <LuLocateFixed size={20} className="mr-3 text-dark" />
-        {isLoading ? '위치 확인 중...' : '내 위치로 찾기'}
-      </button>
-      {error && <div className="text-sm text-center text-red-500">{error}</div>}
-      <div>
-        <div className="mb-2 body-medium-18 text-gray-2">근처 주소</div>
-        <div className="space-y-2 body-medium-18">
-          {filteredAddresses.map((address, index) => (
-            <div
-              key={index}
-              className="py-4 cursor-pointer hover:bg-gray-50"
-              onClick={() => onSelectAddress(address)}
-            >
-              {address}
-            </div>
-          ))}
+    <div className="flex flex-col w-full h-full">
+      <div className="sticky z-10 top-10 bg-background-gray">
+        <div className="py-6 space-y-3">
+          <SearchBar
+            placeholder="동명(읍,면)으로 검색"
+            value={searchTerm}
+            onChange={setSearchTerm}
+          />
+          <button
+            className={`flex items-center justify-center w-full py-2 rounded-lg body-semi-bold-18 text-dark
+              ${isLoading ? 'bg-main cursor-not-allowed' : 'bg-yellow-300'}
+            `}
+            onClick={handleLocationSearch}
+            disabled={isLoading}
+          >
+            <LuLocateFixed size={20} className="mr-3 text-dark" />
+            {isLoading ? '위치 확인 중...' : '내 위치로 찾기'}
+          </button>
+          {error && (
+            <div className="text-sm text-center text-red-500">{error}</div>
+          )}
         </div>
+      </div>
+
+      <div className="flex-1 overflow-y-auto">
+        {filteredAddresses.length > 0 ? (
+          <>
+            <div className="mt-4 mb-1 body-medium-18 text-gray-2">
+              {searchTerm ? '관련 검색 주소' : '근처 주소'}
+            </div>
+            <div className=" body-medium-18">
+              {filteredAddresses.map((address, index) => (
+                <div
+                  key={index}
+                  className="pt-4 cursor-pointer hover:bg-gray-50"
+                  onClick={() =>
+                    onSelectAddress(address.replace('서울특별시', '서울'))
+                  }
+                >
+                  {address.replace('서울특별시', '서울')}
+                  <hr className="mt-4" />
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="text-center mt-28 body-medium-18 text-gray-1">
+            검색 결과가 없어요.
+            <br />
+            주소를 다시 입력해주세요!
+          </div>
+        )}
       </div>
     </div>
   );
