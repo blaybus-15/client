@@ -17,6 +17,8 @@ import SelectableCardTest from './pages/dev/SelectableCardTest';
 import CheckCardTest from './pages/dev/CheckCardTest';
 import AddressSearch from './pages/dev/AddressSearchTest';
 
+import ProfileSetup from './pages/profile/caregiver';
+
 const AppContent = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -36,10 +38,12 @@ const AppContent = () => {
           <Route path="/" />
           <Route path="/auth/caregiver" element={<CaregiverSignup />} />
           <Route path="/signup/caregiver/step1" element={<Step1 />} />
-          <Route path='/signup/caregiver/step2' element={<Step2 />} />
+          <Route path="/signup/caregiver/step2" element={<Step2 />} />
           <Route path="/signup/success" element={<SuccessPage />} />
 
           <Route path="/login" element={<Login />} />
+
+          <Route path="/profile/caregiver*" element={<ProfileSetup />} />
 
           {/* 배포 시 dev 링크 삭제 */}
           <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
