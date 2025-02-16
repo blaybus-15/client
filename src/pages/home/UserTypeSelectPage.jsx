@@ -18,7 +18,7 @@ const UserTypeSelectPage = () => {
                 style={{ backgroundImage: `url(${homeBackground})` }} 
             />
 
-            <div className="relative z-10 flex flex-col items-center text-center">
+            <div className="relative z-10 flex flex-col items-center text-center justify-start">
                 <h1 className="head-semi-bold-24 text-dark leading-[40px] mb-12">
                     케어링크와 함께<br />시작하세요!
                 </h1>

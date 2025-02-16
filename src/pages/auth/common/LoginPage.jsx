@@ -35,9 +35,15 @@ const LoginPage= () => {
                 </div>
 
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark text-left py-6 mb-3">
-                    {userType === "caregiver"
-                        ? "요양보호사의 첫걸음\n케어링크와 함께 시작하세요."
-                        : "케어링크와 함께\n매칭과 업무를 한번에 끝내보세요!"
+                    {userType === "caregiver" ? (
+                        <>
+                            요양보호사의 첫걸음<br />케어링크와 함께 시작하세요.
+                        </>
+                    ) : (
+                        <>
+                            케어링크와 함께<br />매칭과 업무를 한번에 끝내보세요!
+                        </>
+                    )
                     }
                 </h2>
 
