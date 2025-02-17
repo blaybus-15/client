@@ -2,9 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { authApi } from '../services/auth';
 
 // 회원가입 요청
-export const signUp = createAsyncThunk('auth/signUp', async (userData, { rejectWithValue }) => {
+export const signUp = createAsyncThunk('auth/signUp', async (_, { getState, rejectWithValue }) => {
   try {
-    const response = await authApi.signUp(userData);
+    const signupData = getState().auth.signupData;
+    console.log("회원가입 요청 데이터:", cleanedData);
+
+    const response = await authApi.signUp(cleanedData);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response?.data || error.message);
@@ -27,15 +30,24 @@ export const login = createAsyncThunk('auth/login', async (credentials, { reject
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    signupData: {},
+    signupData: {
+      type: "",  // 첫 화면에서 선택한 userType 저장 (CAREGIVER / ADMIN)
+      name: "",
+      genderType: "",
+      contactNumber: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
     user: null,
     isAuthenticated: false,
     loading: false,
     error: null,
   },
   reducers: {
-    updateSignupData: (state, action) => {
-      state.signupData = { ...state.signupData, ...action.payload };
+    setSignupField: (state, action) => {
+      const { field, value } = action.payload;
+      state.signupData[field] = value;
     },
     logout: (state) => {
       state.user = null;
@@ -74,5 +86,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { updateSignupData, logout } = authSlice.actions;
+export const { setSignupField, logout } = authSlice.actions;
 export default authSlice.reducer;

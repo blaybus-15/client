@@ -1,13 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import homeBackground from '../../assets/home.png';
 import CaregiverIcon from '../../assets/caregiver-icon.svg';
 import AdminIcon from '../../assets/admin-icon.svg';
+import { setSignupField } from '../../redux/authSlice';
 
 const UserTypeSelectPage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleUserTypeSelect = (type) => {
+        dispatch(setSignupField({ field: "type", value: type.toUpperCase() }));
         navigate(`/auth?type=${type}`);
     };
 
