@@ -5,9 +5,9 @@ import { authApi } from '../services/auth';
 export const signUp = createAsyncThunk('auth/signUp', async (_, { getState, rejectWithValue }) => {
   try {
     const signupData = getState().auth.signupData;
-    console.log("회원가입 요청 데이터:", cleanedData);
+    console.log("회원가입 요청 데이터:", signupData);
 
-    const response = await authApi.signUp(cleanedData);
+    const response = await authApi.signUp(signupData);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response?.data || error.message);
@@ -18,12 +18,17 @@ export const signUp = createAsyncThunk('auth/signUp', async (_, { getState, reje
 export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
   try {
     const response = await authApi.login(credentials);
-    const { accessToken, user } = response.data;
+    const { accessToken, refreshToken, username, email, roles } = response.data.data;
 
+    // 토큰 저장
     localStorage.setItem('accessToken', accessToken);
-    return { accessToken, user }; // 로그인 성공 시 user 정보 함께 반환
+    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('username', username);
+    localStorage.setItem('email', email);
+
+    return { accessToken, user: { username, email, roles } };
   } catch (error) {
-    return rejectWithValue(error.response?.data || error.message);
+    return rejectWithValue(error.response?.data?.message || "로그인 실패");
   }
 });
 
@@ -39,7 +44,7 @@ const authSlice = createSlice({
       password: "",
       confirmPassword: "",
     },
-    user: null,
+    user: null, // 로그인 후 사용자 정보 저장
     isAuthenticated: false,
     loading: false,
     error: null,
@@ -53,6 +58,9 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("username");
+      localStorage.removeItem("email");
     },
   },
   extraReducers: (builder) => {
@@ -77,7 +85,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.isAuthenticated = true;
-        localStorage.setItem("accessToken", action.payload.accessToken);
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;

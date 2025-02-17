@@ -5,7 +5,8 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import NavBar from './components/NavBar';
 import SelectableCardTest from './pages/dev/SelectableCardTest';
 import CheckCardTest from './pages/dev/CheckCardTest';
@@ -71,9 +72,11 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <AppContent />
+      </Router>
+    </Provider>
   );
 };
 
