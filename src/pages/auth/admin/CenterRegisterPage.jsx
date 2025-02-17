@@ -1,15 +1,30 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import InputFieldWithButton from '../../../components/InputFieldWithButton';
+import SearchInputField from '../../../components/SearchInputField';
 import Button from '../../../components/Button';
 
 const CenterRegisterPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [selectedCenter, setSelectedCenter] = useState(null);
+  
+  useEffect(() => {
+    if (location.state?.selectedCenter) {
+      setSelectedCenter(location.state.selectedCenter);
+    }
+  }, [location.state]);
+
+  const handleSearchClick = () => {
+    navigate('/signup/admin/center/search');
+  };
 
   const handleNext = () => {
     navigate('/signup/admin/intro');
   };
 
+  
   return (
     <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">
       <div className="w-full rounded-lg flex flex-col mt-12 justify-evenly">
@@ -20,9 +35,11 @@ const CenterRegisterPage = () => {
 
       <div className="flex flex-col flex-1 justify-start">
         <p className="body-medium-18 pb-3">센터</p>
-          <InputFieldWithButton
+          <SearchInputField
             placeholder='센터 이름을 입력해주세요.'
             buttonText='검색'
+            value={selectedCenter?.centerName}
+            onClick={handleSearchClick}
           />
 
           <p className='mt-2 text-caption-regular-14 text-gray-1'>
@@ -31,7 +48,7 @@ const CenterRegisterPage = () => {
       </div>
 
       <div className="mb-5 justify-end">
-        <Button text="다음" onClick={handleNext} />
+        <Button text="다음" onClick={handleNext} disabled={!selectedCenter} />
       </div>
     </div>
   );
