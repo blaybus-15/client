@@ -16,6 +16,7 @@ import NavBar from './components/NavBar';
 import SelectableCardTest from './pages/dev/SelectableCardTest';
 import CheckCardTest from './pages/dev/CheckCardTest';
 import AddressSearch from './pages/dev/AddressSearchTest';
+import ModalTest from './pages/dev/ModalTest';
 
 const AppContent = () => {
   const location = useLocation();
@@ -45,6 +46,8 @@ const AppContent = () => {
           <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
           <Route path="/dev/check-card" element={<CheckCardTest />} />
           <Route path="/dev/address-search" element={<AddressSearch />} />
+
+          <Route path="/dev/modal" element={<ModalTest />} />
         </Routes>
       </div>
     </div>
