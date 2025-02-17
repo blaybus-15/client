@@ -4,6 +4,7 @@ const InputField = ({ label, placeholder, type = "text", value, onChange, isInva
     return (
         <div className={`flex flex-col ${className}`}>
             {label && <label className="body-medium-18 text-dark mb-3">{label}</label>}
+
             <input
                 type={type}
                 placeholder={placeholder}

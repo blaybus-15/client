@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+
 import NavBar from './components/NavBar';
 import SelectableCardTest from './pages/dev/SelectableCardTest';
 import CheckCardTest from './pages/dev/CheckCardTest';
@@ -36,6 +37,7 @@ const AppContent = () => {
           </div>
         </div>
       )}
+
       <div className={'max-w-2xl mx-auto'}>
         <Routes>
           <Route path="/" element={<UserTypeSelectPage />} />
@@ -43,6 +45,7 @@ const AppContent = () => {
           {/* 로그인 및 회원가입 공통 */}
           <Route path="/auth" element={<SocialAuthPage />} />
           <Route path="/login" element={<LoginPage />} />
+
 
           {/* 배포 시 dev 링크 삭제 */}
           <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
