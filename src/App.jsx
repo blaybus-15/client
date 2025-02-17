@@ -23,6 +23,7 @@ import CenterRegisterPage from './pages/auth/admin/CenterRegisterPage';
 import CenterIntroPage from './pages/auth/admin/CenterIntroPage';
 import CenterSearchPage from './pages/auth/admin/CenterSearchPage';
 import CenterInfoPage from './pages/auth/admin/CenterInfoPage';
+import ModalTest from './pages/dev/ModalTest';
 
 const AppContent = () => {
   const location = useLocation();
@@ -51,6 +52,7 @@ const AppContent = () => {
           <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
           <Route path="/dev/check-card" element={<CheckCardTest />} />
           <Route path="/dev/address-search" element={<AddressSearch />} />
+          <Route path="/dev/modal" element={<ModalTest />} />
 
           {/* 회원가입 시작 페이지 (userType 기반 리디렉션) */}
           <Route path="/signup" element={<SignupStartPage />} />
@@ -67,6 +69,7 @@ const AppContent = () => {
           <Route path="/signup/admin/center/search" element={<CenterSearchPage />} />
           <Route path="/signup/admin/center/intro" element={<CenterIntroPage />} />
           <Route path="/signup/admin/center/check" element={<CenterInfoPage />} />
+
         </Routes>
       </div>
     </div>
