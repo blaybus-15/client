@@ -25,15 +25,12 @@ const CredentialsPage = () => {
                 navigate(`/signup/complete?type=${userType}`); // 가입 완료 페이지로 이동
             }
         });
+        navigate(`/signup/complete?type=${userType}`);
     };
 
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signupData.email);
     const isValidPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,23}$/.test(signupData.password);
     const isPasswordMatch = signupData.password === signupData.confirmPassword;
-
-    const handleNext = () => {
-        navigate(`/signup/complete?type=${userType}`);
-    };
 
     return (
         <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">

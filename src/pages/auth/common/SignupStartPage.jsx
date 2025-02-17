@@ -10,7 +10,7 @@ const SignupStartPage = () => {
         if (userType === "caregiver") {
             navigate("/signup/caregiver/profile");
         } else if (userType === "admin") {
-            navigate("/signup/admin/register");
+            navigate("/signup/admin/center/register");
         } else {
             navigate("/"); // 잘못된 접근 시 첫 화면으로 리디렉션
         }

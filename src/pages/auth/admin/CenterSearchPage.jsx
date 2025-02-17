@@ -1,38 +1,43 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SearchBar from '../../../components/SearchBar';
 import { fetchCenters } from '../../../services/center';
+import { fetchMockCenters } from '../../../services/mockService';
 
 const CenterSearchPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [centers, setCenters] = useState([]);
     const navigate = useNavigate();
 
+    // const handleSearch = async () => {
+    //     const query = searchQuery.trim();
+
+    //     if (!query) {
+    //         console.log("검색어를 입력해주세요.");
+    //         return;
+    //     }
+
+    //     const [city = '', county = '', region = ''] = query.split(' ');
+
+    //     try {
+    //         const data = await fetchCenters(city, county, region);
+            
+    //         console.log("API 응답 데이터:", data);
+
+    //         // 결과가 유효한지 확인 후 적용
+    //         if (data.length > 0) {
+    //             setCenters(data);
+    //         } else {
+    //             setCenters([]); // 검색 결과 없을 경우 빈 배열로 초기화
+    //             console.log("검색 결과 없음");
+    //         }
+    //     } catch (error) {
+    //         console.error("센터 정보 조회 실패:", error);
+    //     }
+    // };
+    
     const handleSearch = async () => {
-        const query = searchQuery.trim();
-
-        if (!query) {
-            console.log("검색어를 입력해주세요.");
-            return;
-        }
-
-        const [city = '', county = '', region = ''] = query.split(' ');
-
-        try {
-            const data = await fetchCenters(city, county, region);
-            
-            console.log("API 응답 데이터:", data);
-            
-            // 결과가 유효한지 확인 후 적용
-            if (data.length > 0) {
-                setCenters(data);
-            } else {
-                setCenters([]); // 검색 결과 없을 경우 빈 배열로 초기화
-                console.log("검색 결과 없음");
-            }
-        } catch (error) {
-            console.error("센터 정보 조회 실패:", error);
-        }
+        const data = await fetchMockCenters(searchQuery);
+        setCenters(data);
     };
 
     const handleSelectCenter = (center) => {

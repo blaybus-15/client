@@ -20,6 +20,7 @@ import SignupCompletePage from './pages/auth/common/SignupCompletePage';
 import CenterRegisterPage from './pages/auth/admin/CenterRegisterPage';
 import CenterIntroPage from './pages/auth/admin/CenterIntroPage';
 import CenterSearchPage from './pages/auth/admin/CenterSearchPage';
+import CenterInfoPage from './pages/auth/admin/CenterInfoPage';
 
 const AppContent = () => {
   const location = useLocation();
@@ -60,8 +61,8 @@ const AppContent = () => {
           {/* 관리자 전용 회원가입 */}
           <Route path="/signup/admin/center/register" element={<CenterRegisterPage />} />
           <Route path="/signup/admin/center/search" element={<CenterSearchPage />} />
-          <Route path="/signup/admin/intro" element={<CenterIntroPage />} />
-
+          <Route path="/signup/admin/center/intro" element={<CenterIntroPage />} />
+          <Route path="/signup/admin/center/check" element={<CenterInfoPage />} />
         </Routes>
       </div>
     </div>

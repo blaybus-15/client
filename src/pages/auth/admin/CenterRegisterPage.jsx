@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import InputFieldWithButton from '../../../components/InputFieldWithButton';
 import SearchInputField from '../../../components/SearchInputField';
 import Button from '../../../components/Button';
 
@@ -8,20 +7,25 @@ const CenterRegisterPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [selectedCenter, setSelectedCenter] = useState(null);
-  
+  // const [selectedCenter, setSelectedCenter] = useState(null);
+  const selectedCenter = location.state?.selectedCenter; // navigate로 받은 데이터
+
+  const [center, setCenter] = useState(
+    selectedCenter || { centerName: "", address: "", tel: "", hasBathVehicle: false }
+);
+
   useEffect(() => {
-    if (location.state?.selectedCenter) {
-      setSelectedCenter(location.state.selectedCenter);
+    if (selectedCenter) {
+        setCenter(selectedCenter);
     }
-  }, [location.state]);
+  }, [selectedCenter]);
 
   const handleSearchClick = () => {
     navigate('/signup/admin/center/search');
   };
 
   const handleNext = () => {
-    navigate('/signup/admin/intro');
+    navigate('/signup/admin/center/check', { state: { selectedCenter: center } });
   };
 
   
