@@ -20,21 +20,19 @@ const CenterSearchPage = () => {
 
     //     try {
     //         const data = await fetchCenters(city, county, region);
-            
     //         console.log("API 응답 데이터:", data);
-
-    //         // 결과가 유효한지 확인 후 적용
-    //         if (data.length > 0) {
-    //             setCenters(data);
+            
+    //         if (data && data.centers && data.centers.length > 0) {
+    //             setCenters(data.centers); // 올바른 데이터가 있으면 적용
     //         } else {
-    //             setCenters([]); // 검색 결과 없을 경우 빈 배열로 초기화
+    //             setCenters([]); // 검색 결과 없을 경우 빈 배열 유지
     //             console.log("검색 결과 없음");
     //         }
     //     } catch (error) {
     //         console.error("센터 정보 조회 실패:", error);
     //     }
     // };
-    
+
     const handleSearch = async () => {
         const data = await fetchMockCenters(searchQuery);
         setCenters(data);

@@ -4,15 +4,19 @@ import api from "./axios";
 export const fetchCenters = async (city, county, region) => {
     try {
         const response = await api.get('/center', {
-            params: { city, county, region },
+            params: { 
+                city: encodeURIComponent(city),  // URL 인코딩 적용
+                county: encodeURIComponent(county),
+                region: encodeURIComponent(region),
+            },
         });
 
-        console.log("센터 정보 조회 성공: ", response);
+        console.log("센터 정보 조회 성공: ", response.data);
 
-        return response.data?.data?.centers || [];
+        return response.data?.data?.centers;
     } catch (error) {
         console.log('센터 정보 조회 실패: ', error);
-        return [];
+        return { centers: [] };
     }
 };
 
