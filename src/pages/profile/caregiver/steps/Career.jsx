@@ -183,7 +183,7 @@ const Career = () => {
                   <div className="flex-1 space-y-1">
                     <div className="sub-regular-12 text-gray-1">시작기간</div>
                     <input
-                      type="month"
+                      type="date"
                       className="w-full h-11 px-3 py-2.5 bg-white rounded-lg text-gray-600"
                       value={currentCareer.startDate}
                       onChange={(e) =>
@@ -200,7 +200,7 @@ const Career = () => {
                       </div>
                     ) : (
                       <input
-                        type="month"
+                        type="date"
                         className="w-full h-11 px-3 py-2.5 bg-white rounded-lg text-gray-600"
                         value={currentCareer.endDate}
                         onChange={(e) =>
