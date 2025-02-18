@@ -7,9 +7,9 @@ const SignupStartPage = () => {
     const userType = searchParams.get("type");
 
     useEffect(() => {
-        if (userType === "caregiver") {
+        if (userType === "CAREGIVER") {
             navigate("/signup/caregiver/profile");
-        } else if (userType === "admin") {
+        } else if (userType === "ADMIN") {
             navigate("/signup/admin/center/register");
         } else {
             navigate("/"); // 잘못된 접근 시 첫 화면으로 리디렉션

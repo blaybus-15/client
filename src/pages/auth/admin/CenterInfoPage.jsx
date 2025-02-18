@@ -1,27 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { fetchCenterInfo, updateCenterInfo } from '../../../services/center';
 import ProfileUploader from '../../../components/ProfileUploader';
 import InputField from '../../../components/InputField';
 import OptionButton from '../../../components/OptionButton';
 import Button from '../../../components/Button';
+import { setSignupField } from '../../../redux/authSlice';
 
 const CenterInfoPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const selectedCenter = location.state?.selectedCenter;
+    const [profileImageFile, setProfileImageFile] = useState(null); // 파일 상태 관리
 
-    const [searchParams] = useSearchParams();
-    const userType = searchParams.get("type") || "admin";
-
-    const { centerId } = useParams(); // URL에서 centerId 가져오기
     
     // 초기 상태 설정
     const [center, setCenter] = useState(
         selectedCenter || { centerName: "", address: "", tel: "", hasBathVehicle: false }
     );
 
-    const [profileImg, setProfileImg] = useState(null);
     const [hasChanges, setHasChanges] = useState(false);
 
     const [isEditing, setIsEditing] = useState({
@@ -47,11 +46,17 @@ const CenterInfoPage = () => {
     //     getCenterInfo();
     // }, [centerId]);
 
+    // selectedCenter 변경 시 Redux 상태 업데이트
     useEffect(() => {
         if (selectedCenter) {
             setCenter(selectedCenter);
+            dispatch(setSignupField({ field: "centerId", value: selectedCenter.id }));
+            dispatch(setSignupField({ field: "centerName", value: selectedCenter.centerName }));
+            dispatch(setSignupField({ field: "centerAddress", value: selectedCenter.address }));
+            dispatch(setSignupField({ field: "contactNumber", value: selectedCenter.tel }));
+            dispatch(setSignupField({ field: "hasBathVehicle", value: selectedCenter.hasBathVehicle }));
         }
-    }, [selectedCenter]);
+    }, [selectedCenter, dispatch]);
 
     const handleEdit = (field) => {
         setIsEditing((prev) => ({ ...prev, [field]: true }));
@@ -59,7 +64,13 @@ const CenterInfoPage = () => {
 
     const handleChange = (field, value) => {
         setCenter((prev) => ({ ...prev, [field]: value }));
+        dispatch(setSignupField({ field, value }));
         setHasChanges(true); // 변경 감지 활성화
+    };
+
+    // 프로필 이미지 업로드
+    const handleImageUpload = (file) => {
+        setProfileImageFile(file);
     };
 
     // 수정사항 저장 및 다음 페이지 이동
@@ -72,7 +83,7 @@ const CenterInfoPage = () => {
         if (hasChanges) {
             alert("변경사항이 저장되었습니다.");
         }
-        navigate(`/signup/complete?type=${userType}`);
+        navigate('/signup/admin/center/intro', { state: { profileImageFile }});
     };
 
     return (
@@ -85,7 +96,7 @@ const CenterInfoPage = () => {
             </div>
 
             <div>
-                <ProfileUploader onImageUpload={setProfileImg} />
+                <ProfileUploader onImageUpload={handleImageUpload} />
                 
                 <div>
                     <div className="mb-3">

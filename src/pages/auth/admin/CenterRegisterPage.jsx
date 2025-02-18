@@ -7,12 +7,11 @@ const CenterRegisterPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // const [selectedCenter, setSelectedCenter] = useState(null);
   const selectedCenter = location.state?.selectedCenter; // navigate로 받은 데이터
 
   const [center, setCenter] = useState(
     selectedCenter || { centerName: "", address: "", tel: "", hasBathVehicle: false }
-);
+  );
 
   useEffect(() => {
     if (selectedCenter) {
@@ -42,7 +41,7 @@ const CenterRegisterPage = () => {
           <SearchInputField
             placeholder='센터 이름을 입력해주세요.'
             buttonText='검색'
-            value={selectedCenter?.centerName}
+            value={center.centerName}
             onClick={handleSearchClick}
           />
 

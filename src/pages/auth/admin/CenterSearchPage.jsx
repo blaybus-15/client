@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchCenters } from '../../../services/center';
 import { fetchMockCenters } from '../../../services/mockService';
+import { setSignupField } from '../../../redux/authSlice';
+import { useDispatch } from 'react-redux';
 
 const CenterSearchPage = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
     const [searchQuery, setSearchQuery] = useState('');
     const [centers, setCenters] = useState([]);
-    const navigate = useNavigate();
 
     // const handleSearch = async () => {
     //     const query = searchQuery.trim();
@@ -39,6 +43,12 @@ const CenterSearchPage = () => {
     };
 
     const handleSelectCenter = (center) => {
+        dispatch(setSignupField({ field: "centerId", value: center.id }));
+        dispatch(setSignupField({ field: "centerName", value: center.centerName }));
+        dispatch(setSignupField({ field: "centerAddress", value: center.address }));
+        dispatch(setSignupField({ field: "contactNumber", value: center.tel }));
+        dispatch(setSignupField({ field: "hasBathVehicle", value: center.hasBathVehicle }));
+
         navigate('/signup/admin/center/register', { state: { selectedCenter: center } });
     };
 

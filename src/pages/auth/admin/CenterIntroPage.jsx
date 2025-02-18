@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSignupField } from '../../../redux/authSlice';
 import Button from '../../../components/Button';
 
 const CenterIntroPage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
 
-    const [searchParams] = useSearchParams();
-    const userType = searchParams.get("type") || "admin";
-
-    const [introduction, setIntroduction] = useState("");
+    const introduction = useSelector((state) => state.auth.signupData.introduction);
+    const profileImageFile = location.state?.profileImageFile || null;
 
     const handleNext = () => {
-        navigate(`/signup/complete?type=${userType}`);
+        navigate('/signup/credentials', { state: { profileImageFile } });
     };
 
     const handleChange = (e) => {
         if (e.target.value.length <= 300) {
-            setIntroduction(e.target.value);
+            dispatch(setSignupField({ field: "introduction", value: e.target.value }));
         }
     };
 

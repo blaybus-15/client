@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../redux/authSlice';
+import { signInThunk } from '../../../redux/authThunk';
 import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
 
@@ -22,15 +22,16 @@ const LoginPage= () => {
     // 비밀번호 유효성 검사 (영문+숫자+특수문자 8~23자)
     const isValidPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,23}$/.test(password);
 
-
     // 로그인 버튼 클릭
     const handleLogin = () => {
         if (!isValidEmail || !isValidPassword) return;
-        dispatch(login({ email, password }))
-            .unwrap()
-            .then(() => {
-                navigate("/profile"); // 프로필 등록 페이지
-            })
+
+        dispatch(signInThunk({ email, password }))
+        .unwrap()
+        .then(() => {
+            console.log("로그인 성공!");
+            navigate("/profile");
+        })
         .catch((err) => {
             console.error("로그인 실패: ", err);
         });
