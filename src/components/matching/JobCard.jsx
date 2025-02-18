@@ -28,7 +28,7 @@ const JobCard = ({
   };
 
   return (
-    <div className="relative w-full p-6 bg-white rounded-lg shadow">
+    <div className="relative w-full bg-white">
       {/* 예상 소요시간 + 상태 뱃지 */}
       <Badge label="예상 도보 " value="20분~30분" />
       <Badge label="대기중" variant="pending" className="absolute right-20" />
