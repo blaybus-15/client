@@ -20,6 +20,7 @@ export default {
       },
       boxShadow: {
         inner: 'inset 0 0 0 1px #FFE943',
+        innerblue: 'inset 0 0 0 1px #24ABFF',
       },
     },
   },

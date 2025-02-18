@@ -31,12 +31,12 @@ const JobCard = ({
     <div className="relative w-full bg-white">
       {/* 예상 소요시간 + 상태 뱃지 */}
       <Badge label="예상 도보 " value="20분~30분" />
-      <Badge label="대기중" variant="pending" className="absolute right-20" />
+      <Badge label="대기중" variant="pending" className="absolute right-16" />
 
       {/* 북마크 버튼 */}
       <button
         onClick={handleBookmarkClick}
-        className="inline-flex absolute right-4 items-center justify-center px-1.5 py-1 text-xs font-medium bg-white border rounded border-[#E0E5EA] h-7 font-pretendard gap-1"
+        className="inline-flex absolute right-0 items-center justify-center px-1.5 py-1 text-xs font-medium bg-white border rounded border-[#E0E5EA] h-7 font-pretendard gap-1"
       >
         <BsBookmarkFill
           className={`w-4 h-4 ${isActive ? 'text-main' : 'text-gray-2'}`}

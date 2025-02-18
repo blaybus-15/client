@@ -2,6 +2,9 @@ import React from 'react';
 import JobCard from '../../components/matching/JobCard';
 import CaregiverCard from '../../components/matching/CaregiverCard';
 import CaregiverCardWithButtons from '../../components/matching/CaregiverCardWithButtons';
+import WorkConditionsCard from '../../components/matching/WorkConditionsCard';
+import WorkContentCard from '../../components/matching/WorkContentCard';
+import SeniorInfoCard from '../../components/matching/SeniorInfoCard';
 
 const MatchingCardTest = () => {
   return (
@@ -13,6 +16,9 @@ const MatchingCardTest = () => {
       />
       <CaregiverCard />
       <CaregiverCardWithButtons />
+      <WorkConditionsCard />
+      <WorkContentCard />
+      <SeniorInfoCard />
     </div>
   );
 };
