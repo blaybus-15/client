@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import InputField from '../../../../components/InputField';
 import OptionButton from '../../../../components/OptionButton';
 import Dropdown from '../../../../components/Dropdown';
-import SearchInputField from '../../../../components/SearchInputField';
 import Button from '../../../../components/Button';
 import { setSeniorInfo } from '../../../../redux/seniorSlice';
 import Postcode from 'react-daum-postcode';

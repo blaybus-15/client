@@ -44,7 +44,7 @@ const CenterSearchPage = () => {
 
     const handleSelectCenter = (center) => {
         dispatch(setSignupField({ field: "centerId", value: center.id }));
-        dispatch(setSignupField({ field: "centerName", value: center.centerName }));
+        dispatch(setSignupField({ field: "name", value: center.centerName }));
         dispatch(setSignupField({ field: "centerAddress", value: center.address }));
         dispatch(setSignupField({ field: "contactNumber", value: center.tel }));
         dispatch(setSignupField({ field: "hasBathVehicle", value: center.hasBathVehicle }));
@@ -53,7 +53,7 @@ const CenterSearchPage = () => {
     };
 
     return (
-        <div div className="min-h-screen px-6 pt-12 bg-gray">
+        <div div className="min-h-screen px-6 pt-12 bg-background-gray">
             <div className="relative flex mt-3 items-center h-[38px] body-regular-16">
                 <input
                     value={searchQuery}

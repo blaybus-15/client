@@ -10,9 +10,9 @@ const SignupCompletePage = () => {
 
     const handleNext = () => {
         if (userType === "CAREGIVER") {
-            navigate("/profile");
+            navigate("/profile/caregiver");
         } else {
-            navigate("/elderly-registration");
+            navigate("/profile/senior");
         }
     };
 
