@@ -1,18 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SalaryCalculator = () => {
   const [salaryType, setSalaryType] = useState('시급');
   const [amount, setAmount] = useState('');
   const [showCalculator, setShowCalculator] = useState(false);
+  const [calculations, setCalculations] = useState({
+    monthlyAmount: 0,
+    centerFee: 0,
+    incomeTax: 0,
+    localTax: 0,
+    finalAmount: 0,
+  });
 
   const handleAmountChange = (e) => {
     const value = e.target.value;
-    // 숫자만 입력 받음
     const numberOnly = value.replace(/[^\d]/g, '');
-    // 3자리마다 콤마 추가
     const formatted = numberOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     setAmount(formatted);
     setShowCalculator(formatted !== '');
+  };
+
+  const calculateSalary = () => {
+    // 콤마 제거하고 숫자로 변환
+    const rawAmount = parseInt(amount.replace(/,/g, ''), 10);
+
+    // 월급으로 환산
+    let monthlyAmount = rawAmount;
+    if (salaryType === '시급') {
+      // 시급 -> 월급 (하루 8시간, 한달 22일 기준)
+      monthlyAmount = rawAmount * 8 * 22;
+    } else if (salaryType === '일급') {
+      // 일급 -> 월급 (한달 22일 기준)
+      monthlyAmount = rawAmount * 22;
+    }
+
+    // 각종 공제액 계산
+    const centerFee = Math.floor(monthlyAmount * 0.15); // 센터 수수료 15%
+    const incomeTax = Math.floor(monthlyAmount * 0.033); // 소득세 3.3%
+    const localTax = Math.floor(incomeTax * 0.1); // 지방세 (소득세의 10%)
+    const finalAmount = monthlyAmount - centerFee - incomeTax - localTax;
+
+    setCalculations({
+      monthlyAmount,
+      centerFee,
+      incomeTax,
+      localTax,
+      finalAmount,
+    });
+  };
+
+  // amount나 salaryType이 변경될 때마다 계산 실행
+  useEffect(() => {
+    if (amount) {
+      calculateSalary();
+    }
+  }, [amount, salaryType]);
+
+  // 숫자 포맷팅 함수
+  const formatNumber = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
   return (
@@ -20,7 +66,6 @@ const SalaryCalculator = () => {
       <div className="body-medium-18 text-dark">급여</div>
 
       <div className="flex items-center space-x-2">
-        {/* 드랍다운 */}
         <div className="relative body-regular-16 text-dark">
           <select
             value={salaryType}
@@ -42,7 +87,6 @@ const SalaryCalculator = () => {
           </div>
         </div>
 
-        {/* 급여 입력 */}
         <div className="flex-1 body-regular-16">
           <div className="relative">
             <input
@@ -59,27 +103,27 @@ const SalaryCalculator = () => {
         </div>
       </div>
 
-      {/* 계산기 */}
-      {/* TODO: 계산 로직 추가 필요 */}
       {showCalculator && (
         <div className="mt-6">
           <div className="mb-4 body-medium-18 text-dark">정상금액 계산기</div>
           <div className="p-4 space-y-3 rounded-lg shadow-inner bg-background-point round-point">
             <div className="flex justify-between text-gray-1">
               <span>센터 수수료</span>
-              <span>-51,000원</span>
+              <span>-{formatNumber(calculations.centerFee)}원</span>
             </div>
             <div className="flex justify-between text-gray-1">
               <span>소득세</span>
-              <span>-61,000원</span>
+              <span>-{formatNumber(calculations.incomeTax)}원</span>
             </div>
             <div className="flex justify-between text-gray-1">
               <span>지방세</span>
-              <span>-6,210원</span>
+              <span>-{formatNumber(calculations.localTax)}원</span>
             </div>
-            <div className="flex justify-between pt-2 body-semi-bold-18 ">
+            <div className="flex justify-between pt-2 body-semi-bold-18">
               <span className="text-gray-1">최종 정산 금액</span>
-              <span className="text-dark">월급 1,921,000원</span>
+              <span className="text-dark">
+                {salaryType} {formatNumber(calculations.finalAmount)}원
+              </span>
             </div>
           </div>
           <p className="mt-2 text-caption-regular-14 text-gray-1">
