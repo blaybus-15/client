@@ -32,7 +32,7 @@ const LicenseRegistration = () => {
 
   return (
     <>
-      <div className="flex-1 px-4 pt-16">
+      <div className="flex-1 px-4 pt-20">
         <div className="mb-[68px] head-semi-bold-24">
           요양보호사 자격증이
           <br />

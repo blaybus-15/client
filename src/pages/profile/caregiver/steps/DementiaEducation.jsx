@@ -33,7 +33,7 @@ const DementiaEducation = () => {
 
   return (
     <>
-      <div className="flex-1 px-4 pt-16">
+      <div className="flex-1 px-4 pt-20">
         <div className="mb-3 head-semi-bold-24">치매 교육을 받으셨나요?</div>
         <div className="mb-11 text-gray-1 body-regular-16">
           국민 건강보험 공단에서 제공하는 치매 전문 교육을

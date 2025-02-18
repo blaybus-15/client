@@ -42,7 +42,7 @@ const Keywords = () => {
 
   return (
     <>
-      <div className="flex-1 px-4 pt-12">
+      <div className="flex-1 px-4 pt-20">
         <div className="mb-3 head-semi-bold-24">
           선생님을 나타낼 수 있는
           <br />

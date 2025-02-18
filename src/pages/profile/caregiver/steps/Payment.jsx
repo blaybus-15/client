@@ -32,7 +32,7 @@ const Payment = () => {
 
   return (
     <>
-      <div className="flex-1 px-4 pt-16">
+      <div className="flex-1 px-4 pt-20">
         <div className="mb-[27px] head-semi-bold-24">
           선생님의 희망 급여를
           <br />

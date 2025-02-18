@@ -32,7 +32,7 @@ const Introduction = () => {
 
   return (
     <>
-      <div className="flex-1 px-4 pt-16">
+      <div className="flex-1 px-4 pt-20">
         <div className="mb-3 head-semi-bold-24 text-dark">
           한줄 소개를 입력해주세요.
         </div>
