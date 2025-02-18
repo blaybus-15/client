@@ -14,6 +14,8 @@ const JobCard = ({
   isNegotiable = true,
   isBookmarked: initialBookmarkState = false,
   onBookmark,
+  onReject = () => console.log('거절하기 클릭'),
+  onAccept = () => console.log('수락하기 클릭'),
 }) => {
   // 북마크 상태를 내부적으로 관리
   const [isActive, setIsActive] = useState(initialBookmarkState);
@@ -83,6 +85,22 @@ const JobCard = ({
             </div>
           </dl>
         </div>
+      </div>
+
+      {/* 거절/수락 버튼 */}
+      <div className="grid grid-cols-2 mt-4 gap-x-4">
+        <button
+          onClick={onReject}
+          className="px-4 py-2 body-semi-bold-16 text-[#0081D1] bg-white rounded-lg shadow-innerblue"
+        >
+          거절
+        </button>
+        <button
+          onClick={onAccept}
+          className="px-4 py-2 rounded-lg body-semi-bold-16 text-dark bg-main"
+        >
+          수락
+        </button>
       </div>
     </div>
   );
