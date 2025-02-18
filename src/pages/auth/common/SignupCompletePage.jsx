@@ -6,10 +6,10 @@ const SignupCompletePage = () => {
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
-    const userType = searchParams.get("type") || "caregiver";
+    const userType = searchParams.get("type") || "CAREGIVER";
 
     const handleNext = () => {
-        if (userType === "caregiver") {
+        if (userType === "CAREGIVER") {
             navigate("/profile");
         } else {
             navigate("/elderly-registration");
@@ -20,7 +20,7 @@ const SignupCompletePage = () => {
         <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">
             <div className="flex flex-col flex-1 items-center text-center mt-7 space-y-6">
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark">
-                    {userType === "caregiver" ? (
+                    {userType === "CAREGIVER" ? (
                         <>
                             프로필 등록하고<br />집근처 일자리 정보를<br />찾아보세요!
                         </>
@@ -39,7 +39,7 @@ const SignupCompletePage = () => {
 
         <div className="mb-5 justify-end">   
             <Button
-                text={userType === "caregiver" ? "프로필 등록하러 가기" : "어르신 정보 입력하러 가기"}
+                text={userType === "CAREGIVER" ? "프로필 등록하러 가기" : "어르신 정보 입력하러 가기"}
                 onClick={handleNext}
             />
         </div>

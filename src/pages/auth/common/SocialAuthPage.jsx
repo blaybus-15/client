@@ -6,7 +6,7 @@ import KakaoIcon from "../../../assets/kakaotalk-icon.svg";
 const SocialAuthPage = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const userType = searchParams.get("type") || "caregiver";
+    const userType = searchParams.get("type") || "CAREGIVER";
 
     const handleKakaoStart = () => {
         console.log("kakao start");
@@ -18,7 +18,13 @@ const SocialAuthPage = () => {
 
 
     const handleSignup = () => {
-        navigate(`/signup?type=${userType}`);
+        if (userType === "CAREGIVER") {
+            navigate("/signup/caregiver/profile");
+        } else if (userType === "ADMIN") {
+            navigate("/signup/admin/center/register");
+        } else {
+            navigate("/signup"); // 예외 처리
+        }
     };
 
     return (

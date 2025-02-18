@@ -30,7 +30,7 @@ const UserTypeSelectPage = () => {
                 <div className="flex flex-row space-x-4">
                     <div 
                         className="w-40 h-48 flex flex-col items-center justify-center p-4 bg-white text-dark rounded-xl shadow-md cursor-pointer hover:bg-gray-100 transition"
-                        onClick={() => handleUserTypeSelect("caregiver")}
+                        onClick={() => handleUserTypeSelect("CAREGIVER")}
                     >
                         <img src={CaregiverIcon} alt="요양보호사 아이콘" className="w-12 h-12 mb-4" />
                         <p className="text-lg font-semibold">요양보호사로<br />시작</p>
@@ -38,7 +38,7 @@ const UserTypeSelectPage = () => {
 
                     <div 
                         className="w-40 h-48 flex flex-col items-center justify-center p-4 bg-white text-dark rounded-xl shadow-md cursor-pointer hover:bg-gray-100 transition"
-                        onClick={() => handleUserTypeSelect("admin")}
+                        onClick={() => handleUserTypeSelect("ADMIN")}
                     >
                         <img src={AdminIcon} alt="센터 관리자 아이콘" className="w-12 h-12 mb-4" />
                         <p className="text-lg font-semibold">센터 관리자로<br />시작</p>

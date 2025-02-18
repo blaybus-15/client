@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { useState }  from "react";
+import { useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
@@ -12,17 +12,18 @@ const ProfilePage = () => {
     const dispatch = useDispatch();
     const signupData = useSelector((state) => state.auth.signupData);
 
-    const [profileImg, setProfileImg] = useState(null);
-    const [name, setName] = useState("");
-    const [gender, setGender] = useState("");
-    const [contactNumber, setContactNumber] = useState("");
+    const [profileImageFile, setProfileImageFile] = useState(null);
 
     const handleChange = (field, value) => {
         dispatch(setSignupField({ field, value }));
     };
 
     const handleNext = () => {
-        navigate("/signup/credentials");
+        navigate("/signup/credentials", { state: { profileImageFile }});
+    };
+
+    const handleImageUpload = (file) => {
+        setProfileImageFile(file);
     };
 
     const formatPhoneNumber = (value) => {
@@ -43,7 +44,7 @@ const ProfilePage = () => {
             </div>
 
             <div>
-                <ProfileUploader onImageUpload={setProfileImg} />
+                <ProfileUploader onImageUpload={handleImageUpload} />
                 
                 <div>
                     <InputField label="이름" placeholder="입력해 주세요." type="text" value={signupData.name || ""} onChange={(e) => handleChange("name", e.target.value)} className="mb-3" />

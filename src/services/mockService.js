@@ -21,7 +21,7 @@ export const fetchMockCenters = async (searchQuery) => {
 export const fetchMockCenterById = async (centerId) => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            const center = mockCenters.find(c => c.id === Number(centerId));
+            const center = mockCenters.find(c => c.centerId === Number(centerId));
             resolve(center || null);
         }, 500);
     });

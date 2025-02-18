@@ -1,31 +1,36 @@
-import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import InputField from '../../../components/InputField';
 import Button from '../../../components/Button';
 import { setSignupField } from '../../../redux/authSlice';
-import { signUp } from '../../../redux/authSlice';
+import { signUpThunk } from '../../../redux/authThunk';
+
 
 const CredentialsPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const [searchParams] = useSearchParams();
-    const userType = searchParams.get("type") || "caregiver";
+    const location = useLocation();
 
     const signupData = useSelector((state) => state.auth.signupData);
+    const profileImageFile = location.state?.profileImageFile || null;
 
     const handleChange = (field, value) => {
         dispatch(setSignupField({ field, value }));
     };
 
     const handleSignup = () => {
-        dispatch(signUp(signupData)).then((res) => {
-            if (res.meta.requestStatus === "fulfilled") {
-                navigate(`/signup/complete?type=${userType}`); // 가입 완료 페이지로 이동
-            }
-        });
-        navigate(`/signup/complete?type=${userType}`);
+        console.log("회원가입 버튼 클릭됨");
+        dispatch(signUpThunk({ profileImageFile }))
+            .unwrap() // .then()에서 res를 직접 접근 가능하도록 변경
+            .then((res) => {
+                console.log("회원가입 요청 응답: ", res);
+                console.log("회원가입 성공");
+                navigate(`/signup/complete?type=${signupData.type}`);
+            })
+            .catch((err) => {
+                console.error("회원가입 요청 중 오류 발생:", err); // 예외 처리
+            });
     };
 
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signupData.email);
