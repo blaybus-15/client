@@ -5,6 +5,7 @@ import CaregiverCardWithButtons from '../../components/matching/CaregiverCardWit
 import WorkConditionsCard from '../../components/matching/WorkConditionsCard';
 import WorkContentCard from '../../components/matching/WorkContentCard';
 import SeniorInfoCard from '../../components/matching/SeniorInfoCard';
+import WorkAreaMap from '../../components/matching/WorkAreaMap';
 
 const MatchingCardTest = () => {
   return (
@@ -19,6 +20,7 @@ const MatchingCardTest = () => {
       <WorkConditionsCard />
       <WorkContentCard />
       <SeniorInfoCard />
+      <WorkAreaMap address={'서울특별시 광진구 능동로 209'} />
     </div>
   );
 };
