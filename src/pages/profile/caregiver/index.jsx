@@ -9,6 +9,7 @@ import Career from './steps/Career';
 import Introduction from './steps/Introduction';
 import Payment from './steps/Payment';
 import BankAccount from './steps/BankAccount';
+import MatchingPreference from './steps/MatchingPreference';
 // ... 다른 스텝 컴포넌트들 import
 
 const ProfileSetup = () => {
@@ -24,6 +25,7 @@ const ProfileSetup = () => {
         <Route path="introduction" element={<Introduction />} />
         <Route path="payment" element={<Payment />} />
         <Route path="bank-account" element={<BankAccount />} />
+        <Route path="matching-preference" element={<MatchingPreference />} />
         {/* ... 다른 스텝들의 라우트 */}
       </Route>
     </Routes>
