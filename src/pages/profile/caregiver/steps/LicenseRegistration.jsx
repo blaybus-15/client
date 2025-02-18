@@ -28,6 +28,10 @@ const LicenseRegistration = () => {
     setLicenseNumber(e.target.value);
   };
 
+  const handleAdditionalLicenseNumberChange = (e) => {
+    setAdditionalLicenseNumber(e.target.value);
+  };
+
   const handleNext = () => {
     if (hasLicense !== null) {
       dispatch(
@@ -83,7 +87,7 @@ const LicenseRegistration = () => {
 
               <div className="p-3.5 bg-background-gray rounded-lg">
                 <div className="mb-4">
-                  <div className="mb-3 body-medium-18 text-dark">
+                  <div className="mb-3 text-dark body-medium-18">
                     요양보호사 자격증 번호 입력
                   </div>
                   <InputFieldWithButton
@@ -100,7 +104,7 @@ const LicenseRegistration = () => {
                   </div>
                   <div className="inline-flex flex-col items-center px-6 pt-4 pb-3 bg-white rounded-lg">
                     <LuCamera size={24} className="text-gray-2" />
-                    <div className="mt-1 caption-regular-14 text-gray-2">
+                    <div className="mt-1 text-sm text-center text-gray-400">
                       이미지
                       <br />
                       추가하기
@@ -139,6 +143,8 @@ const LicenseRegistration = () => {
                   <InputFieldWithButton
                     style="bg-white"
                     placeholder="번호를 입력해주세요."
+                    value={additionalLicenseNumber}
+                    onChange={handleAdditionalLicenseNumberChange}
                   />
                 </div>
 
