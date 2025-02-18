@@ -2,9 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { authApi } from '../services/auth';
 
 // 회원가입 요청
-export const signUp = createAsyncThunk('auth/signUp', async (userData, { rejectWithValue }) => {
+export const signUp = createAsyncThunk('auth/signUp', async (_, { getState, rejectWithValue }) => {
   try {
-    const response = await authApi.signUp(userData);
+    const signupData = getState().auth.signupData;
+    console.log("회원가입 요청 데이터:", signupData);
+
+    const response = await authApi.signUp(signupData);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response?.data || error.message);
@@ -15,32 +18,49 @@ export const signUp = createAsyncThunk('auth/signUp', async (userData, { rejectW
 export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
   try {
     const response = await authApi.login(credentials);
-    const { accessToken, user } = response.data;
+    const { accessToken, refreshToken, username, email, roles } = response.data.data;
 
+    // 토큰 저장
     localStorage.setItem('accessToken', accessToken);
-    return { accessToken, user }; // 로그인 성공 시 user 정보 함께 반환
+    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('username', username);
+    localStorage.setItem('email', email);
+
+    return { accessToken, user: { username, email, roles } };
   } catch (error) {
-    return rejectWithValue(error.response?.data || error.message);
+    return rejectWithValue(error.response?.data?.message || "로그인 실패");
   }
 });
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    signupData: {},
-    user: null,
+    signupData: {
+      type: "",  // 첫 화면에서 선택한 userType 저장 (CAREGIVER / ADMIN)
+      name: "",
+      genderType: "",
+      contactNumber: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    user: null, // 로그인 후 사용자 정보 저장
     isAuthenticated: false,
     loading: false,
     error: null,
   },
   reducers: {
-    updateSignupData: (state, action) => {
-      state.signupData = { ...state.signupData, ...action.payload };
+    setSignupField: (state, action) => {
+      const { field, value } = action.payload;
+      state.signupData[field] = value;
     },
     logout: (state) => {
       state.user = null;
       state.isAuthenticated = false;
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("username");
+      localStorage.removeItem("email");
     },
   },
   extraReducers: (builder) => {
@@ -65,7 +85,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.isAuthenticated = true;
-        localStorage.setItem("accessToken", action.payload.accessToken);
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -74,5 +93,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { updateSignupData, logout } = authSlice.actions;
+export const { setSignupField, logout } = authSlice.actions;
 export default authSlice.reducer;
