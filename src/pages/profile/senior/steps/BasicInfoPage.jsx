@@ -7,10 +7,14 @@ import Dropdown from '../../../../components/Dropdown';
 import SearchInputField from '../../../../components/SearchInputField';
 import Button from '../../../../components/Button';
 import { setSeniorInfo } from '../../../../redux/seniorSlice';
+import Postcode from 'react-daum-postcode';
 
 const BasicInfoPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [address, setAddress] = useState('');
+  const [detailAddress, setDetailAddress] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -49,6 +53,26 @@ const BasicInfoPage = () => {
     }));
   };
 
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress +=
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+
+    setFormData((prev) => ({ ...prev, address: fullAddress }));
+    dispatch(setSeniorInfo({ address: fullAddress }));
+    setIsPopupOpen(false);
+  };
+
   const isFormValid = () => {
     const { year, month, day } = formData.birthDate;
     return (
@@ -58,14 +82,10 @@ const BasicInfoPage = () => {
       day.length === 2 &&
       formData.genderType &&
       formData.careLevel &&
-      // formData.address &&
+      formData.address &&
       formData.contactInfo &&
       formData.guardianContact
     );
-  };
-
-  const handleSearchClick = () => {
-    navigate('/profile/senior/gender-select'); // 주소 검색 페이지 이동
   };
 
   const handleNext = () => {
@@ -153,15 +173,32 @@ const BasicInfoPage = () => {
         />
 
         <div className="">
-          <SearchInputField
-            label="주소"
-            placeholder="도로명으로 검색하세요."
-            buttonText="검색"
-            value={formData.address}
-            onClick={handleSearchClick}
-          />
+          <div className="w-full mx-auto mb-3">
+            <p className="text-lg font-medium text-dark mb-3">주소</p>
+            <div className="relative rounded-lg bg-background-gray body-regular-16">
+              <input
+                type="text"
+                value={formData.address}
+                readOnly
+                placeholder="도로명으로 검색하세요."
+                className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-3 text-dark"
+                onClick={() => setIsPopupOpen(true)}
+              />
+              <button
+                onClick={() => setIsPopupOpen(true)}
+                className="absolute px-4 py-2 text-white -translate-y-1/2 rounded-lg bg-gray-2 right-2 top-1/2 hover:bg-main hover:text-dark"
+              >
+                검색
+              </button>
+            </div>
+          </div>
 
-          <InputField placeholder="상세주소를 입력해 주세요." type="text" />
+          <InputField
+            placeholder="상세주소를 입력해 주세요."
+            type="text"
+            value={detailAddress}
+            onChange={(e) => setDetailAddress(e.target.value)}
+          />
         </div>
 
         <div>
@@ -196,6 +233,26 @@ const BasicInfoPage = () => {
           onChange={(e) => handleChange('guardianContact', e.target.value)}
           required
         />
+
+        {isPopupOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="w-full max-w-lg p-4 bg-white rounded-lg shadow-lg">
+              <div className="flex justify-between mb-2">
+                <h2 className="text-lg font-semibold">주소 검색</h2>
+                <button
+                  onClick={() => setIsPopupOpen(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  닫기
+                </button>
+              </div>
+              <Postcode
+                onComplete={handleComplete}
+                style={{ height: '450px' }}
+              />
+            </div>
+          </div>
+        )}
 
         <div className="mt-5">
           <Button text="다음" onClick={handleNext} disabled={!isFormValid()} />
