@@ -8,16 +8,16 @@ const Badge = ({
   ...props
 }) => {
   const baseStyle =
-    'h-7 py-1 px-3 inline-flex items-center justify-center text-xs font-medium font-pretendard rounded';
+    'h-7 inline-flex items-center justify-center text-sm font-semibold font-pretendard rounded';
 
   const variants = {
     // 예상 도보 스타일 (기본)
-    default: 'bg-background-point border border-main',
+    default: 'bg-background-point border border-main px-3',
 
     // 상태 배지 스타일
-    pending: 'bg-sky-100 border border-sky-400 text-sky-400',
-    negotiating: 'bg-rose-100 border border-red-500 text-red-500',
-    completed: 'xbg-main text-stone-900 text-dark text-semibold',
+    pending: 'bg-sky-100 border border-sky-400 text-sky-400 px-2.5 py-1',
+    negotiating: 'bg-rose-100 border border-red-500 text-red-500 px-2.5 py-1',
+    completed: 'bg-yellow-300 text-stone-900 px-2.5 py-1',
   };
 
   // 기본 배지의 경우 label과 value의 색상을 다르게 처리

@@ -27,6 +27,7 @@ import ModalTest from './pages/dev/ModalTest';
 import MatchingCardTest from './pages/dev/MatchingCardTest';
 
 import ProfileSetup from './pages/profile/caregiver';
+import ApplyStatus from './pages/matching/caregiver/ApplyStatus';
 
 const AppContent = () => {
   const location = useLocation();
@@ -87,6 +88,9 @@ const AppContent = () => {
 
           {/* 요양보호사 프로필 등록 페이지 */}
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
+
+          {/* 매칭 페이지 */}
+          <Route path="/matching/caregiver" element={<ApplyStatus />} />
         </Routes>
       </div>
     </div>

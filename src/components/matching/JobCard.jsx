@@ -27,11 +27,21 @@ const JobCard = ({
     }
   };
 
+  const variant = {
+    대기중: 'pending',
+    완료함: 'completed',
+    조율중: 'negotiating',
+  };
+
   return (
     <div className="relative w-full bg-white">
       {/* 예상 소요시간 + 상태 뱃지 */}
-      <Badge label="예상 도보 " value="20분~30분" />
-      <Badge label="대기중" variant="pending" className="absolute right-16" />
+      <Badge label="예상 도보 " value={estimatedTime} />
+      <Badge
+        label={status}
+        variant={variant[status]}
+        className="absolute right-16"
+      />
 
       {/* 북마크 버튼 */}
       <button
