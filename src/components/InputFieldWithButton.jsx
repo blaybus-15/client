@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const InputFieldWithButton = ({
   placeholder = '입력해주세요',
   buttonText = '확인',
+  disabled = false,
   onSubmit = () => {},
 }) => {
   const [inputValue, setInputValue] = useState('');
@@ -19,6 +20,7 @@ const InputFieldWithButton = ({
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder={placeholder}
+          disabled={disabled}
           className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-1 text-dark "
         />
         <button

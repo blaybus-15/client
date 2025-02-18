@@ -2,7 +2,7 @@ import Button from '../../../../components/Button';
 
 const SuccessPage = () => {
   return (
-    <div className="flex flex-col min-h-screen px-6 pt-12 bg-white justify-evenly">
+    <div className="flex flex-col min-h-screen px-4 pt-12 bg-white justify-evenly">
       <div className="flex flex-col items-center justify-center flex-1 space-y-6 text-center">
         <h2 className="head-semi-bold-24 leading-[40px] text-dark">
           프로필 등록을
@@ -15,7 +15,7 @@ const SuccessPage = () => {
         </div>
       </div>
 
-      <div className="w-full px-8 pb-12">
+      <div className="w-full pb-12">
         <Button text="돌봄 연결로 가기" onClick={() => {}} />
       </div>
     </div>

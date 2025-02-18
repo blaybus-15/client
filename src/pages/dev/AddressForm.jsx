@@ -24,7 +24,7 @@ const AddressForm = () => {
   };
 
   return (
-    <div className="max-w-lg p-4 mx-auto mt-20 bg-white rounded-md shadow-md">
+    <div className="max-w-lg p-4 mx-auto bg-white rounded-md shadow-md">
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => setIsPopupOpen(true)}
