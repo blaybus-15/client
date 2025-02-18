@@ -25,6 +25,8 @@ import CenterSearchPage from './pages/auth/admin/CenterSearchPage';
 import CenterInfoPage from './pages/auth/admin/CenterInfoPage';
 import ModalTest from './pages/dev/ModalTest';
 
+import ProfileSetup from './pages/profile/caregiver';
+
 const AppContent = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -47,7 +49,6 @@ const AppContent = () => {
           <Route path="/auth" element={<SocialAuthPage />} />
           <Route path="/login" element={<LoginPage />} />
 
-
           {/* 배포 시 dev 링크 삭제 */}
           <Route path="/dev/selectable-card" element={<SelectableCardTest />} />
           <Route path="/dev/check-card" element={<CheckCardTest />} />
@@ -65,11 +66,25 @@ const AppContent = () => {
           <Route path="/signup/caregiver/profile" element={<ProfilePage />} />
 
           {/* 관리자 전용 회원가입 */}
-          <Route path="/signup/admin/center/register" element={<CenterRegisterPage />} />
-          <Route path="/signup/admin/center/search" element={<CenterSearchPage />} />
-          <Route path="/signup/admin/center/intro" element={<CenterIntroPage />} />
-          <Route path="/signup/admin/center/check" element={<CenterInfoPage />} />
+          <Route
+            path="/signup/admin/center/register"
+            element={<CenterRegisterPage />}
+          />
+          <Route
+            path="/signup/admin/center/search"
+            element={<CenterSearchPage />}
+          />
+          <Route
+            path="/signup/admin/center/intro"
+            element={<CenterIntroPage />}
+          />
+          <Route
+            path="/signup/admin/center/check"
+            element={<CenterInfoPage />}
+          />
 
+          {/* 요양보호사 프로필 등록 페이지 */}
+          <Route path="/profile/caregiver*" element={<ProfileSetup />} />
         </Routes>
       </div>
     </div>
