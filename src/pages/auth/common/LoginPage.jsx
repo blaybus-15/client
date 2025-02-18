@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInThunk } from '../../../redux/authThunk';
 import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
 
-const Login = () => {
+const LoginPage= () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
+
+    const [searchParams] = useSearchParams();
+    const userType = searchParams.get("type") || "caregiver";
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,11 +22,19 @@ const Login = () => {
     // 비밀번호 유효성 검사 (영문+숫자+특수문자 8~23자)
     const isValidPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,23}$/.test(password);
 
-
     // 로그인 버튼 클릭
     const handleLogin = () => {
         if (!isValidEmail || !isValidPassword) return;
-        navigate("/profile");
+
+        dispatch(signInThunk({ email, password }))
+        .unwrap()
+        .then(() => {
+            console.log("로그인 성공!");
+            navigate("/profile");
+        })
+        .catch((err) => {
+            console.error("로그인 실패: ", err);
+        });
     };
 
     return (
@@ -32,7 +45,16 @@ const Login = () => {
                 </div>
 
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark text-left py-6 mb-3">
-                    요양보호사의 첫걸음<br />케어링크와 함께 시작하세요.
+                    {userType === "caregiver" ? (
+                        <>
+                            요양보호사의 첫걸음<br />케어링크와 함께 시작하세요.
+                        </>
+                    ) : (
+                        <>
+                            케어링크와 함께<br />매칭과 업무를 한번에 끝내보세요!
+                        </>
+                    )
+                    }
                 </h2>
 
                 <div className="flex flex-col flex-1 justify-start space-y-6">
@@ -62,5 +84,5 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default LoginPage;
 

@@ -1,78 +1,87 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { authApi } from '../services/auth';
-
-// 회원가입 요청
-export const signUp = createAsyncThunk('auth/signUp', async (userData, { rejectWithValue }) => {
-  try {
-    const response = await authApi.signUp(userData);
-    return response.data;
-  } catch (error) {
-    return rejectWithValue(error.response?.data || error.message);
-  }
-});
-
-// 로그인 요청
-export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
-  try {
-    const response = await authApi.login(credentials);
-    const { accessToken, user } = response.data;
-
-    localStorage.setItem('accessToken', accessToken);
-    return { accessToken, user }; // 로그인 성공 시 user 정보 함께 반환
-  } catch (error) {
-    return rejectWithValue(error.response?.data || error.message);
-  }
-});
+import { createSlice } from '@reduxjs/toolkit';
+import { signUpThunk, signInThunk } from './authThunk';
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    signupData: {},
-    user: null,
+    signupData: {
+      type: '', // ADMIN or CAREGIVER
+      email: '',
+      password: '',
+      confirmPassword: '',
+      profileImageUrl: '', // URL 저장
+      contactNumber: '',
+      name: '',
+      genderType: '',
+      centerId: '',
+      centerName: '',
+      centerAddress: '',
+      hasBathVehicle: false,
+      introduction: '',
+    },
     isAuthenticated: false,
     loading: false,
     error: null,
   },
   reducers: {
-    updateSignupData: (state, action) => {
-      state.signupData = { ...state.signupData, ...action.payload };
+    setSignupField: (state, action) => {
+      const { field, value } = action.payload;
+      state.signupData[field] = value;
+    },
+    setProfileImageUrl: (state, action) => {
+      state.signupData.profileImageUrl = action.payload; // URL 저장
     },
     logout: (state) => {
-      state.user = null;
       state.isAuthenticated = false;
-      localStorage.removeItem("accessToken");
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('email');
+      localStorage.removeItem('roles');
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signUp.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(signUp.fulfilled, (state) => {
-        state.loading = false;
-        state.isAuthenticated = true; // 회원가입 후 자동 로그인할 지 로그인 페이지 이동할지에 따라 변경
-      })
-      .addCase(signUp.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-
-      .addCase(login.pending, (state) => {
+      .addCase(signUpThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(signUpThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
-        state.isAuthenticated = true;
-        localStorage.setItem("accessToken", action.payload.accessToken);
+        state.isAuthenticated = true; // 회원가입 후 자동 로그인
+        state.signupData.profileImageUrl =
+          action.payload?.data?.profileImageUrl || ''; // 프로필 이미지 URL 저장
+
+        if (action.payload?.data?.accessToken) {
+          localStorage.setItem('accessToken', action.payload.data.accessToken);
+          localStorage.setItem(
+            'refreshToken',
+            action.payload.data.refreshToken
+          );
+        }
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(signUpThunk.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || '회원가입 요청 실패';
+      })
+
+      .addCase(signInThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signInThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isAuthenticated = true;
+
+        // 토큰 저장
+        localStorage.setItem('accessToken', action.payload.accessToken);
+        localStorage.setItem('refreshToken', action.payload.refreshToken);
+      })
+      .addCase(signInThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || '로그인 요청 실패';
       });
   },
 });
 
-export const { updateSignupData, logout } = authSlice.actions;
+export const { setSignupField, setProfileImageUrl, logout } = authSlice.actions;
 export default authSlice.reducer;

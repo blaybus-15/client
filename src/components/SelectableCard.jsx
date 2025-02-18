@@ -5,8 +5,8 @@ const SelectableCard = ({
   multiple = false,
   onSelect,
   className = '',
-  selectedClassName = 'bg-background-point text-dark body-semi-bold-16 shadow-inner',
-  unselectedClassName = 'bg-background-gray text-dark body-regular-16 hover:bg-gray-2/20',
+  selectedClassName = 'bg-background-point body-semi-bold-16 shadow-inner',
+  unselectedClassName = 'bg-background-gray body-regular-16 hover:bg-gray-2/20',
   cols = 2,
 }) => {
   const [selected, setSelected] = useState(multiple ? [] : null);
@@ -34,7 +34,7 @@ const SelectableCard = ({
 
   return (
     <div
-      className={`grid gap-4 ${className}`}
+      className={`grid gap-[11px] ${className}`}
       style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
     >
       {' '}
@@ -43,7 +43,7 @@ const SelectableCard = ({
           key={index}
           onClick={() => handleClick(index)}
           className={`
-            p-6 rounded-lg 
+            p-6 rounded-lg text-dark
             ${isSelected(index) ? selectedClassName : unselectedClassName}
           `}
         >
