@@ -8,6 +8,8 @@ import CareTimePage from "./steps/CareTimePage";
 import DailyLivingPage from "./steps/DailyLivingPage";
 import RequiredServicePage from "./steps/RequiredServicePage";
 import MatchingSalaryPage from "./steps/MatchingSalaryPage";
+import SerialNumberPage from "./steps/SerialNumberPage";
+import SuccessPage from "./steps/SuccessPage";
 
 const SeniorProfileSetup = () => {
     return (
@@ -21,6 +23,8 @@ const SeniorProfileSetup = () => {
           <Route path="daily-living" element={<DailyLivingPage />} />
           <Route path="require-service" element={<RequiredServicePage />} />
           <Route path="match-salary" element={<MatchingSalaryPage />} />
+          <Route path="/serial-number" element={<SerialNumberPage />} />
+          <Route path='/success' element={<SuccessPage />} />
         </Route>
       </Routes>
     );

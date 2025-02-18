@@ -19,7 +19,7 @@ const MatchingSalaryPage = () => {
         })
       );
       dispatch(nextStep());
-      navigate('/profile/senior/');
+      navigate('/profile/senior/serial-number');
     }
   };
 

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const TOTAL_STEPS = 7; // 어르신 정보 등록의 총 단계
+const TOTAL_STEPS = 8; // 어르신 정보 등록의 총 단계
 
 // localStorage에서 상태 로드
 const loadState = () => {
@@ -25,6 +25,7 @@ const initialState = loadState() || {
     5: { title: '일상생활 능력 입력', completed: false },
     6: { title: '필요 서비스 선택', completed: false },
     7: { title: '급여 입력', completed: false },
+    8: { title: '일련번호 생성', completed: false },
   },
 };
 
@@ -37,6 +38,7 @@ export const pathToStepMapping = {
   'daily-living': 5,
   'require-service': 6,
   'match-salary': 7,
+  'serial-number': 8,
 };
 
 const seniorStepSlice = createSlice({
