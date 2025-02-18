@@ -1,49 +1,87 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { authApi } from '../services/auth';
-
-export const signUp = createAsyncThunk('auth/signUp', async (userData) => {
-  const { data } = await authApi.signUp(userData);
-  return data;
-});
-
-export const login = createAsyncThunk('auth/login', async (credentials) => {
-  const { data } = await authApi.login(credentials);
-  localStorage.setItem('accessToken', data.data.accessToken);
-  return data.data;
-});
+import { createSlice } from '@reduxjs/toolkit';
+import { signUpThunk, signInThunk } from './authThunk';
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: null,
+    signupData: {
+      type: '', // ADMIN or CAREGIVER
+      email: '',
+      password: '',
+      confirmPassword: '',
+      profileImageUrl: '', // URL 저장
+      contactNumber: '',
+      name: '',
+      genderType: '',
+      centerId: '',
+      centerName: '',
+      centerAddress: '',
+      hasBathVehicle: false,
+      introduction: '',
+    },
     isAuthenticated: false,
     loading: false,
     error: null,
   },
   reducers: {
+    setSignupField: (state, action) => {
+      const { field, value } = action.payload;
+      state.signupData[field] = value;
+    },
+    setProfileImageUrl: (state, action) => {
+      state.signupData.profileImageUrl = action.payload; // URL 저장
+    },
     logout: (state) => {
-      localStorage.removeItem('accessToken');
-      state.user = null;
       state.isAuthenticated = false;
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('email');
+      localStorage.removeItem('roles');
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(login.pending, (state) => {
+      .addCase(signUpThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(signUpThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isAuthenticated = true; // 회원가입 후 자동 로그인
+        state.signupData.profileImageUrl =
+          action.payload?.data?.profileImageUrl || ''; // 프로필 이미지 URL 저장
+
+        if (action.payload?.data?.accessToken) {
+          localStorage.setItem('accessToken', action.payload.data.accessToken);
+          localStorage.setItem(
+            'refreshToken',
+            action.payload.data.refreshToken
+          );
+        }
+      })
+      .addCase(signUpThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || '회원가입 요청 실패';
+      })
+
+      .addCase(signInThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signInThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
-        state.user = action.payload;
+
+        // 토큰 저장
+        localStorage.setItem('accessToken', action.payload.accessToken);
+        localStorage.setItem('refreshToken', action.payload.refreshToken);
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(signInThunk.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload || '로그인 요청 실패';
       });
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { setSignupField, setProfileImageUrl, logout } = authSlice.actions;
 export default authSlice.reducer;

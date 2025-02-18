@@ -16,7 +16,7 @@ const CheckCard = ({ value, onChange, yesLabel = 'Yes', noLabel = 'No' }) => {
 
   return (
     <div className="space-y-2">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-[16px]">
         {options.map((option) => (
           <button
             key={option.id}
