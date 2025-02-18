@@ -42,3 +42,8 @@
     @apply font-pretendard font-normal text-[12px];
   }
 }
+
+body {
+  overflow-y: scroll; /* 항상 스크롤바 공간 확보 */
+  scrollbar-gutter: stable; /* 스크롤바 공간 안정화 */
+}
