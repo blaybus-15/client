@@ -11,7 +11,27 @@ import { BiPlus } from 'react-icons/bi';
 import SearchBar from '../../../../components/SearchBar';
 import LimitedTextInput from '../../../../components/LimitedTextField';
 import CareerCard from '../../../../components/CareerCard';
+import { BsCheck } from 'react-icons/bs';
 
+const StyledCheckbox = ({ id, checked, onChange, label, className = '' }) => {
+  return (
+    <div className={`flex items-center gap-2 ${className}`}>
+      <button
+        onClick={() => onChange(!checked)}
+        className="relative flex items-center justify-center"
+      >
+        <span
+          className={`rounded-full p-1 ${checked ? 'bg-main' : 'bg-gray-2'}`}
+        >
+          <BsCheck size={14} className={checked ? 'text-dark' : 'text-white'} />
+        </span>
+      </button>
+      <label htmlFor={id} className="cursor-pointer text-gray-1">
+        {label}
+      </label>
+    </div>
+  );
+};
 const Career = () => {
   const [hasCareer, setHasCareer] = useState(null);
   const [isShowingForm, setIsShowingForm] = useState(false);
@@ -164,7 +184,7 @@ const Career = () => {
                     <div className="sub-regular-12 text-gray-1">시작기간</div>
                     <input
                       type="month"
-                      className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600"
+                      className="w-full h-11 px-3 py-2.5 bg-white rounded-lg text-gray-600"
                       value={currentCareer.startDate}
                       onChange={(e) =>
                         handleCareerDetailsChange('startDate', e.target.value)
@@ -175,13 +195,13 @@ const Career = () => {
                   <div className="flex-1 space-y-1">
                     <div className="sub-regular-12 text-gray-1">종료기간</div>
                     {currentCareer.isCurrentlyEmployed ? (
-                      <div className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600">
+                      <div className="h-11 px-3 py-2.5 bg-white rounded-lg text-gray-600">
                         재직중
                       </div>
                     ) : (
                       <input
                         type="month"
-                        className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600"
+                        className="w-full h-11 px-3 py-2.5 bg-white rounded-lg text-gray-600"
                         value={currentCareer.endDate}
                         onChange={(e) =>
                           handleCareerDetailsChange('endDate', e.target.value)
@@ -190,26 +210,18 @@ const Career = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center gap-2 mt-2">
-                  <input
-                    type="checkbox"
-                    id="currentlyEmployed"
-                    checked={currentCareer.isCurrentlyEmployed}
-                    onChange={(e) => {
-                      handleCareerDetailsChange(
-                        'isCurrentlyEmployed',
-                        e.target.checked
-                      );
-                      if (e.target.checked) {
-                        handleCareerDetailsChange('endDate', '');
-                      }
-                    }}
-                    className="w-5 h-5 rounded-full"
-                  />
-                  <label htmlFor="currentlyEmployed" className="text-gray-1">
-                    재직중
-                  </label>
-                </div>
+                <StyledCheckbox
+                  id="currentlyEmployed"
+                  checked={currentCareer.isCurrentlyEmployed}
+                  onChange={(checked) => {
+                    handleCareerDetailsChange('isCurrentlyEmployed', checked);
+                    if (checked) {
+                      handleCareerDetailsChange('endDate', '');
+                    }
+                  }}
+                  label="재직중"
+                  className="mt-2"
+                />
               </div>
 
               {/* 담당 업무 */}
