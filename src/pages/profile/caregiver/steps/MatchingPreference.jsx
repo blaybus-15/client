@@ -105,7 +105,7 @@ const MatchingPreference = () => {
 
       <div className="p-4 pb-28 sm:pb-16 md:pb-12">
         <Button
-          text={'다음'}
+          text={'완료'}
           onClick={handleNext}
           disabled={requiredKeywords.length < 2} // 필수 조건이 2개 미만이면 버튼 비활성화
         />
