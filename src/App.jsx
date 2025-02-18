@@ -24,6 +24,7 @@ import CenterIntroPage from './pages/auth/admin/CenterIntroPage';
 import CenterSearchPage from './pages/auth/admin/CenterSearchPage';
 import CenterInfoPage from './pages/auth/admin/CenterInfoPage';
 import ModalTest from './pages/dev/ModalTest';
+import MatchingCardTest from './pages/dev/MatchingCardTest';
 
 import ProfileSetup from './pages/profile/caregiver';
 
@@ -54,6 +55,7 @@ const AppContent = () => {
           <Route path="/dev/check-card" element={<CheckCardTest />} />
           <Route path="/dev/address-search" element={<AddressSearch />} />
           <Route path="/dev/modal" element={<ModalTest />} />
+          <Route path="dev/matching-card" element={<MatchingCardTest />} />
 
           {/* 회원가입 시작 페이지 (userType 기반 리디렉션) */}
           <Route path="/signup" element={<SignupStartPage />} />
