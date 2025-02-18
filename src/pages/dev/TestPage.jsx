@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CalendarModal from '../../components/CalendarModal';
+import CalendarModal from '../../components/modal/CalendarModal';
 import TimeModal from '../../components/modal/TimeModal';
 
 const TestPage = () => {

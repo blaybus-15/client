@@ -29,6 +29,7 @@ import ProfileSetup from './pages/profile/caregiver';
 import TestPage from "./pages/dev/TestPage";
 import BasicInfo from './pages/profile/senior/steps/BasicInfo';
 import GenderSelectPage from './pages/profile/senior/steps/GenderSelectPage';
+import CareDatePage from './pages/profile/senior/steps/CareDatePage';
 
 const AppContent = () => {
   const location = useLocation();
@@ -91,6 +92,7 @@ const AppContent = () => {
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
           <Route path='/profile' element={<BasicInfo />} />
           <Route path='/gender' element={<GenderSelectPage />} />
+          <Route path='/care-date' element={<CareDatePage />} />
         </Routes>
       </div>
     </div>
