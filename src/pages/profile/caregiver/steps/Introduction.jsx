@@ -21,7 +21,7 @@ const Introduction = () => {
     if (introduce !== null) {
       dispatch(updateProfileData({ introduce }));
       dispatch(nextStep());
-      navigate('/profile/caregiver/keywords');
+      navigate('/profile/caregiver/payment');
     }
   };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const SalaryCalculator = () => {
+const SalaryCalculator = ({ onChange }) => {
   const [salaryType, setSalaryType] = useState('시급');
   const [amount, setAmount] = useState('');
   const [showCalculator, setShowCalculator] = useState(false);
@@ -18,6 +18,15 @@ const SalaryCalculator = () => {
     const formatted = numberOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     setAmount(formatted);
     setShowCalculator(formatted !== '');
+
+    // 부모 컴포넌트에 값 전달
+    if (onChange) {
+      onChange({
+        salaryType,
+        amount: formatted ? parseInt(numberOnly, 10) : 0,
+        showCalculator: formatted !== '',
+      });
+    }
   };
 
   const calculateSalary = () => {
@@ -53,6 +62,14 @@ const SalaryCalculator = () => {
   useEffect(() => {
     if (amount) {
       calculateSalary();
+    }
+    // 급여 유형이 변경될 때도 부모 컴포넌트에 알림
+    if (onChange) {
+      onChange({
+        salaryType,
+        amount: amount ? parseInt(amount.replace(/,/g, ''), 10) : 0,
+        showCalculator: amount !== '',
+      });
     }
   }, [amount, salaryType]);
 
