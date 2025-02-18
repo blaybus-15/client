@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const InputFieldWithButton = ({
   placeholder = '입력해주세요',
   buttonText = '확인',
+  disabled = false,
+  style = 'bg-background-gray',
+  value = '',
+  onChange = () => {},
   onSubmit = () => {},
 }) => {
-  const [inputValue, setInputValue] = useState('');
-
   const handleSubmit = () => {
-    onSubmit(inputValue);
+    onSubmit(value);
   };
 
   return (
     <div className="w-full mx-auto">
-      <div className="relative rounded-lg bg-background-gray body-regular-16">
+      <div className={`relative rounded-lg body-regular-16 ${style}`}>
         <input
           type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={value}
+          onChange={(e) => onChange(e)}
           placeholder={placeholder}
-          className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-1 text-dark "
+          disabled={disabled}
+          className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-1 text-dark"
         />
         <button
           onClick={handleSubmit}

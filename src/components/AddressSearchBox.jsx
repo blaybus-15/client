@@ -13,11 +13,24 @@ const convertCoordsToAddress = (latitude, longitude) => {
     try {
       const geocoder = new window.kakao.maps.services.Geocoder();
 
-      geocoder.coord2RegionCode(longitude, latitude, (result, status) => {
+      geocoder.coord2Address(longitude, latitude, (result, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
-          // 법정동 주소 반환 (result[0]은 행정동, result[1]은 법정동)
-          const address = result[1].address_name;
-          resolve(address);
+          const addressInfo = result[0];
+          const roadAddress = addressInfo.road_address;
+          const jibunAddress = addressInfo.address;
+
+          // 도로명 주소가 있는 경우 도로명 주소 사용, 없으면 지번 주소 사용
+          if (roadAddress) {
+            const fullAddress = `${roadAddress.address_name} ${
+              roadAddress.building_name
+                ? `(${jibunAddress.region_3depth_name}, ${roadAddress.building_name})`
+                : `(${jibunAddress.region_3depth_name})`
+            }`;
+            resolve(fullAddress);
+          } else {
+            const fullAddress = `${jibunAddress.address_name} (${jibunAddress.region_3depth_name})`;
+            resolve(fullAddress);
+          }
         } else {
           reject(new Error('주소 변환에 실패했습니다.'));
         }
