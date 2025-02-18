@@ -7,39 +7,82 @@ import {
 } from '../../../../redux/profile/caregiverProfileSlice';
 import Button from '../../../../components/Button';
 import SelectableCard from '../../../../components/SelectableCard';
-import { BiSearch, BiPlus } from 'react-icons/bi';
+import { BiPlus } from 'react-icons/bi';
 import SearchBar from '../../../../components/SearchBar';
 import LimitedTextInput from '../../../../components/LimitedTextField';
+import CareerCard from '../../../../components/CareerCard';
 
 const Career = () => {
   const [hasCareer, setHasCareer] = useState(null);
-  const [isCurrentlyEmployed, setIsCurrentlyEmployed] = useState(false);
-  const [careerDetails, setCareerDetails] = useState({
+  const [isShowingForm, setIsShowingForm] = useState(false);
+  const [careers, setCareers] = useState([]);
+  const [currentCareer, setCurrentCareer] = useState({
     workplace: '',
     startDate: '',
     endDate: '',
     duties: '',
+    isCurrentlyEmployed: false,
   });
+  const [editingIndex, setEditingIndex] = useState(null);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSelect = (value) => {
     setHasCareer(value);
+    if (value === 1 && careers.length === 0) {
+      setIsShowingForm(true);
+    }
   };
 
   const handleNext = () => {
     if (hasCareer !== null) {
-      dispatch(updateProfileData({ hasCareer, careerDetails }));
+      dispatch(updateProfileData({ hasCareer, careers }));
       dispatch(nextStep());
       navigate('/profile/caregiver/introduction');
     }
   };
 
   const handleCareerDetailsChange = (field, value) => {
-    setCareerDetails((prev) => ({
+    setCurrentCareer((prev) => ({
       ...prev,
       [field]: value,
     }));
+  };
+
+  const handleSaveCareer = () => {
+    if (editingIndex !== null) {
+      // Update existing career
+      setCareers(
+        careers.map((career, index) =>
+          index === editingIndex ? currentCareer : career
+        )
+      );
+      setEditingIndex(null);
+    } else {
+      // Add new career
+      setCareers([...careers, currentCareer]);
+    }
+
+    // Reset form
+    setCurrentCareer({
+      workplace: '',
+      startDate: '',
+      endDate: '',
+      duties: '',
+      isCurrentlyEmployed: false,
+    });
+    setIsShowingForm(false);
+  };
+
+  const handleEdit = (career, index) => {
+    setCurrentCareer(career);
+    setEditingIndex(index);
+    setIsShowingForm(true);
+  };
+
+  const handleDelete = (index) => {
+    setCareers(careers.filter((_, i) => i !== index));
   };
 
   const options = ['신입이에요', '경력있어요'];
@@ -60,118 +103,157 @@ const Career = () => {
           selectedClassName="py-3 bg-background-point body-semi-bold-16 shadow-inner"
           unselectedClassName="py-3 bg-background-gray body-regular-16 hover:bg-gray-2/20"
         />
-
-        {hasCareer === 1 && (
-          <div className="p-4 mt-6 space-y-6 rounded-lg bg-background-gray">
-            {/* TODO: 근무기관 검색 기능 수정 */}
+      </div>
+      {hasCareer === 1 && (
+        <div className="px-4 pt-3 mt-12 bg-background-gray">
+          <div className="space-y-6">
             <SearchBar placeholder="근무 기관 검색하기" />
 
-            {/* 해당 근무 기관 */}
-            <div className="space-y-2">
-              <label className="block">
-                <span className="body-medium-18 text-dark">해당 근무 기관</span>
-                <span className="text-[#FF5050]">*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="근무했던 기관 이름을 작성해 주세요."
-                className="w-full px-3 py-2.5 bg-white rounded-lg text-dark hover:shadow-inner  focus:outline-none"
-                value={careerDetails.workplace}
-                onChange={(e) =>
-                  handleCareerDetailsChange('workplace', e.target.value)
-                }
+            {/* Career Cards */}
+            {careers.map((career, index) => (
+              <CareerCard
+                key={index}
+                career={career}
+                onEdit={() => handleEdit(career, index)}
+                onDelete={() => handleDelete(index)}
               />
-            </div>
+            ))}
 
-            {/* 근무 기간 */}
-            <div className="space-y-2">
-              <label className="block">
-                <span className="body-medium-18 text-dark">근무 기간</span>
-                <span className="text-[#FF5050]">*</span>
-              </label>
-              <div className="flex items-center gap-2">
-                <div className="flex-1 space-y-1">
-                  <div className="sub-regular-12 text-gray-1">시작기간</div>
-                  <input
-                    type="month"
-                    className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600"
-                    value={careerDetails.startDate}
-                    onChange={(e) =>
-                      handleCareerDetailsChange('startDate', e.target.value)
-                    }
-                  />
-                </div>
-                <div className="w-4 h-px mt-8 bg-zinc-200" />
-                <div className="flex-1 space-y-1">
-                  <div className="sub-regular-12 text-gray-1">종료기간</div>
-                  {isCurrentlyEmployed ? (
-                    <div className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600">
-                      재직중
-                    </div>
-                  ) : (
+            {!isShowingForm && (
+              <button
+                onClick={() => setIsShowingForm(true)}
+                className="w-full py-1.5 mt-4 bg-main rounded flex items-center justify-center gap-2"
+              >
+                <BiPlus className="text-xl" />
+                <span className="text-base font-semibold text-dark">
+                  경력 추가하기
+                </span>
+              </button>
+            )}
+          </div>
+
+          {isShowingForm && (
+            <div className="mt-6 space-y-6 rounded-lg bg-background-gray">
+              {/* Career Form Fields */}
+              <div className="space-y-2">
+                <label className="block">
+                  <span className="body-medium-18 text-dark">
+                    해당 근무 기관
+                  </span>
+                  <span className="text-[#FF5050]">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="근무했던 기관 이름을 작성해 주세요."
+                  className="w-full px-3 py-2.5 bg-white rounded-lg text-dark hover:shadow-inner focus:outline-none"
+                  value={currentCareer.workplace}
+                  onChange={(e) =>
+                    handleCareerDetailsChange('workplace', e.target.value)
+                  }
+                />
+              </div>
+
+              {/* 근무 기간 */}
+              <div className="space-y-2">
+                <label className="block">
+                  <span className="body-medium-18 text-dark">근무 기간</span>
+                  <span className="text-[#FF5050]">*</span>
+                </label>
+                <div className="flex items-center gap-2">
+                  <div className="flex-1 space-y-1">
+                    <div className="sub-regular-12 text-gray-1">시작기간</div>
                     <input
                       type="month"
                       className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600"
-                      value={careerDetails.endDate}
+                      value={currentCareer.startDate}
                       onChange={(e) =>
-                        handleCareerDetailsChange('endDate', e.target.value)
+                        handleCareerDetailsChange('startDate', e.target.value)
                       }
                     />
-                  )}
+                  </div>
+                  <div className="w-4 h-px mt-8 bg-zinc-200" />
+                  <div className="flex-1 space-y-1">
+                    <div className="sub-regular-12 text-gray-1">종료기간</div>
+                    {currentCareer.isCurrentlyEmployed ? (
+                      <div className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600">
+                        재직중
+                      </div>
+                    ) : (
+                      <input
+                        type="month"
+                        className="w-full px-3 py-2.5 bg-white rounded-lg text-gray-600"
+                        value={currentCareer.endDate}
+                        onChange={(e) =>
+                          handleCareerDetailsChange('endDate', e.target.value)
+                        }
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 mt-2">
+                  <input
+                    type="checkbox"
+                    id="currentlyEmployed"
+                    checked={currentCareer.isCurrentlyEmployed}
+                    onChange={(e) => {
+                      handleCareerDetailsChange(
+                        'isCurrentlyEmployed',
+                        e.target.checked
+                      );
+                      if (e.target.checked) {
+                        handleCareerDetailsChange('endDate', '');
+                      }
+                    }}
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <label htmlFor="currentlyEmployed" className="text-gray-1">
+                    재직중
+                  </label>
                 </div>
               </div>
-              <div className="flex items-center gap-2 mt-2">
-                <input
-                  type="checkbox"
-                  id="currentlyEmployed"
-                  checked={isCurrentlyEmployed}
-                  onChange={(e) => {
-                    setIsCurrentlyEmployed(e.target.checked);
-                    if (e.target.checked) {
-                      handleCareerDetailsChange('endDate', '');
-                    }
-                  }}
-                  className="w-5 h-5 rounded-full"
-                />
-                <label htmlFor="currentlyEmployed" className="text-gray-1">
-                  재직중
+
+              {/* 담당 업무 */}
+              <div className="space-y-2">
+                <label className="block">
+                  <span className="body-medium-18 text-dark">담당 업무</span>
+                  <span className="text-[#FF5050]">*</span>
                 </label>
+                <LimitedTextInput
+                  value={currentCareer.duties}
+                  className="bg-white"
+                  onChange={(value) =>
+                    handleCareerDetailsChange('duties', value)
+                  }
+                  placeholder="담당했던 업무를 작성해 주세요."
+                />
               </div>
+
+              {/* Save Button */}
+              <button
+                onClick={handleSaveCareer}
+                className="w-full py-1.5 bg-yellow-300 rounded flex items-center justify-center gap-2"
+              >
+                <span className="text-base font-semibold text-dark">저장</span>
+              </button>
+              <p className="text-center sub-regular-12 text-gray-1">
+                경력을 추가하고 저장을 눌러주세요.
+              </p>
             </div>
+          )}
+        </div>
+      )}
 
-            {/* 담당 업무 */}
-            <div className="space-y-2">
-              <label className="block">
-                <span className="body-medium-18 text-dark">담당 업무</span>
-                <span className="text-[#FF5050]">*</span>
-              </label>
-              <LimitedTextInput
-                value={careerDetails.duties}
-                className="bg-white"
-                onChange={(value) => handleCareerDetailsChange('duties', value)}
-                placeholder="담당했던 업무를 작성해 주세요."
-              />
-            </div>
-
-            {/* 경력 추가 버튼 */}
-            <button className="w-full py-1.5 bg-yellow-300 rounded flex items-center justify-center gap-2">
-              <BiPlus className="text-xl" />
-              <span className="text-base font-semibold text-dark">
-                경력 추가하기
-              </span>
-            </button>
-            <p className="text-center sub-regular-12 text-gray-1">
-              경력을 추가하고 저장을 눌러주세요.
-            </p>
-          </div>
-        )}
-      </div>
-
-      <div className="p-4 pb-28 sm:pb-16 md:pb-12">
+      <div
+        className={`p-4 pb-28 sm:pb-16 md:pb-12 ${
+          hasCareer === 1 ? 'bg-background-gray' : 'bg-white'
+        }`}
+      >
         <Button
           text={'다음'}
           onClick={handleNext}
-          disabled={hasCareer === null}
+          disabled={
+            hasCareer === null || (hasCareer === 1 && careers.length === 0)
+          }
         />
       </div>
     </>
