@@ -4,6 +4,7 @@ const initialState = {
     name: "",
     birthDate: { year: "", month: "", day: "" },
     genderType: "",
+    preferredGender: "",
     careLevel: "",
     address: "",
     isCoLiving: false,

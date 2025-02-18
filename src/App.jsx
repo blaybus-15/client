@@ -28,6 +28,7 @@ import ModalTest from './pages/dev/ModalTest';
 import ProfileSetup from './pages/profile/caregiver';
 import TestPage from "./pages/dev/TestPage";
 import BasicInfo from './pages/profile/senior/steps/BasicInfo';
+import GenderSelectPage from './pages/profile/senior/steps/GenderSelectPage';
 
 const AppContent = () => {
   const location = useLocation();
@@ -89,7 +90,7 @@ const AppContent = () => {
           {/* 요양보호사 프로필 등록 페이지 */}
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
           <Route path='/profile' element={<BasicInfo />} />
-
+          <Route path='/gender' element={<GenderSelectPage />} />
         </Routes>
       </div>
     </div>
