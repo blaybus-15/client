@@ -76,7 +76,7 @@ const DailyLivingPage = () => {
 
       {/* 다음 버튼 */}
       <div className="p-4">
-        <Button text="다음" onClick={() => navigate('/next-step')} disabled={isButtonDisabled} />
+        <Button text="다음" onClick={() => navigate('/require-service')} disabled={isButtonDisabled} />
       </div>
     </div>
   );

@@ -32,6 +32,7 @@ import GenderSelectPage from './pages/profile/senior/steps/GenderSelectPage';
 import CareDatePage from './pages/profile/senior/steps/CareDatePage';
 import CareTimePage from './pages/profile/senior/steps/CareTimePage';
 import DailyLivingPage from './pages/profile/senior/steps/DailyLivingPage';
+import RequiredServicePage from './pages/profile/senior/steps/RequiredServicePage';
 
 const AppContent = () => {
   const location = useLocation();
@@ -97,6 +98,7 @@ const AppContent = () => {
           <Route path='/care-date' element={<CareDatePage />} />
           <Route path='/care-time' element={<CareTimePage />} />
           <Route path='daily-living' element={<DailyLivingPage />} />
+          <Route path='require-service' element={<RequiredServicePage />} />
         </Routes>
       </div>
     </div>

@@ -18,6 +18,7 @@ const initialState = {
     mobilityLevel: null, 
     eatingLevel: null, 
     medicalConditions: [], 
+    requiredServices: [],
 };
 
 const seniorSlice = createSlice({
