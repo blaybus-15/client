@@ -37,7 +37,7 @@ const CareDatePage = () => {
         visitDates: [startDate, endDate],
       })
     );
-    navigate('/next-step'); // 다음 페이지
+    navigate('/care-time'); // 다음 페이지
   };
 
   const daysOfWeek = [
@@ -120,18 +120,18 @@ const CareDatePage = () => {
       {/* 단기적인 방문 선택 시 */}
       {visitType === 'TEMPORARY' && (
         <>
-          <div className="px-6 flex flex-col flex-1 justify-center">
+          <div className="px-6 flex flex-col flex-1">
             <div className="mt-6 mb-2 text-dark body-medium-18">돌봄 기간</div>
             <div className="flex justify-between">
               <button
-                className="w-1/2 p-3 border rounded-md"
+                className="w-1/2 p-3 body-regular-16 text-dark rounded-md bg-background-gray"
                 onClick={() => handleOpenCalendar(true)}
               >
                 {startDate || '시작 기간'}
               </button>
-              <span className="px-2 text-gray-500">-</span>
+              <span className="px-2 text-gray-2">-</span>
               <button
-                className="w-1/2 p-3 border rounded-md"
+                className="w-1/2 p-3 body-regular-16 text-dark rounded-md bg-background-gray"
                 onClick={() => handleOpenCalendar(false)}
               >
                 {endDate || '종료 기간'}

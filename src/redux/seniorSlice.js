@@ -13,6 +13,8 @@ const initialState = {
     visitType: "",       // 방문 유형 (REGULAR / TEMPORARY)
     visitDays: [],       // 정기 방문 요일 (["MONDAY", "WEDNESDAY"] 등)
     visitDates: [],      // 단기 방문 날짜 ([시작일, 종료일])
+    careStartTime: { hour: "", minute: "", second: "", nano: "" },
+    careEndTime: { hour: "", minute: "", second: "", nano: "" },
 };
 
 const seniorSlice = createSlice({
