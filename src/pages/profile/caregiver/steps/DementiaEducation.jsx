@@ -21,8 +21,7 @@ const DementiaEducation = () => {
     if (educated !== null) {
       dispatch(updateProfileData({ educated }));
       dispatch(nextStep());
-      // navigate('/profile/caregiver/address');
-      navigate('/profile/caregiver/vehicle');
+      navigate('/profile/caregiver/address');
     }
   };
 

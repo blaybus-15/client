@@ -11,6 +11,7 @@ import Payment from './steps/Payment';
 import BankAccount from './steps/BankAccount';
 import MatchingPreference from './steps/MatchingPreference';
 import SuccessPage from './steps/SuccessPage';
+import Address from './steps/Address';
 // ... 다른 스텝 컴포넌트들 import
 
 const ProfileSetup = () => {
@@ -20,6 +21,7 @@ const ProfileSetup = () => {
         <Route index element={<Navigate to="license" replace />} />
         <Route path="license" element={<LicenseRegistration />} />
         <Route path="dementia-education" element={<DementiaEducation />} />
+        <Route path="address" element={<Address />} />
         <Route path="vehicle" element={<Vehicle />} />
         <Route path="keywords" element={<Keywords />} />
         <Route path="career" element={<Career />} />

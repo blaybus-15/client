@@ -36,14 +36,14 @@ const initialState = loadState() || {
 export const pathToStepMapping = {
   license: 1,
   'dementia-education': 2,
-  vehicle: 3,
-  keywords: 4,
-  career: 5,
-  introduction: 6,
-  payment: 7,
-  'bank-account': 8,
-  'matching-preference': 9,
-  success: 10,
+  address: 3,
+  vehicle: 4,
+  keywords: 5,
+  career: 6,
+  introduction: 7,
+  payment: 8,
+  'bank-account': 9,
+  'matching-preference': 10,
 };
 
 const caregiverProfileSlice = createSlice({
