@@ -19,7 +19,7 @@ const MatchingSalaryPage = () => {
         })
       );
       dispatch(nextStep());
-      navigate('/profile/caregiver/bank-account');
+      navigate('/profile/senior/');
     }
   };
 
@@ -29,7 +29,7 @@ const MatchingSalaryPage = () => {
 
   return (
     <>
-      <div className="flex-1 px-4 pt-20">
+      <div className="flex-1 px-4 pt-20 bg-white">
         <div className="mb-[27px] head-semi-bold-24">
           매칭될 요양보호사의
           <br />

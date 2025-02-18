@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const TOTAL_STEPS = 10;
 
-// localStorage에서 상태 로드
 const loadState = () => {
   try {
     const serializedState = localStorage.getItem('caregiverProfileState');

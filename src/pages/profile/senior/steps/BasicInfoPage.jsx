@@ -6,8 +6,9 @@ import OptionButton from '../../../../components/OptionButton';
 import Dropdown from '../../../../components/Dropdown';
 import SearchInputField from '../../../../components/SearchInputField';
 import Button from '../../../../components/Button';
+import { setSeniorInfo } from '../../../../redux/seniorSlice';
 
-const BasicInfo = () => {
+const BasicInfoPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -64,7 +65,7 @@ const BasicInfo = () => {
   };
 
   const handleSearchClick = () => {
-    navigate(''); // 주소 검색 페이지 이동
+    navigate('/profile/senior/gender-select'); // 주소 검색 페이지 이동
   };
 
   const handleNext = () => {
@@ -81,7 +82,7 @@ const BasicInfo = () => {
     };
 
     dispatch(setSeniorInfo(formattedData));
-    navigate('/profile/senior/prefer-genderType');
+    navigate('/profile/senior/gender-select');
   };
 
   return (
@@ -204,4 +205,4 @@ const BasicInfo = () => {
   );
 };
 
-export default BasicInfo;
+export default BasicInfoPage;

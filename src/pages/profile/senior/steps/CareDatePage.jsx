@@ -37,7 +37,7 @@ const CareDatePage = () => {
         visitDates: [startDate, endDate],
       })
     );
-    navigate('/care-time'); // 다음 페이지
+    navigate('/profile/senior/care-time'); // 다음 페이지
   };
 
   const daysOfWeek = [

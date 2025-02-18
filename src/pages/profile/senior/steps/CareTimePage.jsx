@@ -54,7 +54,7 @@ const CareTimePage = () => {
       alert('시작 시간과 종료 시간을 설정해주세요.');
       return;
     }
-    navigate('/next-step');
+    navigate('/profile/senior/daily-living');
   };
 
   const isButtonDisabled =

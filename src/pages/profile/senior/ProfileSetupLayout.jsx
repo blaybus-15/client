@@ -5,7 +5,7 @@ import ProgressBar from '../../../components/ProgressBar';
 import {
   setCurrentStep,
   pathToStepMapping,
-} from '../../../redux/profile/caregiverProfileSlice';
+} from '../../../redux/profile/seniorStepSlice';
 
 const ProfileSetupLayout = () => {
   const location = useLocation();
@@ -23,7 +23,7 @@ const ProfileSetupLayout = () => {
 
   return (
     <div className="flex flex-col max-w-2xl min-h-screen bg-white">
-      <ProgressBar stepSliceName="caregiverProfile"/>
+      <ProgressBar stepSliceName="seniorStep"/>
       <Outlet />
     </div>
   );

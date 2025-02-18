@@ -26,20 +26,22 @@ import CenterInfoPage from './pages/auth/admin/CenterInfoPage';
 import ModalTest from './pages/dev/ModalTest';
 
 import ProfileSetup from './pages/profile/caregiver';
+import SeniorProfileSetup from './pages/profile/senior';
 import TestPage from "./pages/dev/TestPage";
-import BasicInfo from './pages/profile/senior/steps/BasicInfo';
+import BasicInfo from './pages/profile/senior/steps/BasicInfoPage';
 import GenderSelectPage from './pages/profile/senior/steps/GenderSelectPage';
 import CareDatePage from './pages/profile/senior/steps/CareDatePage';
 import CareTimePage from './pages/profile/senior/steps/CareTimePage';
 import DailyLivingPage from './pages/profile/senior/steps/DailyLivingPage';
 import RequiredServicePage from './pages/profile/senior/steps/RequiredServicePage';
+import MatchingSalaryPage from './pages/profile/senior/steps/MatchingSalaryPage';
 
 const AppContent = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen">
       {!isHomePage && (
         <div className="fixed top-0 left-0 z-50 w-full">
           <div className="max-w-2xl mx-auto ">
@@ -93,12 +95,8 @@ const AppContent = () => {
 
           {/* 요양보호사 프로필 등록 페이지 */}
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
-          <Route path='/profile' element={<BasicInfo />} />
-          <Route path='/gender' element={<GenderSelectPage />} />
-          <Route path='/care-date' element={<CareDatePage />} />
-          <Route path='/care-time' element={<CareTimePage />} />
-          <Route path='daily-living' element={<DailyLivingPage />} />
-          <Route path='require-service' element={<RequiredServicePage />} />
+          <Route path="/profile/senior*" element={<SeniorProfileSetup />} />
+
         </Routes>
       </div>
     </div>

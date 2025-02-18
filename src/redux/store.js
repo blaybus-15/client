@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
 import caregiverProfileReducer from './profile/caregiverProfileSlice';
+import seniorStepReducer from './profile/seniorStepSlice';
 import seniorReducer from './seniorSlice';
 
 const store = configureStore({
@@ -8,6 +9,7 @@ const store = configureStore({
     auth: authReducer,
     senior: seniorReducer,
     caregiverProfile: caregiverProfileReducer,
+    seniorStep: seniorStepReducer,
   },
 });
 

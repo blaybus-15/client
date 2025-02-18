@@ -31,7 +31,7 @@ const GenderSelectPage = () => {
     }
 
     dispatch(setSeniorInfo({ preferredGender: selectedGender }));
-    navigate('/care-date'); // 다음 페이지
+    navigate('/profile/senior/care-date'); // 다음 페이지
   };
 
   return (
