@@ -26,3 +26,4 @@ const SearchInputField = ({ placeholder = '입력해주세요', buttonText, valu
 };
 
 export default SearchInputField;
+
