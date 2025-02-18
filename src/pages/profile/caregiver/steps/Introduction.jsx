@@ -36,7 +36,7 @@ const Introduction = () => {
         <div className="mb-3 head-semi-bold-24 text-dark">
           한줄 소개를 입력해주세요.
         </div>
-        <div className="mb-[28px] body-regular-16 text-gray-1">
+        <div className="mb-[28px] body-regular-16 text-gray-2">
           매칭에 도움이 될 수 있는 멘트를
           <br />
           자유롭게 작성해주세요!

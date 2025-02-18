@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     name: "",
     birthDate: { year: "", month: "", day: "" },
-    genderType: "MALE",
-    careLevel: "NO_GRADE",
+    genderType: "",
+    careLevel: "",
     address: "",
     isCoLiving: false,
     contactInfo: "",

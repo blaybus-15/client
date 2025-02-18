@@ -27,6 +27,7 @@ import ModalTest from './pages/dev/ModalTest';
 
 import ProfileSetup from './pages/profile/caregiver';
 import TestPage from "./pages/dev/TestPage";
+import BasicInfo from './pages/profile/senior/steps/BasicInfo';
 
 const AppContent = () => {
   const location = useLocation();
@@ -56,7 +57,6 @@ const AppContent = () => {
           <Route path="/dev/address-search" element={<AddressSearch />} />
           <Route path="/dev/modal" element={<ModalTest />} />
           <Route path='/dev/test' element={<TestPage />} />
-
 
           {/* 회원가입 시작 페이지 (userType 기반 리디렉션) */}
           <Route path="/signup" element={<SignupStartPage />} />
@@ -88,6 +88,8 @@ const AppContent = () => {
 
           {/* 요양보호사 프로필 등록 페이지 */}
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
+          <Route path='/profile' element={<BasicInfo />} />
+
         </Routes>
       </div>
     </div>

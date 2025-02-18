@@ -28,7 +28,7 @@ const CenterIntroPage = () => {
                     <h2 className="head-semi-bold-24 leading-[40px] text-left mb-3">
                         한줄 소개를 입력해주세요.
                     </h2>
-                    <p className="body-regular-16 text-gray-1 mb-7">센터의 특징을 간단히 표현하면 매칭에 도움이 될 수 있어요. 부담 없이 자유롭게 작성해 주세요!</p>
+                    <p className="body-regular-16 text-gray-2 mb-7">센터의 특징을 간단히 표현하면 매칭에 도움이 될 수 있어요. 부담 없이 자유롭게 작성해 주세요!</p>
                 </div>
 
                 <div className="flex flex-col flex-1 justify-start">

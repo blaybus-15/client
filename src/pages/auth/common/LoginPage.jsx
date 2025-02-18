@@ -45,7 +45,7 @@ const LoginPage= () => {
                 </div>
 
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark text-left py-6 mb-3">
-                    {userType === "caregiver" ? (
+                    {userType === "CAREGIVER" ? (
                         <>
                             요양보호사의 첫걸음<br />케어링크와 함께 시작하세요.
                         </>
@@ -74,9 +74,9 @@ const LoginPage= () => {
                     <Button text="로그인 하기" onClick={handleLogin} disabled={!isValidEmail || !isValidPassword} />
                     
                     <div className="flex justify-center sitems-center gap-[40px] mt-7">
-                        <span className="text-sm font-semibold text-gray-1 cursor-pointer">아이디 찾기</span>
+                        <span className="text-sm font-semibold text-gray-2 cursor-pointer">아이디 찾기</span>
                         <div className="w-[1px] h-[16px] bg-gray-2"></div>
-                        <span className="text-sm font-semibold text-gray-1 cursor-pointer">비밀번호 찾기</span>
+                        <span className="text-sm font-semibold text-gray-2 cursor-pointer">비밀번호 찾기</span>
                     </div>
                 </div>
             </div>

@@ -60,7 +60,7 @@ const CenterSearchPage = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onClick={handleSearch}
                     placeholder="센터 검색"
-                    className="w-full h-full px-4 pr-12 bg-white rounded-lg placeholder-gray-2 text-dark focus:outline-none focus:shadow-inner"
+                    className="w-full h-full px-4 pr-12 bg-white rounded-lg placeholder-gray-3 text-dark focus:outline-none focus:shadow-inner"
                 />
                 <button 
                     onClick={handleSearch}
@@ -84,7 +84,7 @@ const CenterSearchPage = () => {
                                 className="relative p-3 cursor-pointer"
                             >
                                 <p className="body-medium-18 text-dark">{center.centerName}</p>
-                                <p className="body-regular-16 text-gray-1">{center.address}</p>
+                                <p className="body-regular-16 text-gray-2">{center.address}</p>
 
                                 <div className="absolute bottom-0 left-0 w-full border-b border-gray-2"></div>
                             </li>

@@ -43,7 +43,7 @@ const SocialAuthPage = () => {
                 <Button text="로그인 하기" onClick={handleLogin} />
             </div>
 
-            <p className="text-center caption-regular-14 text-gray-1 mt-4">
+            <p className="text-center caption-regular-14 text-gray-2 mt-4">
                 케어링크가 처음이신가요?{" "}
                 <span 
                     className="inline-block ml-5 text-dark font-semibold cursor-pointer"

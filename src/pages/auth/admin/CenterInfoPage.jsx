@@ -92,7 +92,7 @@ const CenterInfoPage = () => {
                 <h2 className="head-semi-bold-24 leading-[40px] text-left">
                     센터 정보를 확인해주세요!
                 </h2>
-                <p className="body-regular-16 text-gray-1 mb-7">가져온 센터의 정보가 맞는지 확인해주세요.</p>
+                <p className="body-regular-16 text-gray-2 mb-7">가져온 센터의 정보가 맞는지 확인해주세요.</p>
             </div>
 
             <div>

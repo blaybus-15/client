@@ -1,9 +1,11 @@
 import React from 'react';
 
-const SearchInputField = ({ placeholder = '입력해주세요', buttonText, value, onClick }) => {
+const SearchInputField = ({ label, placeholder = '입력해주세요', buttonText, value, onClick }) => {
 
     return (
         <div className="w-full mx-auto">
+            <div className='flex flex-col mb-4'>
+            {label && <label className="text-lg font-medium text-dark mb-3">{label}</label>}
         <div
             className="relative rounded-lg bg-background-gray body-regular-16 cursor-pointer"
             onClick={onClick}
@@ -12,7 +14,7 @@ const SearchInputField = ({ placeholder = '입력해주세요', buttonText, valu
                 type="text"
                 placeholder={placeholder}
                 value={value}
-                className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-1 text-dark cursor-pointer"
+                className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-3 text-dark cursor-pointer"
                 readOnly
             />
             <button
@@ -20,6 +22,7 @@ const SearchInputField = ({ placeholder = '입력해주세요', buttonText, valu
             >
                 {buttonText}
             </button>
+        </div>
         </div>
         </div>
     );
