@@ -46,69 +46,84 @@ const TimeModal = ({ title, onClose, onConfirm }) => {
     // 숫자를 문자열로 변환 & 2자리로 맞추기
     const formattedTime = `${String(formattedHour).padStart(2, '0')}:${minute.padStart(2, '0')}`;
 
-    onConfirm(formattedTime); // 24시간 형식으로 전달
-    console.log(formattedTime);
+    onConfirm(formattedTime);
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
-      <div className="w-[375px] h-auto bg-white rounded-t-[20px] shadow-lg flex flex-col px-6 py-4 relative">
-        {/* 상단 타이틀 */}
-        <div className="flex justify-between items-center border-b pb-3">
-          <h2 className="body-semi-bold-18 text-gray-3">{title}</h2>
-          <button onClick={onClose}>
-            <img src={CloseIcon} alt="닫기" className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* 클릭 안내 문구 */}
-        <p className="caption-semi-bold-14 text-gray-3 mt-4">
-          클릭해서 입력해주세요!
-        </p>
-
-        {/* 시간 선택 UI */}
-        <div className="flex justify-between items-center gap-3 mt-3">
-          {/* 오전/오후 선택 */}
-          <SelectableCard
-            items={['오전', '오후']}
-            onSelect={(selected) =>
-              setMeridiem(selected === 0 ? '오전' : '오후')
-            }
-            className="gap-3 flex-shrink-0"
-            cols={1} // 세로 정렬
-            selectedClassName="bg-background-point text-dark body-semi-bold-16 shadow-inner px-4 py-1.5"
-            unselectedClassName="bg-background-gray text-gray-3 body-regular-16 hover:bg-gray-2/20 px-4 py-1.5"
-          />
-
-          {/* 시간 입력 박스 */}
-          <div className="flex items-center justify-center flex-grow space-x-5">
-            <input
-              type="text"
-              ref={hourInputRef}
-              value={hour}
-              onChange={handleHourChange}
-              maxLength="2"
-              className="w-24 h-24 head-semi-bold-32 text-center bg-background-gray border-none rounded-xl focus:outline-none"
-            />
-            <span className="text-4xl font-bold text-[#D9D9D9]">:</span>
-            <input
-              type="text"
-              ref={minuteInputRef}
-              value={minute}
-              onChange={handleMinuteChange}
-              maxLength="2"
-              className="w-24 h-24 head-semi-bold-32 text-center bg-background-gray border-none rounded-xl focus:outline-none"
-            />
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-30">
+      <div className="w-full max-w-md bg-white rounded-t-[20px] shadow-lg animate-slide-up">
+        <div className="px-6 py-4">
+          {/* 상단 타이틀 */}
+          <div className="flex items-center justify-between pb-3 border-b">
+            <h2 className="body-semi-bold-18 text-gray-3">{title}</h2>
+            <button onClick={onClose}>
+              <img src={CloseIcon} alt="닫기" className="w-5 h-5" />
+            </button>
           </div>
-        </div>
 
-        <Button
-          text="다음"
-          onClick={handleConfirm}
-          disabled={!hour || !minute}
-          className="w-full mt-10"
-        />
+          {/* 클릭 안내 문구 */}
+          <p className="mt-4 caption-semi-bold-14 text-gray-3">
+            클릭해서 입력해주세요!
+          </p>
+
+          {/* 시간 선택 UI */}
+          <div className="flex items-center justify-between gap-3 mt-3">
+            {/* 오전/오후 선택 */}
+            <SelectableCard
+              items={['오전', '오후']}
+              onSelect={(selected) =>
+                setMeridiem(selected === 0 ? '오전' : '오후')
+              }
+              className="flex-shrink-0 gap-3"
+              cols={1} // 세로 정렬
+              selectedClassName="bg-background-point text-dark body-semi-bold-16 shadow-inner px-4 py-1.5"
+              unselectedClassName="bg-background-gray text-gray-3 body-regular-16 hover:bg-gray-2/20 px-4 py-1.5"
+            />
+
+            {/* 시간 입력 박스 */}
+            <div className="flex items-center justify-center flex-grow space-x-5">
+              <input
+                type="text"
+                ref={hourInputRef}
+                value={hour}
+                onChange={handleHourChange}
+                maxLength="2"
+                className="w-24 h-24 text-center border-none head-semi-bold-32 bg-background-gray rounded-xl focus:outline-none"
+              />
+              <span className="text-4xl font-bold text-[#D9D9D9]">:</span>
+              <input
+                type="text"
+                ref={minuteInputRef}
+                value={minute}
+                onChange={handleMinuteChange}
+                maxLength="2"
+                className="w-24 h-24 text-center border-none head-semi-bold-32 bg-background-gray rounded-xl focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <Button
+            text="다음"
+            onClick={handleConfirm}
+            disabled={!hour || !minute}
+            className="w-full mt-10"
+          />
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes slide-up {
+          from {
+            transform: translateY(100%);
+          }
+          to {
+            transform: translateY(0);
+          }
+        }
+        .animate-slide-up {
+          animation: slide-up 0.3s ease-out;
+        }
+      `}</style>
     </div>
   );
 };
