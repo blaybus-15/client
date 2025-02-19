@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import JobCard from '../../../components/matching/JobCard';
 import jobPostings from '../../../data/jobPostings';
 
 const ApplyStatus = () => {
   const [jobs, setJobs] = useState(jobPostings);
+  const navigate = useNavigate();
 
   const handleBookmark = (jobId, newBookmarkState) => {
     setJobs(
@@ -11,6 +13,10 @@ const ApplyStatus = () => {
         job.id === jobId ? { ...job, isBookmarked: newBookmarkState } : job
       )
     );
+  };
+
+  const handleJobClick = (jobId) => {
+    navigate(`/matching/jobs/${jobId}`);
   };
 
   return (
@@ -24,7 +30,11 @@ const ApplyStatus = () => {
         <div className="pb-24">
           <div className="space-y-3">
             {jobs.map((job) => (
-              <div key={job.id} className="p-4 bg-white">
+              <div
+                key={job.id}
+                className="p-4 bg-white cursor-pointer"
+                onClick={() => handleJobClick(job.id)}
+              >
                 <JobCard
                   estimatedTime={job.estimatedTime}
                   status={job.status}
@@ -36,7 +46,11 @@ const ApplyStatus = () => {
                   workingHours={job.workingHours}
                   isNegotiable={job.isNegotiable}
                   isBookmarked={job.isBookmarked}
-                  onBookmark={(newState) => handleBookmark(job.id, newState)}
+                  onBookmark={(newState) => {
+                    handleBookmark(job.id, newState);
+                    // 이벤트 버블링 방지
+                    event.stopPropagation();
+                  }}
                 />
               </div>
             ))}
