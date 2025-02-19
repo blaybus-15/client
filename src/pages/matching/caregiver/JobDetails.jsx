@@ -32,9 +32,9 @@ const JobDetail = () => {
 
         {/* 상단 기본 정보 */}
         <div className="px-4 py-4 bg-white">
-          <div className="flex items-center justify-between mb-2">
+          <div className="relative flex items-center justify-between mb-2">
             <Badge label="예상 도보" value={basicInfo.estimatedTime} />
-            <Badge
+            {/* <Badge
               label={basicInfo.status}
               variant={
                 basicInfo.status === '대기중'
@@ -44,10 +44,10 @@ const JobDetail = () => {
                     : 'completed'
               }
               className="mr-16"
-            />
+            /> */}
             <button
               onClick={handleBookmarkClick}
-              className="inline-flex absolute right-4 items-center justify-center px-1.5 py-1 text-xs font-medium bg-white border rounded border-[#E0E5EA] h-7 font-pretendard gap-1"
+              className="inline-flex items-center justify-center px-1.5 py-1 text-xs font-medium bg-white border rounded border-[#E0E5EA] h-7 font-pretendard gap-1"
             >
               <BsBookmarkFill
                 className={`w-4 h-4 ${isBookmarked ? 'text-main' : 'text-gray-2'}`}
