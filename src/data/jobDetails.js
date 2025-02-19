@@ -28,6 +28,8 @@ const jobDetails = {
       condition: '정상 (치매 증상 없음)',
       livingWith: '다른 가족과 동거하고 있으나 서비스 시간에는 자리 비움',
       specialNotes: '없음',
+      name: '한장미',
+      birthDate: '1956 / 3 / 12',
     },
     workArea: {
       address: '서울시 강남구 수서동',
@@ -64,6 +66,8 @@ const jobDetails = {
       condition: '경증 치매',
       livingWith: '독거',
       specialNotes: '기억력 저하로 인한 복약 관리 필요',
+      name: '김옥자',
+      birthDate: '1956 / 7 / 21',
     },
     workArea: {
       address: '서울시 송파구 잠실동',
@@ -99,6 +103,8 @@ const jobDetails = {
       condition: '뇌졸중 후유증',
       livingWith: '배우자와 동거',
       specialNotes: '거동이 불편하여 이동 보조 필요',
+      name: '이옥순',
+      birthDate: '1958 / 10 / 3',
     },
     workArea: {
       address: '서울시 강동구 천호동',
@@ -135,6 +141,8 @@ const jobDetails = {
       condition: '경증 치매',
       livingWith: '독거',
       specialNotes: '우울증상이 있어 정서적 지원 필요',
+      name: '이철수',
+      birthDate: '1951 / 5 / 2',
     },
     workArea: {
       address: '서울시 서초구 반포동',
