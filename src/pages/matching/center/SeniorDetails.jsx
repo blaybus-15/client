@@ -52,8 +52,8 @@ const SeniorDetail = () => {
   const handleAccept = () => {
     setModalConfig({
       isOpen: true,
-      message: '매칭 전달 되었습니다.',
-      subMessage: '보호사에게 매칭 안내 메세지가 발송됩니다.',
+      message: '매칭을 수락하시겠습니까?',
+      subMessage: '수락 시 보호사에게 매칭 안내 메세지가 발송됩니다.',
       onConfirm: () => {
         setResultType('accept');
         setShowResult(true);

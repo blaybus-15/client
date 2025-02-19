@@ -31,6 +31,7 @@ import ApplyStatus from './pages/matching/caregiver/ApplyStatus';
 import JobDetail from './pages/matching/caregiver/JobDetails';
 import SeniorMatchingStatus from './pages/matching/center/SeniorMatchingStatus';
 import SeniorDetails from './pages/matching/center/SeniorDetails';
+import CaregiverList from './pages/matching/center/CaregiverList';
 
 const AppContent = () => {
   const location = useLocation();
@@ -97,6 +98,10 @@ const AppContent = () => {
           <Route path="/matching/jobs/:id" element={<JobDetail />} />
           <Route path="/matching/center" element={<SeniorMatchingStatus />} />
           <Route path="/matching/senior/:id" element={<SeniorDetails />} />
+          <Route
+            path="matching/center/caregiver-list"
+            element={<CaregiverList />}
+          />
         </Routes>
       </div>
     </div>

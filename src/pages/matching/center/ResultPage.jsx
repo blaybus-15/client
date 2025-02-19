@@ -5,9 +5,8 @@ const ResultPage = ({ type = 'accept', message, subMessage }) => {
   const getDefaultMessages = () => {
     if (type === 'accept') {
       return {
-        message: '매칭이 수락 되었습니다!',
-        subMessage:
-          '근무 확정을 위해 관리자에게 요청이 전송되었습니다.\n잠시만 기다려주세요!',
+        message: '매칭 전달 되었습니다.',
+        subMessage: '보호사에게 매칭 안내 메세지가 발송됩니다.',
       };
     } else if (type === 'reject') {
       return {
