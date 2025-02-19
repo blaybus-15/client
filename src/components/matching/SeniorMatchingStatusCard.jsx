@@ -1,5 +1,6 @@
 import React from 'react';
 import Badge from '../Badge';
+import defaultSeniorProfile from '../../assets/senior-profile.png';
 
 const SeniorMatchingStatusCard = ({
   name = '한장미',
@@ -9,7 +10,7 @@ const SeniorMatchingStatusCard = ({
   grade = '2등급',
   status = '대기중',
   className = '',
-  photoUrl = 'https://via.placeholder.com/40',
+  photoUrl,
 }) => {
   const getStatusVariant = (status) => {
     const variants = {
@@ -35,7 +36,7 @@ const SeniorMatchingStatusCard = ({
         <div className="flex items-center justify-end w-20 overflow-hidden rounded-full bg-neutral-400">
           <img
             className="object-cover w-40 h-20"
-            src={photoUrl}
+            src={photoUrl || defaultSeniorProfile}
             alt={`${name}님의 사진`}
           />
         </div>

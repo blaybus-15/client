@@ -5,15 +5,15 @@ import CheckIcon from '../../../assets/check-icon.svg';
 
 const InfoSection = ({ title, children }) => (
   <div className="p-4 bg-white">
-    <h2 className="mb-4 text-base font-medium text-dark">{title}</h2>
+    <h2 className="mb-4 body-semi-bold-18 text-dark">{title}</h2>
     {children}
   </div>
 );
 
 const ContactItem = ({ label, phone }) => (
-  <div className="mb-2">
-    <div className="text-base text-gray-1">{label}</div>
-    <div className="text-base font-medium text-dark">{phone}</div>
+  <div className="mb-2 space-y-1">
+    <div className="body-semi-bold-16 text-dark">{label}</div>
+    <div className="body-regular-16 text-dark">{phone}</div>
   </div>
 );
 
@@ -31,9 +31,9 @@ const WorkConfirmation = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-background-gray">
       {/* 상단 확정 안내 */}
-      <div className="p-8 text-center bg-white">
+      <div className="p-8 text-center ">
         <div className="flex justify-center mb-4">
           <img
             src={CheckIcon}
@@ -51,7 +51,7 @@ const WorkConfirmation = () => {
       {/* 근무 일정 */}
       <InfoSection title="출근 일정 및 장소">
         <div className="space-y-2">
-          <div className="text-base font-medium text-dark">출근 일정</div>
+          <div className="body-semi-bold-18 text-dark">출근 일정</div>
           <div className="text-base text-dark">
             {confirmation.workSchedule.startDate} (월요일)
           </div>
@@ -59,7 +59,7 @@ const WorkConfirmation = () => {
             {confirmation.workSchedule.workingDays.join(', ')} (
             {confirmation.workSchedule.workingHours})
           </div>
-          <div className="mt-4 text-base font-medium text-dark">주소</div>
+          <div className="mt-4 body-semi-bold-18 text-dark">주소</div>
           <div className="text-base text-dark">
             {confirmation.workSchedule.location.address}
           </div>
@@ -70,7 +70,7 @@ const WorkConfirmation = () => {
       </InfoSection>
 
       {/* 보호사 및 관리자 연락처 */}
-      <div className="mt-2">
+      <div className="mt-3">
         <InfoSection title="보호사 및 관리자 연락처">
           <ContactItem
             label="요양보호사 연락처"

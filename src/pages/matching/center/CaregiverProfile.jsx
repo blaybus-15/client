@@ -5,6 +5,7 @@ import { RiEditLine } from 'react-icons/ri';
 import ConfirmModal from '../../../components/modal/ConfirmModal';
 import ResultPage from './ResultPage';
 import RejectReason from './RejectReason';
+import defaultCaregiverProfile from '../../../assets/caregiver-profile.png';
 
 const ProfileTag = ({ text, onDelete }) => (
   <span className="inline-flex items-center px-3 py-1.5 bg-[#FFF9D7] rounded-full text-dark">
@@ -25,9 +26,9 @@ const SectionTitle = ({ title }) => (
 );
 
 const DetailItem = ({ label, value }) => (
-  <div className="flex justify-between py-1">
-    <span className="text-gray-600">{label}</span>
-    <span className="font-medium text-dark">{value}</span>
+  <div className="flex items-center gap-4">
+    <span className="w-24 font-medium">{label}</span>
+    <span className="text-left md:pl-4">{value}</span>
   </div>
 );
 
@@ -52,8 +53,8 @@ const CaregiverProfile = () => {
   // 거절 버튼 핸들러
   const handleReject = () => {
     setModalConfig({
-      message: '매칭을 거절하시겠습니까?',
-      subMessage: '거절 시 해당 매칭은 취소됩니다.',
+      message: `${caregiver.basicInfo.name} 보호사님의 근무를\n취소하시겠습니까 ?`,
+      subMessage: '취소 시 보호사님께 안내문자가\n발송됩니다.',
       onConfirm: () => {
         setIsModalOpen(false);
         setCurrentView('rejectReason');
@@ -65,8 +66,8 @@ const CaregiverProfile = () => {
   // 수락 버튼 핸들러
   const handleAccept = () => {
     setModalConfig({
-      message: '매칭을 수락하시겠습니까?',
-      subMessage: '수락 시 해당 매칭이 확정됩니다.',
+      message: `${caregiver.basicInfo.name} 보호사님의 근무를\n확정하시겠습니까 ?`,
+      subMessage: '근무 확정 시 보호사님께\n안내 문자가 발송됩니다.',
       onConfirm: () => {
         setIsModalOpen(false);
         navigate(`/caregivers/${id}/work-confirmation`);
@@ -95,72 +96,77 @@ const CaregiverProfile = () => {
   }
 
   return (
-    <div className="min-h-screen pb-20 bg-white">
+    <div className="min-h-screen pb-20 bg-background-gray gap-y-1">
       {/* 헤더 */}
-      <div className="flex items-center justify-between p-4 border-b">
+      <div className="flex items-center justify-between p-4 bg-white">
         <h1 className="text-lg font-semibold">보호사 프로필</h1>
       </div>
 
       {/* 프로필 정보 */}
-      <div className="p-4">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <h2 className="text-2xl font-semibold text-[#0081D1]">
-              {caregiver.basicInfo.name} 보호사님
-            </h2>
-            <RiEditLine className="w-5 h-5 text-gray-400" />
+      <div className="">
+        <div className="bg-white">
+          <div className="flex items-center px-4 pt-4 mb-6">
+            <div className="flex items-center gap-3">
+              <h2 className="text-2xl font-semibold text-[#0081D1]">
+                {caregiver.basicInfo.name}{' '}
+                <span className="text-black">보호사님</span>
+              </h2>
+              <RiEditLine className="w-5 h-5 text-gray-400" />
+            </div>
           </div>
-        </div>
 
-        <div className="flex items-center gap-6 mb-8">
-          <div className="w-24 h-24 overflow-hidden rounded-full">
-            <img
-              src={caregiver.basicInfo.profileImage}
-              alt="프로필"
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <div className="flex-1 space-y-2">
-            <DetailItem
-              label="생년월일"
-              value={caregiver.basicInfo.birthDate}
-            />
-            <DetailItem label="연락처" value={caregiver.basicInfo.phone} />
-            <DetailItem label="성별" value={caregiver.basicInfo.gender} />
-            <DetailItem label="나이" value={caregiver.basicInfo.age} />
-            <DetailItem
-              label="차량 소지"
-              value={caregiver.basicInfo.carOwnership}
-            />
-            <DetailItem
-              label="치매 교육"
-              value={caregiver.basicInfo.dementiaEducation}
-            />
+          <div className="flex items-center gap-6 p-4 mb-8">
+            <div className="w-24 h-24 overflow-hidden rounded-full">
+              <img
+                src={defaultCaregiverProfile}
+                alt="프로필"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="flex-1 space-y-2 sm:pl-6">
+              <DetailItem
+                label="생년월일"
+                value={caregiver.basicInfo.birthDate}
+              />
+              <DetailItem label="연락처" value={caregiver.basicInfo.phone} />
+              <DetailItem label="성별" value={caregiver.basicInfo.gender} />
+              <DetailItem label="나이" value={caregiver.basicInfo.age} />
+              <DetailItem
+                label="차량 소지"
+                value={caregiver.basicInfo.carOwnership}
+              />
+              <DetailItem
+                label="치매 교육"
+                value={caregiver.basicInfo.dementiaEducation}
+              />
+            </div>
           </div>
         </div>
 
         {/* 소개 */}
-        <section className="mb-8">
+        <section className="p-4 mb-8 bg-white">
           <SectionTitle title="소개" />
-          <p className="mb-4 text-dark">{caregiver.basicInfo.addressDetail}</p>
+          <p className="body-regular-16 text-dark">
+            {caregiver.basicInfo.addressDetail}
+          </p>
         </section>
 
         {/* 한줄소개 */}
-        <section className="mb-8">
+        <section className="p-4 mb-8 bg-white">
           <SectionTitle title="한줄소개" />
-          <p className="p-4 rounded-lg bg-gray-50 text-dark">
+          <p className="body-regular-16 text-dark">
             {caregiver.introduction.description}
           </p>
         </section>
 
         {/* 성격 */}
-        <section className="mb-8">
+        <section className="p-4 mb-8 bg-white">
           <SectionTitle title="성격" />
           <p className="mb-4 text-dark">{caregiver.introduction.title}</p>
         </section>
 
         {/* 성격 태그 */}
-        <section>
+        <section className="p-4 mb-8 bg-white">
           <SectionTitle title="성격" />
           <div className="flex flex-wrap gap-2">
             {caregiver.introduction.keywords.map((keyword, index) => (
