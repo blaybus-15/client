@@ -24,6 +24,7 @@ import CenterIntroPage from './pages/auth/admin/CenterIntroPage';
 import CenterSearchPage from './pages/auth/admin/CenterSearchPage';
 import CenterInfoPage from './pages/auth/admin/CenterInfoPage';
 import ModalTest from './pages/dev/ModalTest';
+import MatchingCardTest from './pages/dev/MatchingCardTest';
 
 import ProfileSetup from './pages/profile/caregiver';
 import SeniorProfileSetup from './pages/profile/senior';
@@ -35,6 +36,14 @@ import CareTimePage from './pages/profile/senior/steps/CareTimePage';
 import DailyLivingPage from './pages/profile/senior/steps/DailyLivingPage';
 import RequiredServicePage from './pages/profile/senior/steps/RequiredServicePage';
 import MatchingSalaryPage from './pages/profile/senior/steps/MatchingSalaryPage';
+import ApplyStatus from './pages/matching/caregiver/ApplyStatus';
+import JobDetail from './pages/matching/caregiver/JobDetails';
+import SeniorMatchingStatus from './pages/matching/center/SeniorMatchingStatus';
+import SeniorDetails from './pages/matching/center/SeniorDetails';
+import CaregiverList from './pages/matching/center/CaregiverList';
+import CaregiverDetail from './pages/matching/center/CaregiverDetail';
+import CaregiverProfile from './pages/matching/center/CaregiverProfile';
+import WorkConfirmation from './pages/matching/center/WorkConfirmation';
 
 const AppContent = () => {
   const location = useLocation();
@@ -64,6 +73,7 @@ const AppContent = () => {
           <Route path="/dev/address-search" element={<AddressSearch />} />
           <Route path="/dev/modal" element={<ModalTest />} />
           <Route path='/dev/test' element={<TestPage />} />
+          <Route path="dev/matching-card" element={<MatchingCardTest />} />
 
           {/* 회원가입 시작 페이지 (userType 기반 리디렉션) */}
           <Route path="/signup" element={<SignupStartPage />} />
@@ -97,6 +107,25 @@ const AppContent = () => {
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
           <Route path="/profile/senior*" element={<SeniorProfileSetup />} />
 
+          {/* 매칭 페이지 */}
+          <Route path="/matching/caregiver" element={<ApplyStatus />} />
+          <Route path="/matching/jobs/:id" element={<JobDetail />} />
+
+          <Route path="/matching/center" element={<SeniorMatchingStatus />} />
+          <Route path="/matching/senior/:id" element={<SeniorDetails />} />
+          <Route
+            path="/matching/center/caregiver-list"
+            element={<CaregiverList />}
+          />
+          <Route path="/caregivers/:id" element={<CaregiverDetail />} />
+          <Route
+            path="/caregivers/:id/profile"
+            element={<CaregiverProfile />}
+          />
+          <Route
+            path="/caregivers/:id/work-confirmation"
+            element={<WorkConfirmation />}
+          />
         </Routes>
       </div>
     </div>
