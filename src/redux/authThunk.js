@@ -3,8 +3,11 @@ import axios from 'axios';
 import { setProfileImageUrl } from './caregiverSlice';
 import { setProfileImageUrl as setCenterProfileImage } from './adminSlice';
 import { setAuthStatus } from './authSlice';
+import { API_BASE_URL } from '../config';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const formatUrl = (base, path) => {
+  return `${base.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+};
 
 export const signUpThunk = createAsyncThunk(
   "auth/signUp",
@@ -23,8 +26,10 @@ export const signUpThunk = createAsyncThunk(
 
       console.log("회원가입 요청 데이터:", signupData);
 
+      const finalUrl = formatUrl(API_BASE_URL, endpoint);
+
       // 1) 회원가입 API 요청
-      const response = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
+      const response = await axios.post(finalUrl, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -51,7 +56,9 @@ export const signInThunk = createAsyncThunk(
   "auth/signIn",
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
+      const finalUrl = formatUrl(API_BASE_URL, "/auth/login");
+
+      const response = await axios.post(finalUrl, { email, password });
 
       console.log("로그인 성공 응답:", response.data);
       alert("로그인 되었습니다.");
