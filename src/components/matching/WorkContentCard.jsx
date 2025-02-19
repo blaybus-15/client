@@ -11,12 +11,12 @@ const WorkContentCard = ({
 
         <div className="pt-3">
           <dl className="grid grid-cols-[30%_1fr] gap-y-2">
-            <div className="body-regular-16 text-gray-1">대상자</div>
+            <div className="body-regular-16 text-gray-3">대상자</div>
             <div className="whitespace-pre-line body-semi-bold-16 text-dark">
               {patientInfo}
             </div>
 
-            <div className="body-regular-16 text-gray-1">주요 업무</div>
+            <div className="body-regular-16 text-gray-3">주요 업무</div>
             <div className="whitespace-pre-line body-semi-bold-16 text-dark">
               {mainDuties}
             </div>

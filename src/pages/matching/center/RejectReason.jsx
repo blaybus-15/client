@@ -24,7 +24,7 @@ const RejectReason = ({ onSubmit }) => {
         <div className="mb-3 head-semi-bold-24 text-dark">
           매칭 취소한 이유가 무엇인가요?
         </div>
-        <div className="mb-[28px] body-regular-16 text-gray-1">
+        <div className="mb-[28px] body-regular-16 text-gray-3">
           구인을 기다리고 있을 보호사님께
           <br />
           취소 사유를 말씀해주세요 :)

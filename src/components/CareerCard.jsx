@@ -52,9 +52,9 @@ const CareerCard = ({ career, onEdit, onDelete }) => {
 
           <div className="space-y-4">
             <div className="flex items-start gap-8">
-              <span className="font-semibold text-gray-1">근무 기간</span>
+              <span className="font-semibold text-gray-3">근무 기간</span>
               <div className="flex flex-col">
-                <span className="text-gray-1">
+                <span className="text-gray-3">
                   {formatDate(career.startDate)} ~{' '}
                   {career.isCurrentlyEmployed
                     ? '재직중'
@@ -67,8 +67,8 @@ const CareerCard = ({ career, onEdit, onDelete }) => {
             </div>
 
             <div className="flex items-start gap-8">
-              <span className="font-semibold text-gray-1">담당 업무</span>
-              <span className="text-gray-1">{career.duties}</span>
+              <span className="font-semibold text-gray-3">담당 업무</span>
+              <span className="text-gray-3">{career.duties}</span>
             </div>
           </div>
         </div>

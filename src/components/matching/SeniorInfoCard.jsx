@@ -15,24 +15,24 @@ const SeniorInfoCard = ({
 
         <div className="pt-3">
           <dl className="grid grid-cols-[30%_1fr] gap-y-2">
-            <div className="body-regular-16 text-gray-1">나이</div>
+            <div className="body-regular-16 text-gray-3">나이</div>
             <div className="body-semi-bold-16 text-dark">{age}</div>
 
-            <div className="body-regular-16 text-gray-1">성별</div>
+            <div className="body-regular-16 text-gray-3">성별</div>
             <div className="body-semi-bold-16 text-dark">{gender}</div>
 
-            <div className="body-regular-16 text-gray-1">등급</div>
+            <div className="body-regular-16 text-gray-3">등급</div>
             <div className="body-semi-bold-16 text-dark">{grade}</div>
 
-            <div className="body-regular-16 text-gray-1">인지상태</div>
+            <div className="body-regular-16 text-gray-3">인지상태</div>
             <div className="body-semi-bold-16 text-dark">{condition}</div>
 
-            <div className="body-regular-16 text-gray-1">동거여부</div>
+            <div className="body-regular-16 text-gray-3">동거여부</div>
             <div className="whitespace-pre-line body-semi-bold-16 text-dark">
               {livingWith}
             </div>
 
-            <div className="body-regular-16 text-gray-1">특이사항</div>
+            <div className="body-regular-16 text-gray-3">특이사항</div>
             <div className="body-semi-bold-16 text-dark">{specialNotes}</div>
           </dl>
         </div>

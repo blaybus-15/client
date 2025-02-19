@@ -166,7 +166,7 @@ const BankAccount = () => {
           maxLength={bankData.bank === '기업은행' ? 16 : 14}
         />
         {error.accountNumber && (
-          <div className="mt-2 text-sm text-red-500">{error.accountNumber}</div>
+          <div className="mt-2 text-sm text-red">{error.accountNumber}</div>
         )}
 
         <div className="mt-10 mb-3 text-dark body-medium-18">예금주</div>

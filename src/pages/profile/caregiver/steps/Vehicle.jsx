@@ -34,7 +34,7 @@ const Vehicle = () => {
     <>
       <div className="flex-1 px-4 pt-20">
         <div className="mb-3 head-semi-bold-24">차량을 소지하고 있나요?</div>
-        <div className="mb-11 text-gray-1 body-regular-16">
+        <div className="mb-11 text-gray-3 body-regular-16">
           차량 소지 여부를 통해 조건이 맞는 <br />
           어르신과 매칭이 됩니다.
         </div>
