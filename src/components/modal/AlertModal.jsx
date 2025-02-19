@@ -5,7 +5,7 @@ const AlertModal = ({ isOpen, onClose, message, subMessage }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-30">
             <div className="relative w-[300px] h-[150px] bg-white rounded-xl shadow-lg p-6">
 
                 <button onClick={onClose} className="absolute top-6 right-6">
