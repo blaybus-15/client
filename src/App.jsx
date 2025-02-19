@@ -32,6 +32,8 @@ import JobDetail from './pages/matching/caregiver/JobDetails';
 import SeniorMatchingStatus from './pages/matching/center/SeniorMatchingStatus';
 import SeniorDetails from './pages/matching/center/SeniorDetails';
 import CaregiverList from './pages/matching/center/CaregiverList';
+import CaregiverDetail from './pages/matching/center/CaregiverDetail';
+import CaregiverProfile from './pages/matching/center/CaregiverProfile';
 
 const AppContent = () => {
   const location = useLocation();
@@ -96,11 +98,17 @@ const AppContent = () => {
           {/* 매칭 페이지 */}
           <Route path="/matching/caregiver" element={<ApplyStatus />} />
           <Route path="/matching/jobs/:id" element={<JobDetail />} />
+
           <Route path="/matching/center" element={<SeniorMatchingStatus />} />
           <Route path="/matching/senior/:id" element={<SeniorDetails />} />
           <Route
-            path="matching/center/caregiver-list"
+            path="/matching/center/caregiver-list"
             element={<CaregiverList />}
+          />
+          <Route path="/caregivers/:id" element={<CaregiverDetail />} />
+          <Route
+            path="/caregivers/:id/profile"
+            element={<CaregiverProfile />}
           />
         </Routes>
       </div>
