@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signInThunk } from '../../../redux/authThunk';
 import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
+import LogoIcon from "../../../assets/logo.svg";
 
 const LoginPage= () => {
     const navigate = useNavigate();
@@ -42,18 +43,18 @@ const LoginPage= () => {
     return (
         <div className="flex flex-col justify-evenly min-h-screen px-6 py-12 bg-white">
             <div className="w-full rounded-lg flex flex-col flex-1 justify-evenly">
-                <div className="flex mt-12 justify-center items-center w-[95px] h-[57px] bg-gray-200">
-                    <span className="text-gray-500">로고</span>
+                <div className="flex mt-12 justify-center items-center w-[95px]">
+                    <img src={LogoIcon} alt="다온 로고" className="w-full h-auto" />
                 </div>
 
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark text-left py-6 mb-3">
                     {role === "CAREGIVER" ? (
                         <>
-                            요양보호사의 첫걸음<br />케어링크와 함께 시작하세요.
+                            요양보호사의 첫걸음<br />다온과 함께 시작하세요.
                         </>
                     ) : (
                         <>
-                            케어링크와 함께<br />매칭과 업무를 한번에 끝내보세요!
+                            다온과 함께<br />매칭과 업무를 한번에 끝내보세요!
                         </>
                     )
                     }
