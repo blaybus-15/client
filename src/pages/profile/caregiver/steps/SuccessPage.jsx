@@ -1,6 +1,13 @@
 import Button from '../../../../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 const SuccessPage = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/matching/caregiver');
+  };
+
   return (
     <div className="flex flex-col min-h-screen px-4 pt-12 bg-white justify-evenly">
       <div className="flex flex-col items-center justify-center flex-1 space-y-6 text-center">
@@ -16,7 +23,7 @@ const SuccessPage = () => {
       </div>
 
       <div className="w-full pb-12">
-        <Button text="돌봄 연결로 가기" onClick={() => {}} />
+        <Button text="돌봄 연결로 가기" onClick={handleClick} />
       </div>
     </div>
   );
