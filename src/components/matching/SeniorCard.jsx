@@ -39,7 +39,9 @@ const SeniorCard = ({
     <div className="relative w-full bg-white">
       {/* 메인 컨텐츠 */}
       <div>
-        <h2 className="pr-8 pt-3 text-[#0081D1] body-semi-bold-18">{title}</h2>
+        <h2 className="pr-8 pt-1.5 text-[#0081D1] body-semi-bold-18">
+          {title}
+        </h2>
 
         <p className="text-sm pt-[7px] text-gray-2">{location}</p>
 

@@ -7,7 +7,7 @@ import WorkContentCard from '../../components/matching/WorkContentCard';
 import SeniorInfoCard from '../../components/matching/SeniorInfoCard';
 import WorkAreaMap from '../../components/matching/WorkAreaMap';
 import SeniorCard from '../../components/matching/SeniorCard';
-import SeniorMatchingStatus from '../../components/matching/SeniorMatchingStatus';
+import SeniorMatchingStatus from '../../components/matching/SeniorMatchingStatusCard';
 
 const MatchingCardTest = () => {
   return (

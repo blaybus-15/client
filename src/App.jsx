@@ -29,6 +29,8 @@ import MatchingCardTest from './pages/dev/MatchingCardTest';
 import ProfileSetup from './pages/profile/caregiver';
 import ApplyStatus from './pages/matching/caregiver/ApplyStatus';
 import JobDetail from './pages/matching/caregiver/JobDetails';
+import SeniorMatchingStatus from './pages/matching/center/SeniorMatchingStatus';
+import SeniorDetails from './pages/matching/center/SeniorDetails';
 
 const AppContent = () => {
   const location = useLocation();
@@ -93,6 +95,8 @@ const AppContent = () => {
           {/* 매칭 페이지 */}
           <Route path="/matching/caregiver" element={<ApplyStatus />} />
           <Route path="/matching/jobs/:id" element={<JobDetail />} />
+          <Route path="/matching/center" element={<SeniorMatchingStatus />} />
+          <Route path="/matching/senior/:id" element={<SeniorDetails />} />
         </Routes>
       </div>
     </div>
