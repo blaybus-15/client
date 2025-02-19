@@ -6,7 +6,7 @@ import ProfileUploader from '../../../components/ProfileUploader';
 import InputField from '../../../components/InputField';
 import OptionButton from '../../../components/OptionButton';
 import Button from '../../../components/Button';
-import { setSignupField } from '../../../redux/authSlice';
+import { setAdminField } from '../../../redux/adminSlice';
 
 const CenterInfoPage = () => {
     const location = useLocation();
@@ -18,7 +18,7 @@ const CenterInfoPage = () => {
     
     // 초기 상태 설정
     const [center, setCenter] = useState(
-        selectedCenter || { centerName: "", address: "", tel: "", hasBathVehicle: false }
+        selectedCenter || { centerName: "", address: "", contactNumber: "", hasBathVehicle: false }
     );
 
     const [hasChanges, setHasChanges] = useState(false);
@@ -26,7 +26,7 @@ const CenterInfoPage = () => {
     const [isEditing, setIsEditing] = useState({
         centerName: false,
         address: false,
-        tel: false,
+        contactNumber: false,
         hasBathVehicle: false,
     });
 
@@ -50,11 +50,11 @@ const CenterInfoPage = () => {
     useEffect(() => {
         if (selectedCenter) {
             setCenter(selectedCenter);
-            dispatch(setSignupField({ field: "centerId", value: selectedCenter.id }));
-            dispatch(setSignupField({ field: "centerName", value: selectedCenter.centerName }));
-            dispatch(setSignupField({ field: "centerAddress", value: selectedCenter.address }));
-            dispatch(setSignupField({ field: "contactNumber", value: selectedCenter.tel }));
-            dispatch(setSignupField({ field: "hasBathVehicle", value: selectedCenter.hasBathVehicle }));
+            dispatch(setAdminField({ field: "centerId", value: selectedCenter.id }));
+            dispatch(setAdminField({ field: "centerName", value: selectedCenter.centerName }));
+            dispatch(setAdminField({ field: "centerAddress", value: selectedCenter.address }));
+            dispatch(setAdminField({ field: "contactNumber", value: selectedCenter.contactNumber }));
+            dispatch(setAdminField({ field: "hasBathVehicle", value: selectedCenter.hasBathVehicle }));
         }
     }, [selectedCenter, dispatch]);
 
@@ -64,7 +64,7 @@ const CenterInfoPage = () => {
 
     const handleChange = (field, value) => {
         setCenter((prev) => ({ ...prev, [field]: value }));
-        dispatch(setSignupField({ field, value }));
+        dispatch(setAdminField({ field, value }));
         setHasChanges(true); // 변경 감지 활성화
     };
 
@@ -92,7 +92,7 @@ const CenterInfoPage = () => {
                 <h2 className="head-semi-bold-24 leading-[40px] text-left">
                     센터 정보를 확인해주세요!
                 </h2>
-                <p className="body-regular-16 text-gray-1 mb-7">가져온 센터의 정보가 맞는지 확인해주세요.</p>
+                <p className="body-regular-16 text-gray-2 mb-7">가져온 센터의 정보가 맞는지 확인해주세요.</p>
             </div>
 
             <div>
@@ -153,9 +153,9 @@ const CenterInfoPage = () => {
                         <InputField
                             placeholder="연락처를 입력해주세요."
                             type="tel"
-                            value={center.tel}
-                            onChange={(e) => handleChange("tel", e.target.value)}
-                            readOnly={!isEditing.tel}
+                            value={center.contactNumber}
+                            onChange={(e) => handleChange("contactNumber", e.target.value)}
+                            readOnly={!isEditing.contactNumber}
                         />
                     </div>                    
 

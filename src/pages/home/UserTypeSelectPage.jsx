@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import homeBackground from '../../assets/home.png';
 import CaregiverIcon from '../../assets/caregiver-icon.svg';
 import AdminIcon from '../../assets/admin-icon.svg';
-import { setSignupField } from '../../redux/authSlice';
+import { setRole } from '../../redux/authSlice';
+import { useSelector } from 'react-redux';
 
 const UserTypeSelectPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const handleUserTypeSelect = (type) => {
-        dispatch(setSignupField({ field: "type", value: type.toUpperCase() }));
-        navigate(`/auth?type=${type}`);
+    const role = useSelector((state) => state.auth.role);
+    
+    const handleUserTypeSelect = (selectedRole) => {
+        console.log("유저 타입 선택:", selectedRole);
+        
+        dispatch(setRole(selectedRole.toUpperCase()));
+        navigate(`/auth?role=${selectedRole}`);
     };
 
     return (

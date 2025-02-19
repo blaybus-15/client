@@ -27,6 +27,15 @@ import ModalTest from './pages/dev/ModalTest';
 import MatchingCardTest from './pages/dev/MatchingCardTest';
 
 import ProfileSetup from './pages/profile/caregiver';
+import SeniorProfileSetup from './pages/profile/senior';
+import TestPage from "./pages/dev/TestPage";
+import BasicInfo from './pages/profile/senior/steps/BasicInfoPage';
+import GenderSelectPage from './pages/profile/senior/steps/GenderSelectPage';
+import CareDatePage from './pages/profile/senior/steps/CareDatePage';
+import CareTimePage from './pages/profile/senior/steps/CareTimePage';
+import DailyLivingPage from './pages/profile/senior/steps/DailyLivingPage';
+import RequiredServicePage from './pages/profile/senior/steps/RequiredServicePage';
+import MatchingSalaryPage from './pages/profile/senior/steps/MatchingSalaryPage';
 import ApplyStatus from './pages/matching/caregiver/ApplyStatus';
 import JobDetail from './pages/matching/caregiver/JobDetails';
 import SeniorMatchingStatus from './pages/matching/center/SeniorMatchingStatus';
@@ -41,7 +50,7 @@ const AppContent = () => {
   const isHomePage = location.pathname === '/';
 
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen">
       {!isHomePage && (
         <div className="fixed top-0 left-0 z-50 w-full">
           <div className="max-w-2xl mx-auto ">
@@ -63,6 +72,7 @@ const AppContent = () => {
           <Route path="/dev/check-card" element={<CheckCardTest />} />
           <Route path="/dev/address-search" element={<AddressSearch />} />
           <Route path="/dev/modal" element={<ModalTest />} />
+          <Route path='/dev/test' element={<TestPage />} />
           <Route path="dev/matching-card" element={<MatchingCardTest />} />
 
           {/* 회원가입 시작 페이지 (userType 기반 리디렉션) */}
@@ -95,6 +105,7 @@ const AppContent = () => {
 
           {/* 요양보호사 프로필 등록 페이지 */}
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
+          <Route path="/profile/senior*" element={<SeniorProfileSetup />} />
 
           {/* 매칭 페이지 */}
           <Route path="/matching/caregiver" element={<ApplyStatus />} />

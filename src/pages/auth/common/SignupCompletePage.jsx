@@ -1,18 +1,21 @@
 import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Button from '../../../components/Button';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SignupCompletePage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [searchParams] = useSearchParams();
     const userType = searchParams.get("type") || "CAREGIVER";
+    const role = useSelector((state) => state.auth.role) || localStorage.getItem("role") || userType;;
 
     const handleNext = () => {
-        if (userType === "CAREGIVER") {
-            navigate("/profile");
+        if (role === "CAREGIVER") {
+            navigate("/profile/caregiver");
         } else {
-            navigate("/elderly-registration");
+            navigate("/profile/senior");
         }
     };
 
@@ -20,7 +23,7 @@ const SignupCompletePage = () => {
         <div className="flex flex-col justify-evenly min-h-screen px-6 pt-12 bg-white">
             <div className="flex flex-col flex-1 items-center text-center mt-7 space-y-6">
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark">
-                    {userType === "CAREGIVER" ? (
+                    {role === "CAREGIVER" ? (
                         <>
                             프로필 등록하고<br />집근처 일자리 정보를<br />찾아보세요!
                         </>
@@ -39,7 +42,7 @@ const SignupCompletePage = () => {
 
         <div className="mb-5 justify-end">   
             <Button
-                text={userType === "CAREGIVER" ? "프로필 등록하러 가기" : "어르신 정보 입력하러 가기"}
+                text={role === "CAREGIVER" ? "프로필 등록하러 가기" : "어르신 정보 입력하러 가기"}
                 onClick={handleNext}
             />
         </div>

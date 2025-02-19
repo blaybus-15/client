@@ -2,25 +2,25 @@ import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../../components/Button";
 import KakaoIcon from "../../../assets/kakaotalk-icon.svg";
+import { useSelector } from "react-redux";
 
 const SocialAuthPage = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const userType = searchParams.get("type") || "CAREGIVER";
-
+    const role = useSelector((state) => state.auth.role);
     const handleKakaoStart = () => {
         console.log("kakao start");
     };
 
     const handleLogin = () => {
-        navigate(`/login?type=${userType}`);
+        navigate(`/login?type=${role}`);
     };
 
-
     const handleSignup = () => {
-        if (userType === "CAREGIVER") {
+        if (role === "CAREGIVER") {
             navigate("/signup/caregiver/profile");
-        } else if (userType === "ADMIN") {
+        } else if (role === "ADMIN") {
             navigate("/signup/admin/center/register");
         } else {
             navigate("/signup"); // 예외 처리
@@ -43,7 +43,7 @@ const SocialAuthPage = () => {
                 <Button text="로그인 하기" onClick={handleLogin} />
             </div>
 
-            <p className="text-center caption-regular-14 text-gray-1 mt-4">
+            <p className="text-center caption-regular-14 text-gray-2 mt-4">
                 케어링크가 처음이신가요?{" "}
                 <span 
                     className="inline-block ml-5 text-dark font-semibold cursor-pointer"

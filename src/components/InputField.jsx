@@ -10,7 +10,7 @@ const InputField = ({ label, placeholder, type = "text", value, onChange, isInva
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className={`w-full px-4 py-4 body-regular-16 text-dark bg-background-gray placeholder-gray-1
+                className={`w-full px-4 py-4 body-regular-16 text-dark bg-background-gray placeholder-gray-3
                             rounded-xl focus:outline-none shadow-inner
                             ${isInvalid ? "shadow-[#FF3737]" : "shadow-none"}`}
                 maxLength={maxLength}

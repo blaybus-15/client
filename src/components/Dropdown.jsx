@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
-const Dropdown = ({ title, items, onSelect, style = 'bg-white' }) => {
+const Dropdown = ({ label, title, items, onSelect, style = 'bg-white' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(title);
 
@@ -12,14 +12,15 @@ const Dropdown = ({ title, items, onSelect, style = 'bg-white' }) => {
   };
 
   return (
-    <div className="w-full ">
+    <div className='flex flex-col mb-4'>
+      {label && <label className="text-lg font-medium text-dark mb-3">{label}</label>}
       <div className="relative">
         {/* 드롭다운 버튼 */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`flex items-center justify-between w-full px-4 py-3 text-left  rounded-lg body-regular-16 focus:outline-none ${style}`}
         >
-          <span className="text-gray-1">{selected}</span>
+          <span className="text-gray-3">{selected}</span>
           <IoIosArrowDown
             className={`transition-transform duration-200 ${
               isOpen ? 'transform rotate-180' : ''
@@ -28,7 +29,7 @@ const Dropdown = ({ title, items, onSelect, style = 'bg-white' }) => {
         </button>
         {/* 드롭다운 메뉴 */}
         {isOpen && (
-          <div className="absolute w-full mt-1 bg-white border rounded-lg shadow-md body-regular-16">
+          <div className="z-10 absolute w-full mt-1 bg-white border rounded-lg shadow-md body-regular-16">
             {items.map((item, index) => (
               <div>
                 <button

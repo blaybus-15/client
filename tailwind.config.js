@@ -14,9 +14,11 @@ export default {
           gray: '#F3F4F5',
         },
         gray: {
-          1: '#606265',
+          1: '#E0E5EA',
           2: '#B1B5B9',
+          3: '#606265',
         },
+        red: '#FF5050',
       },
       boxShadow: {
         inner: 'inset 0 0 0 1px #FFE943',

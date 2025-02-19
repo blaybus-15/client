@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchCenters } from '../../../services/center';
 import { fetchMockCenters } from '../../../services/mockService';
-import { setSignupField } from '../../../redux/authSlice';
 import { useDispatch } from 'react-redux';
+import { setAdminField } from '../../../redux/adminSlice';
 
 const CenterSearchPage = () => {
     const navigate = useNavigate();
@@ -43,24 +43,24 @@ const CenterSearchPage = () => {
     };
 
     const handleSelectCenter = (center) => {
-        dispatch(setSignupField({ field: "centerId", value: center.id }));
-        dispatch(setSignupField({ field: "centerName", value: center.centerName }));
-        dispatch(setSignupField({ field: "centerAddress", value: center.address }));
-        dispatch(setSignupField({ field: "contactNumber", value: center.tel }));
-        dispatch(setSignupField({ field: "hasBathVehicle", value: center.hasBathVehicle }));
+        dispatch(setAdminField({ field: "centerId", value: center.id }));
+        dispatch(setAdminField({ field: "name", value: center.centerName }));
+        dispatch(setAdminField({ field: "centerAddress", value: center.address }));
+        dispatch(setAdminField({ field: "contactNumber", value: center.contactNumber }));
+        dispatch(setAdminField({ field: "hasBathVehicle", value: center.hasBathVehicle }));
 
         navigate('/signup/admin/center/register', { state: { selectedCenter: center } });
     };
 
     return (
-        <div div className="min-h-screen px-6 pt-12 bg-gray">
+        <div div className="min-h-screen px-6 pt-12 bg-background-gray">
             <div className="relative flex mt-3 items-center h-[38px] body-regular-16">
                 <input
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onClick={handleSearch}
                     placeholder="센터 검색"
-                    className="w-full h-full px-4 pr-12 bg-white rounded-lg placeholder-gray-2 text-dark focus:outline-none focus:shadow-inner"
+                    className="w-full h-full px-4 pr-12 bg-white rounded-lg placeholder-gray-3 text-dark focus:outline-none focus:shadow-inner"
                 />
                 <button 
                     onClick={handleSearch}
@@ -84,7 +84,7 @@ const CenterSearchPage = () => {
                                 className="relative p-3 cursor-pointer"
                             >
                                 <p className="body-medium-18 text-dark">{center.centerName}</p>
-                                <p className="body-regular-16 text-gray-1">{center.address}</p>
+                                <p className="body-regular-16 text-gray-2">{center.address}</p>
 
                                 <div className="absolute bottom-0 left-0 w-full border-b border-gray-2"></div>
                             </li>

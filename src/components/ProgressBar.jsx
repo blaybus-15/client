@@ -2,8 +2,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const ProgressBar = () => {
-  const { currentStep, steps } = useSelector((state) => state.caregiverProfile);
+const ProgressBar = ({ stepSliceName }) => {
+  const { currentStep, steps } = useSelector((state) => state[stepSliceName]);
 
   return (
     <div className="fixed left-0 right-0 max-w-2xl mx-auto bg-white top-10">

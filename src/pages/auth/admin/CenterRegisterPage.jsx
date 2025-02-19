@@ -10,7 +10,7 @@ const CenterRegisterPage = () => {
   const selectedCenter = location.state?.selectedCenter; // navigate로 받은 데이터
 
   const [center, setCenter] = useState(
-    selectedCenter || { centerName: "", address: "", tel: "", hasBathVehicle: false }
+    selectedCenter || { centerName: "", address: "", contactNumber: "", hasBathVehicle: false }
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const CenterRegisterPage = () => {
             onClick={handleSearchClick}
           />
 
-          <p className='mt-2 text-caption-regular-14 text-gray-1'>
+          <p className='mt-2 text-caption-regular-14 text-gray-2'>
             입력하신 선생님의 개인정보는 회원가입 목적 외에는 다른 용도로 사용되지 않습니다.
           </p>
       </div>
