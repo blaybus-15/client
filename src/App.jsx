@@ -24,8 +24,11 @@ import CenterIntroPage from './pages/auth/admin/CenterIntroPage';
 import CenterSearchPage from './pages/auth/admin/CenterSearchPage';
 import CenterInfoPage from './pages/auth/admin/CenterInfoPage';
 import ModalTest from './pages/dev/ModalTest';
+import MatchingCardTest from './pages/dev/MatchingCardTest';
 
 import ProfileSetup from './pages/profile/caregiver';
+import ApplyStatus from './pages/matching/caregiver/ApplyStatus';
+import JobDetail from './pages/matching/caregiver/JobDetails';
 
 const AppContent = () => {
   const location = useLocation();
@@ -54,6 +57,7 @@ const AppContent = () => {
           <Route path="/dev/check-card" element={<CheckCardTest />} />
           <Route path="/dev/address-search" element={<AddressSearch />} />
           <Route path="/dev/modal" element={<ModalTest />} />
+          <Route path="dev/matching-card" element={<MatchingCardTest />} />
 
           {/* 회원가입 시작 페이지 (userType 기반 리디렉션) */}
           <Route path="/signup" element={<SignupStartPage />} />
@@ -85,6 +89,10 @@ const AppContent = () => {
 
           {/* 요양보호사 프로필 등록 페이지 */}
           <Route path="/profile/caregiver*" element={<ProfileSetup />} />
+
+          {/* 매칭 페이지 */}
+          <Route path="/matching/caregiver" element={<ApplyStatus />} />
+          <Route path="/matching/jobs/:id" element={<JobDetail />} />
         </Routes>
       </div>
     </div>
