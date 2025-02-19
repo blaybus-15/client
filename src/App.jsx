@@ -34,6 +34,7 @@ import SeniorDetails from './pages/matching/center/SeniorDetails';
 import CaregiverList from './pages/matching/center/CaregiverList';
 import CaregiverDetail from './pages/matching/center/CaregiverDetail';
 import CaregiverProfile from './pages/matching/center/CaregiverProfile';
+import WorkConfirmation from './pages/matching/center/WorkConfirmation';
 
 const AppContent = () => {
   const location = useLocation();
@@ -109,6 +110,10 @@ const AppContent = () => {
           <Route
             path="/caregivers/:id/profile"
             element={<CaregiverProfile />}
+          />
+          <Route
+            path="/caregivers/:id/work-confirmation"
+            element={<WorkConfirmation />}
           />
         </Routes>
       </div>

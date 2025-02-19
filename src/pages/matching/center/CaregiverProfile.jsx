@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { caregiverProfiles } from '../../../data/caregiverProfile';
 import { RiEditLine } from 'react-icons/ri';
 import ConfirmModal from '../../../components/modal/ConfirmModal';
@@ -33,6 +33,7 @@ const DetailItem = ({ label, value }) => (
 
 const CaregiverProfile = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [currentView, setCurrentView] = useState('profile'); // 'profile' | 'rejectReason' | 'result'
   const [resultType, setResultType] = useState(''); // 'accept' | 'reject'
   const caregiver = caregiverProfiles.find((c) => c.id === Number(id));
@@ -68,8 +69,7 @@ const CaregiverProfile = () => {
       subMessage: '수락 시 해당 매칭이 확정됩니다.',
       onConfirm: () => {
         setIsModalOpen(false);
-        setResultType('accept');
-        setCurrentView('result');
+        navigate(`/caregivers/${id}/work-confirmation`);
       },
     });
     setIsModalOpen(true);
