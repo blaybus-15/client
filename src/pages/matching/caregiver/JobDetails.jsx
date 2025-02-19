@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import WorkConditionsCard from '../../../components/matching/WorkConditionsCard';
 import WorkContentCard from '../../../components/matching/WorkContentCard';
 import SeniorInfoCard from '../../../components/matching/SeniorInfoCard';
 import WorkAreaMap from '../../../components/matching/WorkAreaMap';
+import ConfirmModal from '../../../components/modal/ConfirmModal';
 import jobDetails from '../../../data/jobDetails';
 import Badge from '../../../components/Badge';
 import { BsBookmarkFill } from 'react-icons/bs';
+import ResultPage from './ResultPage';
+import ScheduleAdjustment from './ScheduleAdjustment';
 
 const JobDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const jobDetail = jobDetails[id];
-  const [isBookmarked, setIsBookmarked] = React.useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [resultType, setResultType] = useState('accept');
+  const [showScheduleAdjustment, setShowScheduleAdjustment] = useState(false);
+
+  // 모달 상태 관리
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    message: '',
+    subMessage: '',
+    onConfirm: () => {},
+  });
 
   if (!jobDetail) {
     return <div>정보를 찾을 수 없습니다.</div>;
@@ -24,6 +38,81 @@ const JobDetail = () => {
   const handleBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
   };
+
+  // 모달 닫기 핸들러
+  const handleCloseModal = () => {
+    setModalConfig((prev) => ({ ...prev, isOpen: false }));
+  };
+
+  // 거절 버튼 핸들러
+  const handleReject = () => {
+    setModalConfig({
+      isOpen: true,
+      message: '매칭을 거절하시겠습니까?',
+      subMessage: '거절 시 해당 매칭은 취소됩니다.',
+      onConfirm: () => {
+        setResultType('reject');
+        setShowResult(true);
+        handleCloseModal();
+      },
+    });
+  };
+
+  // 조율요청 버튼 핸들러
+  const handleNegotiate = () => {
+    setModalConfig({
+      isOpen: true,
+      message: '매칭 조율을 요청하시겠습니까?',
+      subMessage: '근무 조건 조율이 필요한 경우 요청해주세요.',
+      onConfirm: () => {
+        handleCloseModal();
+        setShowScheduleAdjustment(true);
+      },
+    });
+  };
+
+  // 수락 버튼 핸들러
+  const handleAccept = () => {
+    setModalConfig({
+      isOpen: true,
+      message: '매칭을 수락하시겠습니까?',
+      subMessage: '수락 시 해당 매칭이 확정됩니다.',
+      onConfirm: () => {
+        setResultType('accept');
+        setShowResult(true);
+        handleCloseModal();
+      },
+    });
+  };
+
+  const handleScheduleSubmit = (scheduleData) => {
+    console.log('Schedule adjustment submitted:', scheduleData);
+    setShowScheduleAdjustment(false); // 스케줄 조정 페이지 닫기
+    setResultType('adjust');
+    setShowResult(true);
+  };
+
+  // 결과 페이지 먼저 체크
+  if (showResult) {
+    return <ResultPage type={resultType} />;
+  }
+
+  // 그 다음 스케줄 조정 페이지 체크
+  if (showScheduleAdjustment) {
+    return <ScheduleAdjustment onSubmit={handleScheduleSubmit} />;
+  }
+
+  if (showScheduleAdjustment) {
+    return <ScheduleAdjustment onSubmit={handleScheduleSubmit} />;
+  }
+
+  if (showResult) {
+    return <ResultPage type={resultType} />;
+  }
+
+  if (showResult) {
+    return <ResultPage type={resultType} />;
+  }
 
   return (
     <div className="min-h-screen bg-background-gray">
@@ -91,17 +180,35 @@ const JobDetail = () => {
 
         {/* 하단 버튼 */}
         <div className="grid grid-cols-3 px-4 pb-24 mt-4 gap-x-2">
-          <button className=" py-3 body-semi-bold-16 text-[#0081D1] bg-white rounded-lg shadow-innerblue">
+          <button
+            onClick={handleReject}
+            className="py-3 body-semi-bold-16 text-[#0081D1] bg-white rounded-lg shadow-innerblue"
+          >
             거절
           </button>
-          <button className="py-3 rounded-lg body-semi-bold-16 text-dark bg-main">
+          <button
+            onClick={handleNegotiate}
+            className="py-3 rounded-lg body-semi-bold-16 text-dark bg-main"
+          >
             조율요청
           </button>
-          <button className="py-3 rounded-lg body-semi-bold-16 text-dark bg-main">
+          <button
+            onClick={handleAccept}
+            className="py-3 rounded-lg body-semi-bold-16 text-dark bg-main"
+          >
             수락
           </button>
         </div>
       </div>
+
+      {/* Confirm Modal */}
+      <ConfirmModal
+        isOpen={modalConfig.isOpen}
+        onClose={handleCloseModal}
+        onConfirm={modalConfig.onConfirm}
+        message={modalConfig.message}
+        subMessage={modalConfig.subMessage}
+      />
     </div>
   );
 };

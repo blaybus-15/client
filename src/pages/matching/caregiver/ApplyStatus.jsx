@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import JobCard from '../../../components/matching/JobCard';
+import ConfirmModal from '../../../components/modal/ConfirmModal';
+import ResultPage from './ResultPage';
 import jobPostings from '../../../data/jobPostings';
 
 const ApplyStatus = () => {
   const [jobs, setJobs] = useState(jobPostings);
   const navigate = useNavigate();
+  const [showResult, setShowResult] = useState(false);
+  const [resultType, setResultType] = useState('');
 
-  const handleBookmark = (jobId, newBookmarkState) => {
+  // 모달 상태 관리
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    message: '',
+    subMessage: '',
+    onConfirm: () => {},
+    jobId: null,
+  });
+
+  const handleBookmark = (jobId, newBookmarkState, event) => {
+    if (event) {
+      event.stopPropagation();
+    }
     setJobs(
       jobs.map((job) =>
         job.id === jobId ? { ...job, isBookmarked: newBookmarkState } : job
@@ -18,6 +34,52 @@ const ApplyStatus = () => {
   const handleJobClick = (jobId) => {
     navigate(`/matching/jobs/${jobId}`);
   };
+
+  // 모달 닫기 핸들러
+  const handleCloseModal = () => {
+    setModalConfig((prev) => ({ ...prev, isOpen: false }));
+  };
+
+  // 거절 버튼 핸들러
+  const handleReject = (jobId, event) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    setModalConfig({
+      isOpen: true,
+      message: '매칭을 거절하시겠습니까?',
+      subMessage: '거절 시 해당 매칭은 취소됩니다.',
+      onConfirm: () => {
+        setResultType('reject');
+        setShowResult(true);
+        handleCloseModal();
+      },
+      jobId,
+    });
+  };
+
+  // 수락 버튼 핸들러
+  const handleAccept = (jobId, event) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    setModalConfig({
+      isOpen: true,
+      message: '매칭을 수락하시겠습니까?',
+      subMessage: '수락 시 해당 매칭이 확정됩니다.',
+      onConfirm: () => {
+        setResultType('accept');
+        setShowResult(true);
+        handleCloseModal();
+      },
+      jobId,
+    });
+  };
+
+  // 결과 페이지가 표시되어야 하는 경우
+  if (showResult) {
+    return <ResultPage type={resultType} />;
+  }
 
   return (
     <div className="min-h-screen bg-background-gray">
@@ -46,17 +108,26 @@ const ApplyStatus = () => {
                   workingHours={job.workingHours}
                   isNegotiable={job.isNegotiable}
                   isBookmarked={job.isBookmarked}
-                  onBookmark={(newState) => {
-                    handleBookmark(job.id, newState);
-                    // 이벤트 버블링 방지
-                    event.stopPropagation();
-                  }}
+                  onBookmark={(newState, event) =>
+                    handleBookmark(job.id, newState, event)
+                  }
+                  onReject={(event) => handleReject(job.id, event)}
+                  onAccept={(event) => handleAccept(job.id, event)}
                 />
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Confirm Modal */}
+      <ConfirmModal
+        isOpen={modalConfig.isOpen}
+        onClose={handleCloseModal}
+        onConfirm={modalConfig.onConfirm}
+        message={modalConfig.message}
+        subMessage={modalConfig.subMessage}
+      />
     </div>
   );
 };
