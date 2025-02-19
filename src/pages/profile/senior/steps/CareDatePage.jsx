@@ -155,7 +155,6 @@ const CareDatePage = () => {
 
       {/* 캘린더 모달 */}
       {isCalendarOpen && (
-        <div className="fixed inset-0 flex items-end justify-center bg-black bg-opacity-30">
           <CalendarModal
             title={
               selectingStartDate
@@ -168,7 +167,6 @@ const CareDatePage = () => {
             selectedDates={tempSelectedDates} // 선택한 날짜 리스트
             setSelectedDates={setTempSelectedDates}
           />
-        </div>
       )}
     </div>
   );
