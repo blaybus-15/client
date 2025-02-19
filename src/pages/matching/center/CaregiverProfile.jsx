@@ -115,7 +115,7 @@ const CaregiverProfile = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-6 p-4 mb-8">
+          <div className="flex items-center gap-6 p-4 mb-4">
             <div className="w-24 h-24 overflow-hidden rounded-full">
               <img
                 src={defaultCaregiverProfile}
@@ -144,7 +144,7 @@ const CaregiverProfile = () => {
         </div>
 
         {/* 소개 */}
-        <section className="p-4 mb-8 bg-white">
+        <section className="p-4 mb-4 bg-white">
           <SectionTitle title="소개" />
           <p className="body-regular-16 text-dark">
             {caregiver.basicInfo.addressDetail}
@@ -152,7 +152,7 @@ const CaregiverProfile = () => {
         </section>
 
         {/* 한줄소개 */}
-        <section className="p-4 mb-8 bg-white">
+        <section className="p-4 mb-4 bg-white">
           <SectionTitle title="한줄소개" />
           <p className="body-regular-16 text-dark">
             {caregiver.introduction.description}
@@ -160,13 +160,13 @@ const CaregiverProfile = () => {
         </section>
 
         {/* 성격 */}
-        <section className="p-4 mb-8 bg-white">
+        <section className="p-4 mb-4 bg-white">
           <SectionTitle title="성격" />
           <p className="mb-4 text-dark">{caregiver.introduction.title}</p>
         </section>
 
         {/* 성격 태그 */}
-        <section className="p-4 mb-8 bg-white">
+        <section className="p-4 pb-8 bg-white">
           <SectionTitle title="성격" />
           <div className="flex flex-wrap gap-2">
             {caregiver.introduction.keywords.map((keyword, index) => (

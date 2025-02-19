@@ -70,11 +70,10 @@ const CaregiverList = () => {
         <div className="px-4 pt-16 pb-8">
           {/* <h1 className="head-semi-bold-24">요양보호사 목록</h1> */}
           <SearchBar placeholder={'조건을 입력해 주세요.'} />
-
           {/* 피그마 */}
-          <div className="flex flex-row pt-2 space-x-4">
-            <div className="h-7 px-2.5 bg-white rounded border border-sky-400 flex items-center gap-1">
-              <div className="text-sky-600 text-sm font-normal font-['Pretendard'] leading-tight">
+          <div className="flex flex-row pt-2 space-x-4 overflow-x-auto">
+            <div className="h-7 px-2.5 bg-white rounded border border-sky-400 flex items-center gap-1 shrink-0">
+              <div className="text-sky-600 text-sm font-normal font-['Pretendard'] leading-tight whitespace-nowrap">
                 확정대기
               </div>
               <div className="relative">
@@ -95,8 +94,8 @@ const CaregiverList = () => {
               </div>
             </div>
 
-            <div className="h-7 px-2.5 bg-white rounded flex items-center gap-1">
-              <div className="text-stone-900 text-sm font-normal font-['Pretendard'] leading-tight">
+            <div className="h-7 px-2.5 bg-white rounded flex items-center gap-1 shrink-0">
+              <div className="text-stone-900 text-sm font-normal font-['Pretendard'] leading-tight whitespace-nowrap">
                 주 1회
               </div>
               <div className="relative">
@@ -117,8 +116,8 @@ const CaregiverList = () => {
               </div>
             </div>
 
-            <div className="h-7 px-2.5 bg-white rounded flex items-center gap-1">
-              <div className="text-stone-900 text-sm font-normal font-['Pretendard'] leading-tight">
+            <div className="h-7 px-2.5 bg-white rounded flex items-center gap-1 shrink-0">
+              <div className="text-stone-900 text-sm font-normal font-['Pretendard'] leading-tight whitespace-nowrap">
                 근무기간
               </div>
               <div className="relative">
@@ -139,8 +138,8 @@ const CaregiverList = () => {
               </div>
             </div>
 
-            <div className="h-7 px-2.5 bg-white rounded flex items-center gap-1">
-              <div className="text-stone-900 text-sm font-normal font-['Pretendard'] leading-tight">
+            <div className="h-7 px-2.5 bg-white rounded flex items-center gap-1 shrink-0">
+              <div className="text-stone-900 text-sm font-normal font-['Pretendard'] leading-tight whitespace-nowrap">
                 근무시간
               </div>
               <div className="relative">
