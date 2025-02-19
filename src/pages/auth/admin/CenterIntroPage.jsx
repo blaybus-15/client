@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSignupField } from '../../../redux/authSlice';
+import { setAdminField } from '../../../redux/adminSlice';
 import Button from '../../../components/Button';
 
 const CenterIntroPage = () => {
@@ -9,7 +9,7 @@ const CenterIntroPage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    const introduction = useSelector((state) => state.auth.signupData.introduction);
+    const introduction = useSelector((state) => state.admin.signupData?.introduction);
     const profileImageFile = location.state?.profileImageFile || null;
 
     const handleNext = () => {
@@ -18,7 +18,7 @@ const CenterIntroPage = () => {
 
     const handleChange = (e) => {
         if (e.target.value.length <= 300) {
-            dispatch(setSignupField({ field: "introduction", value: e.target.value }));
+            dispatch(setAdminField({ field: "introduction", value: e.target.value }));
         }
     };
 

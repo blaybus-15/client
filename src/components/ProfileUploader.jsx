@@ -6,7 +6,6 @@ const ProfileUploader = ({ onImageUpload }) => {
     const dispatch = useDispatch();
     const [imagePreview, setImagePreview] = useState(null);
     const [imageFile, setImageFile] = useState(null); // 파일 useState로 관리
-    const profileImageUrl = useSelector((state) => state.auth.signupData.profileImageUrl);
     
     const handleImageChange = (event) => {
         const file = event.target.files[0];

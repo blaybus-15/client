@@ -13,6 +13,8 @@ const LoginPage= () => {
     const [searchParams] = useSearchParams();
     const userType = searchParams.get("type") || "caregiver";
 
+    const role = useSelector((state) => state.auth.role);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -45,7 +47,7 @@ const LoginPage= () => {
                 </div>
 
                 <h2 className="head-semi-bold-24 leading-[40px] text-dark text-left py-6 mb-3">
-                    {userType === "CAREGIVER" ? (
+                    {role === "CAREGIVER" ? (
                         <>
                             요양보호사의 첫걸음<br />케어링크와 함께 시작하세요.
                         </>

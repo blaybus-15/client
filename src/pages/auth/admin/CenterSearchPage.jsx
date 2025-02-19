@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchCenters } from '../../../services/center';
 import { fetchMockCenters } from '../../../services/mockService';
-import { setSignupField } from '../../../redux/authSlice';
 import { useDispatch } from 'react-redux';
+import { setAdminField } from '../../../redux/adminSlice';
 
 const CenterSearchPage = () => {
     const navigate = useNavigate();
@@ -43,11 +43,11 @@ const CenterSearchPage = () => {
     };
 
     const handleSelectCenter = (center) => {
-        dispatch(setSignupField({ field: "centerId", value: center.id }));
-        dispatch(setSignupField({ field: "name", value: center.centerName }));
-        dispatch(setSignupField({ field: "centerAddress", value: center.address }));
-        dispatch(setSignupField({ field: "contactNumber", value: center.tel }));
-        dispatch(setSignupField({ field: "hasBathVehicle", value: center.hasBathVehicle }));
+        dispatch(setAdminField({ field: "centerId", value: center.id }));
+        dispatch(setAdminField({ field: "name", value: center.centerName }));
+        dispatch(setAdminField({ field: "centerAddress", value: center.address }));
+        dispatch(setAdminField({ field: "contactNumber", value: center.contactNumber }));
+        dispatch(setAdminField({ field: "hasBathVehicle", value: center.hasBathVehicle }));
 
         navigate('/signup/admin/center/register', { state: { selectedCenter: center } });
     };

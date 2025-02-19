@@ -10,7 +10,7 @@ const CenterRegisterPage = () => {
   const selectedCenter = location.state?.selectedCenter; // navigate로 받은 데이터
 
   const [center, setCenter] = useState(
-    selectedCenter || { centerName: "", address: "", tel: "", hasBathVehicle: false }
+    selectedCenter || { centerName: "", address: "", contactNumber: "", hasBathVehicle: false }
   );
 
   useEffect(() => {

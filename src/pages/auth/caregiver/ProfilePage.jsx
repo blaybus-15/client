@@ -5,17 +5,17 @@ import Button from "../../../components/Button";
 import InputField from "../../../components/InputField";
 import ProfileUploader from "../../../components/ProfileUploader";
 import OptionButton from "../../../components/OptionButton";
-import { setSignupField } from "../../../redux/authSlice";
+import { setCaregiverField } from "../../../redux/caregiverSlice";
 
 const ProfilePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const signupData = useSelector((state) => state.auth.signupData);
+    const signupData = useSelector((state) => state.caregiver.signupData);
 
     const [profileImageFile, setProfileImageFile] = useState(null);
 
     const handleChange = (field, value) => {
-        dispatch(setSignupField({ field, value }));
+        dispatch(setCaregiverField({ field, value }));
     };
 
     const handleNext = () => {

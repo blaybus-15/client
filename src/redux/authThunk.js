@@ -1,102 +1,81 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { setProfileImageUrl } from './authSlice';
+import { setProfileImageUrl } from './caregiverSlice';
+import { setProfileImageUrl as setCenterProfileImage } from './adminSlice';
+import { setAuthStatus } from './authSlice';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-// 회원가입 요청
 export const signUpThunk = createAsyncThunk(
-  'auth/signUp',
-  async ({ profileImageFile }, thunkAPI) => {
+  "auth/signUp",
+  async ({ profileImageFile, userType }, thunkAPI) => {
     try {
-      const state = thunkAPI.getState().auth.signupData;
+      const state = thunkAPI.getState();
+      const role = userType || state.auth.role; 
+
+      let signupData = role === "CAREGIVER" ? state.caregiver.signupData : state.admin.signupData;
+      let requestKey = role === "CAREGIVER" ? "signUpRequest" : "adminRequest";
+      let endpoint = role === "CAREGIVER" ? "/auth/sign-up/member" : "/auth/sign-up/admin";
+
       const formData = new FormData();
+      formData.append(requestKey, new Blob([JSON.stringify(signupData)], { type: "application/json" }));
+      if (profileImageFile) formData.append("file", profileImageFile);
 
-      // ADMIN과 CAREGIVER 구분하여 요청 데이터 설정
-      const requestKey =
-        state.type === 'ADMIN' ? 'adminRequest' : 'signUpRequest';
-      const endpoint =
-        state.type === 'ADMIN' ? '/auth/sign-up/admin' : '/auth/sign-up/member';
+      console.log("회원가입 요청 데이터:", signupData);
 
-      formData.append(
-        requestKey,
-        new Blob([JSON.stringify(state)], { type: 'application/json' })
-      );
+      // 1) 회원가입 API 요청
+      const response = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-      if (profileImageFile) {
-        formData.append('file', profileImageFile);
-      }
+      console.log("회원가입 성공 응답:", response.data);
+      alert("회원가입이 완료되었습니다.");
 
-      console.log('회원가입 요청 데이터:', state);
+      // 2) 회원가입 후 자동 로그인 실행 (unwrap() 사용)
+      const loginResponse = await thunkAPI.dispatch(
+        signInThunk({ email: signupData.email, password: signupData.password })
+      ).unwrap(); // `unwrap()`을 사용해야 `fulfilled`에서 처리 가능
 
-      const response = await axios.post(
-        `${API_BASE_URL}${endpoint}`,
-        formData,
-        {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        }
-      );
+      console.log("자동 로그인 응답:", loginResponse);
 
-      console.log('회원가입 성공 응답:', response.data);
-      alert('회원가입이 완료되었습니다.');
-
-      // 회원가입 성공 시 자동 로그인
-      await thunkAPI.dispatch(
-        signInThunk({ email: state.email, password: state.password })
-      );
-
-      // 백엔드 프로필 이미지 URL을 반환하는 경우 Redux에 저장
-      if (response.data?.data?.profileImageUrl) {
-        thunkAPI.dispatch(
-          setProfileImageUrl(response.data.data.profileImageUrl)
-        );
-      }
-
-      return response.data;
+      return loginResponse; // 로그인 성공 후 응답을 반환하여 Redux에 저장 가능하도록 함
     } catch (error) {
-      console.error(
-        '회원가입 요청 실패:',
-        error.response?.data || error.message
-      );
-      alert(`회원가입 실패: ${error.response?.data?.message || "알 수 없는 오류"}`);
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || '회원가입 요청 실패'
-      );
+      console.error("회원가입 요청 실패:", error.response?.data || error.message);
+      alert(`${error.response?.data?.message || "회원가입에 실패했습니다."}`);
+      return thunkAPI.rejectWithValue(error.response?.data?.message || "회원가입 요청 실패");
     }
   }
 );
 
-// 로그인 요청
 export const signInThunk = createAsyncThunk(
-  'auth/signIn',
-  async ({ email, password }, { rejectWithValue }) => {
+  "auth/signIn",
+  async ({ email, password }, thunkAPI) => {
     try {
-      console.log('로그인 요청 시작');
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
 
-      const response = await axios.post(`${API_BASE_URL}/auth/login`, {
-        email,
-        password,
-      });
+      console.log("로그인 성공 응답:", response.data);
+      alert("로그인 되었습니다.");
 
-      console.log('로그인 성공 응답:', response.data);
+      // 로그인 성공 시, 토큰과 역할(role) 저장
+      const { accessToken, refreshToken, roles, username } = response.data.data;
 
-      const { accessToken, refreshToken, username, roles } = response.data.data;
+      if (!accessToken || !refreshToken || !roles || roles.length === 0) {
+        throw new Error("토큰 또는 역할 정보가 없습니다.");
+      }
 
-      // 토큰과 사용자 정보 저장
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-      localStorage.setItem('email', username);
-      localStorage.setItem('roles', JSON.stringify(roles));
+      // role 변환 (ROLE_CAREGIVER -> CAREGIVER, ROLE_ADMIN -> ADMIN)
+      const role = roles[0].replace("ROLE_", "");
+      thunkAPI.dispatch(setAuthStatus({ isAuthenticated: true, role, accessToken }));
 
-      alert('로그인 되었습니다');
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("role", role);
+      localStorage.setItem("username", username);
 
-      return { accessToken, refreshToken, email: username, roles };
+      return { data: { accessToken, refreshToken, roles }};
     } catch (error) {
-      console.error('로그인 요청 실패:', error.response?.data || error.message);
-      alert(`로그인 실패: ${error.response?.data?.message || "이메일 또는 비밀번호를 확인해주세요."}`);
-      return rejectWithValue(
-        error.response?.data?.message || '로그인 요청 실패'
-      );
+      console.error("로그인 요청 실패:", error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(error.response?.data?.message || "로그인 요청 실패");
     }
   }
 );

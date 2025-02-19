@@ -2,25 +2,25 @@ import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../../components/Button";
 import KakaoIcon from "../../../assets/kakaotalk-icon.svg";
+import { useSelector } from "react-redux";
 
 const SocialAuthPage = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const userType = searchParams.get("type") || "CAREGIVER";
-
+    const role = useSelector((state) => state.auth.role);
     const handleKakaoStart = () => {
         console.log("kakao start");
     };
 
     const handleLogin = () => {
-        navigate(`/login?type=${userType}`);
+        navigate(`/login?type=${role}`);
     };
 
-
     const handleSignup = () => {
-        if (userType === "CAREGIVER") {
+        if (role === "CAREGIVER") {
             navigate("/signup/caregiver/profile");
-        } else if (userType === "ADMIN") {
+        } else if (role === "ADMIN") {
             navigate("/signup/admin/center/register");
         } else {
             navigate("/signup"); // 예외 처리
