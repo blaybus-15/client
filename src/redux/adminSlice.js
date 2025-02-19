@@ -6,11 +6,11 @@ const initialState = {
     password: '',
     confirmPassword: '',
     centerId: '',
-    name: '',
-    address: '',
+    centerName: '',
+    centerAddress: '',
     contactNumber: '',
+    hasBathVehicle: false,
     introduction: '',
-    hasBathVehicle: '',
     profileImageUrl: '', // Redux에는 파일 저장 불가, URL만 저장
   },
 };

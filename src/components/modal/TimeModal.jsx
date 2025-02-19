@@ -51,7 +51,7 @@ const TimeModal = ({ title, onClose, onConfirm }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
       <div className="w-[375px] h-auto bg-white rounded-t-[20px] shadow-lg flex flex-col px-6 py-4 relative">
         {/* 상단 타이틀 */}
         <div className="flex justify-between items-center border-b pb-3">
