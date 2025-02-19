@@ -41,10 +41,10 @@ const LimitedTextInput = ({
           onChange={handleChange}
           placeholder={placeholder}
           rows={rows}
-          className={`w-full p-4 rounded-lg bg-background-gray resize-none outline-none placeholder-gray-1 text-dark ${className}`}
+          className={`w-full p-4 rounded-lg bg-background-gray resize-none outline-none placeholder-gray-3 text-dark ${className}`}
         />
         <div className="absolute caption-regular-14 bottom-3 right-3">
-          <span className="text-red-400">{value.length}</span>
+          <span className="text-red">{value.length}</span>
           <span className="text-gray-2">/{maxLength}</span>
         </div>
       </div>

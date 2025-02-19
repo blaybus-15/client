@@ -16,13 +16,13 @@ const Badge = ({
 
     // 상태 배지 스타일
     pending: 'bg-sky-100 border border-sky-400 text-sky-400 px-2.5 py-1',
-    negotiating: 'bg-rose-100 border border-red-500 text-red-500 px-2.5 py-1',
+    negotiating: 'bg-rose-100 border border-red text-red px-2.5 py-1',
     completed: 'bg-yellow-300 text-stone-900 px-2.5 py-1',
   };
 
   // 기본 배지의 경우 label과 value의 색상을 다르게 처리
   const isDefaultVariant = variant === 'default';
-  const labelColor = isDefaultVariant ? 'text-gray-1' : '';
+  const labelColor = isDefaultVariant ? 'text-gray-3' : '';
   const valueColor = isDefaultVariant ? 'text-dark' : '';
 
   const variantStyle = variants[variant] || variants.default;

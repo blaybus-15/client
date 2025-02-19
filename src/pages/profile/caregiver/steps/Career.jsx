@@ -26,7 +26,7 @@ const StyledCheckbox = ({ id, checked, onChange, label, className = '' }) => {
           <BsCheck size={14} className={checked ? 'text-dark' : 'text-white'} />
         </span>
       </button>
-      <label htmlFor={id} className="cursor-pointer text-gray-1">
+      <label htmlFor={id} className="cursor-pointer text-gray-3">
         {label}
       </label>
     </div>
@@ -181,7 +181,7 @@ const Career = () => {
                 </label>
                 <div className="flex items-center gap-2">
                   <div className="flex-1 space-y-1">
-                    <div className="sub-regular-12 text-gray-1">시작기간</div>
+                    <div className="sub-regular-12 text-gray-3">시작기간</div>
                     <input
                       type="date"
                       className="w-full h-11 px-3 py-2.5 bg-white rounded-lg text-gray-600"
@@ -193,7 +193,7 @@ const Career = () => {
                   </div>
                   <div className="w-4 h-px mt-8 bg-zinc-200" />
                   <div className="flex-1 space-y-1">
-                    <div className="sub-regular-12 text-gray-1">종료기간</div>
+                    <div className="sub-regular-12 text-gray-3">종료기간</div>
                     {currentCareer.isCurrentlyEmployed ? (
                       <div className="h-11 px-3 py-2.5 bg-white rounded-lg text-gray-600">
                         재직중
@@ -247,7 +247,7 @@ const Career = () => {
               >
                 <span className="text-base font-semibold text-dark">저장</span>
               </button>
-              <p className="text-center sub-regular-12 text-gray-1">
+              <p className="text-center sub-regular-12 text-gray-3">
                 경력을 추가하고 저장을 눌러주세요.
               </p>
             </div>

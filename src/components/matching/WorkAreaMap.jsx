@@ -151,7 +151,7 @@ export default function WorkAreaMap({ address, radius = 300 }) {
         />
         <div className="px-4 py-3 bg-white border-t border-gray-200">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-gray-1 font-pretendard">
+            <span className="text-sm font-medium text-gray-3 font-pretendard">
               근무 주소
             </span>
             <span className="text-sm font-medium text-dark font-pretendard">

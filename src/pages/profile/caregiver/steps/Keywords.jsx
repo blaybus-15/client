@@ -49,7 +49,7 @@ const Keywords = () => {
           키워드를 선택해주세요!
         </div>
         <div className="w-72 pb-[26px]">
-          <span className="text-gray-1 body-regular-16">
+          <span className="text-3 body-regular-16">
             더 편안하게 일하실 수 있도록, 성향이 잘 맞는 어르신과
             매칭해드립니다.
           </span>

@@ -64,16 +64,16 @@ const JobCard = ({
 
         <div className="pt-3">
           <dl className="grid grid-cols-[30%_1fr] gap-y-2">
-            <div className="body-regular-16 text-gray-1">급여</div>
+            <div className="body-regular-16 text-gray-3">급여</div>
             <div className="body-semi-bold-16 text-dark">{salary}</div>
 
-            <div className="body-regular-16 text-gray-1">담당 업무</div>
+            <div className="body-regular-16 text-gray-3">담당 업무</div>
             <div className="body-semi-bold-16 text-dark">{duty}</div>
 
-            <div className="body-regular-16 text-gray-1">어르신정보</div>
+            <div className="body-regular-16 text-gray-3">어르신정보</div>
             <div className="body-semi-bold-16 text-dark">{patientInfo}</div>
 
-            <div className="body-regular-16 text-gray-1">근무 시간</div>
+            <div className="body-regular-16 text-gray-3">근무 시간</div>
             <div className="body-semi-bold-16 text-dark">
               {workingHours}
               {isNegotiable && (

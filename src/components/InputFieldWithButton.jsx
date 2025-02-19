@@ -22,7 +22,7 @@ const InputFieldWithButton = ({
           onChange={(e) => onChange(e)}
           placeholder={placeholder}
           disabled={disabled}
-          className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-1 text-dark"
+          className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-3 text-dark"
         />
         <button
           onClick={handleSubmit}

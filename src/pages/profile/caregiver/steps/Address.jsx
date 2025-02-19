@@ -146,7 +146,7 @@ const Address = () => {
               value={address}
               readOnly
               placeholder="도로명으로 검색하세요."
-              className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-1 text-dark"
+              className="w-full h-12 p-4 pr-24 bg-transparent outline-none placeholder-gray-3 text-dark"
               onClick={() => setIsPopupOpen(true)}
             />
             <button
@@ -164,7 +164,7 @@ const Address = () => {
           onChange={(e) => setDetailAddress(e.target.value)}
         />
 
-        <div className="text-gray-1 text-sm pt-1.5 font-normal font-['Pretendard'] leading-tight">
+        <div className="text-gray-3 text-sm pt-1.5 font-normal font-['Pretendard'] leading-tight">
           입력하신 선생님의 개인정보는 회원가입 목적 외에는
           <br />
           다른 용도로 사용되지 않습니다.

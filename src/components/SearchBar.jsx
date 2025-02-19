@@ -16,7 +16,7 @@ const SearchBar = ({
         className="w-full h-full px-4 pr-12 bg-white rounded-lg placeholder-gray-2 text-dark focus:outline-none focus:shadow-inner"
       />
       <div className="absolute p-2 text-gray-400 right-2">
-        <FiSearch size={20} className="text-gray-1" />
+        <FiSearch size={20} className="text-gray-3" />
       </div>
     </div>
   );

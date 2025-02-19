@@ -58,7 +58,7 @@ const MatchingPreference = () => {
         <div className="mb-3 head-semi-bold-24">
           매칭을 위한 조건을 선택해주세요!
         </div>
-        <span className="text-gray-1 body-regular-16">
+        <span className="text-gray-3 body-regular-16">
           요양보호사님과 어르신의 유사한 조건을
           <br />
           기준으로 매칭이 진행됩니다.
@@ -73,11 +73,11 @@ const MatchingPreference = () => {
           </span>
         </div>
         <div>
-          <span className="text-gray-1 sub-regular-12">
+          <span className="text-gray-3 sub-regular-12">
             정확한 매칭을 위해{' '}
           </span>
           <span className="text-[#FF5050] sub-regular-12"> 2개 이상</span>
-          <span className="text-gray-1 sub-regular-12"> 선택</span>
+          <span className="text-gray-3 sub-regular-12"> 선택</span>
         </div>
 
         <SelectableCard

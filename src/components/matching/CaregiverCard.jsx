@@ -18,22 +18,22 @@ const CaregiverCard = ({
 
         <div className="pt-3">
           <dl className="grid grid-cols-[30%_1fr] gap-y-2">
-            <div className="body-regular-16 text-gray-1">위치</div>
+            <div className="body-regular-16 text-gray-3">위치</div>
             <div className="body-semi-bold-16 text-dark">{location} 거주</div>
 
-            <div className="body-regular-16 text-gray-1">생년월일</div>
+            <div className="body-regular-16 text-gray-3">생년월일</div>
             <div className="body-semi-bold-16 text-dark">{birthDate}</div>
 
-            <div className="body-regular-16 text-gray-1">연락처</div>
+            <div className="body-regular-16 text-gray-3">연락처</div>
             <div className="body-semi-bold-16 text-dark">{phone}</div>
 
-            <div className="body-regular-16 text-gray-1">성별</div>
+            <div className="body-regular-16 text-gray-3">성별</div>
             <div className="body-semi-bold-16 text-dark">{gender}</div>
 
-            <div className="body-regular-16 text-gray-1">차량 소지</div>
+            <div className="body-regular-16 text-gray-3">차량 소지</div>
             <div className="body-semi-bold-16 text-dark">{carDescription}</div>
 
-            <div className="body-regular-16 text-gray-1">치매 교육</div>
+            <div className="body-regular-16 text-gray-3">치매 교육</div>
             <div className="body-semi-bold-16 text-dark">{educationStatus}</div>
           </dl>
         </div>

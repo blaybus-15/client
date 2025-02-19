@@ -15,16 +15,16 @@ const WorkConditionsCard = ({
 
         <div className="pt-3">
           <dl className="grid grid-cols-[30%_1fr] gap-y-2">
-            <div className="body-regular-16 text-gray-1">급여</div>
+            <div className="body-regular-16 text-gray-3">급여</div>
             <div className="body-semi-bold-16 text-dark">{salary}</div>
 
-            <div className="body-regular-16 text-gray-1">근무 요일</div>
+            <div className="body-regular-16 text-gray-3">근무 요일</div>
             <div className="body-semi-bold-16 text-dark">{workingDays}</div>
 
-            <div className="body-regular-16 text-gray-1">근무 형태</div>
+            <div className="body-regular-16 text-gray-3">근무 형태</div>
             <div className="body-semi-bold-16 text-dark">{workType}</div>
 
-            <div className="body-regular-16 text-gray-1">근무 시간</div>
+            <div className="body-regular-16 text-gray-3">근무 시간</div>
             <div className="body-semi-bold-16 text-dark">
               {workingHours}
               {workingHoursNegotiable && (
@@ -35,7 +35,7 @@ const WorkConditionsCard = ({
               )}
             </div>
 
-            <div className="body-regular-16 text-gray-1">선호 성별</div>
+            <div className="body-regular-16 text-gray-3">선호 성별</div>
             <div className="body-semi-bold-16 text-dark">
               {preferredCaregiver}
             </div>

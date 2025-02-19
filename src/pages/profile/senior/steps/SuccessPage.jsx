@@ -1,13 +1,14 @@
-import { useNavigate } from 'react-router-dom';
 import Button from '../../../../components/Button';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import CheckIcon from '../../../../assets/check-icon.svg';
 
 const SuccessPage = () => {
   const navigate = useNavigate();
-  
-  const handleClick = () => {
+  const handleOnClick = () => {
     navigate('/matching/center');
   };
+  
   return (
     <div className="flex flex-col min-h-screen px-4 pt-12 bg-white justify-evenly">
       <div className="text-center mt-12">
@@ -27,7 +28,7 @@ const SuccessPage = () => {
       </div>
 
       <div className="w-full pb-12">
-        <Button text="돌봄 연결로 가기" onClick={handleClick} />
+        <Button text="돌봄 연결로 가기" onClick={handleOnClick} />
       </div>
     </div>
   );

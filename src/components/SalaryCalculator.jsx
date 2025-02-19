@@ -93,7 +93,7 @@ const SalaryCalculator = ({ onChange }) => {
             <option value="일급">일급</option>
             <option value="월급">월급</option>
           </select>
-          <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-1">
+          <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-3">
             <svg
               className="w-4 h-4 fill-current"
               xmlns="http://www.w3.org/2000/svg"
@@ -124,26 +124,26 @@ const SalaryCalculator = ({ onChange }) => {
         <div className="mt-6">
           <div className="mb-4 body-medium-18 text-dark">정상금액 계산기</div>
           <div className="p-4 space-y-3 rounded-lg shadow-inner bg-background-point round-point">
-            <div className="flex justify-between text-gray-1">
+            <div className="flex justify-between text-gray-3">
               <span>센터 수수료</span>
               <span>-{formatNumber(calculations.centerFee)}원</span>
             </div>
-            <div className="flex justify-between text-gray-1">
+            <div className="flex justify-between text-gray-3">
               <span>소득세</span>
               <span>-{formatNumber(calculations.incomeTax)}원</span>
             </div>
-            <div className="flex justify-between text-gray-1">
+            <div className="flex justify-between text-gray-3">
               <span>지방세</span>
               <span>-{formatNumber(calculations.localTax)}원</span>
             </div>
             <div className="flex justify-between pt-2 body-semi-bold-18">
-              <span className="text-gray-1">최종 정산 금액</span>
+              <span className="text-gray-3">최종 정산 금액</span>
               <span className="text-dark">
                 {salaryType} {formatNumber(calculations.finalAmount)}원
               </span>
             </div>
           </div>
-          <p className="mt-2 text-caption-regular-14 text-gray-1">
+          <p className="mt-2 text-caption-regular-14 text-gray-3">
             입력하신 시급,일급,건별을 월급으로 계산해 드립니다.
           </p>
         </div>
