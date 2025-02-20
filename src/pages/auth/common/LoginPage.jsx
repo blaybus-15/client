@@ -29,15 +29,23 @@ const LoginPage= () => {
     const handleLogin = () => {
         if (!isValidEmail || !isValidPassword) return;
 
-        dispatch(signInThunk({ email, password }))
-        .unwrap()
-        .then(() => {
-            console.log("로그인 성공!");
-            navigate("/profile");
-        })
-        .catch((err) => {
-            console.error("로그인 실패: ", err);
-        });
+        if (role === "ADMIN") {
+            alert("로그인이 완료되었습니다.");
+            navigate(`/profile/senior`);
+          } else {
+            alert("로그인이 완료되었습니다.")
+            navigate('/profile/caregiver');
+          }
+        
+        // dispatch(signInThunk({ email, password }))
+        // .unwrap()
+        // .then(() => {
+        //     console.log("로그인 성공!");
+        //     navigate("/profile");
+        // })
+        // .catch((err) => {
+        //     console.error("로그인 실패: ", err);
+        // });
     };
 
     return (
@@ -88,4 +96,3 @@ const LoginPage= () => {
 }
 
 export default LoginPage;
-
