@@ -87,7 +87,7 @@ Type: Subject (#이슈번호)
 - Axios를 이용한 API 호출
 
 ## 🔗 관련 이슈
-- Closes #15
+- Closes #15 
 ```
 
 ### PR 머지 규칙
