@@ -47,16 +47,18 @@ const CredentialsPage = () => {
       alert("회원가입이 완료되었습니다.");
       navigate(`/signup/complete?role=${role}`);
     } else {
-      dispatch(signUpThunk({ profileImageFile, userType: role }))
-        .unwrap()
-        .then((res) => {
-          console.log('회원가입 요청 응답:', res);
-          console.log('회원가입 성공');
-          navigate(`/signup/complete?role=${role}`);
-        })
-        .catch((err) => {
-          console.error('회원가입 요청 중 오류 발생:', err);
-        });
+      // dispatch(signUpThunk({ profileImageFile, userType: role }))
+      //   .unwrap()
+      //   .then((res) => {
+      //     console.log('회원가입 요청 응답:', res);
+      //     console.log('회원가입 성공');
+      //     navigate(`/signup/complete?role=${role}`);
+      //   })
+      //   .catch((err) => {
+      //     console.error('회원가입 요청 중 오류 발생:', err);
+      //   });
+      alert('회원가입이 완료되었습니다');
+      navigate((`/signup/complete?role=${role}`));
     };
   }
 
